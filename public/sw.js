@@ -18,7 +18,8 @@ const urlsToCache = [
   `${BASE_PATH}/index.html`,
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/icon-192.svg`,
-  `${BASE_PATH}/icon-512.svg`
+  `${BASE_PATH}/icon-512.svg`,
+  `${BASE_PATH}/apple-touch-icon.svg`
 ];
 
 self.addEventListener('install', (event) => {
