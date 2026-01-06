@@ -1,9 +1,11 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="512" height="512" fill="white"/>
-  <g transform="translate(64, 128) scale(0.48)">
-    <!-- frete em azul -->
-    <text x="0" y="300" font-family="Arial, sans-serif" font-size="320" font-weight="700" fill="#00A6E6" letter-spacing="-10">frete</text>
-    <!-- bras em preto -->
-    <text x="0" y="600" font-family="Arial, sans-serif" font-size="320" font-weight="700" fill="#000000" letter-spacing="-10">bras</text>
-  </g>
+  <image 
+    href="https://cdn.builder.io/api/v1/image/assets%2F7de6902bb7ea42d4be5082a42dd00e60%2F982cad649b7d4088a9ac5aadc3712da1?format=webp&width=800" 
+    x="44" 
+    y="128" 
+    width="424" 
+    height="256"
+    preserveAspectRatio="xMidYMid meet"
+  />
 </svg>
