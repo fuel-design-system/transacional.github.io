@@ -1,6 +1,4 @@
 import "./global.css";
-import "@frete.com/fuel-tokens/main.css";
-import "@frete.com/fuel-react/main.css";
 
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
