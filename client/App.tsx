@@ -14,8 +14,10 @@ const queryClient = new QueryClient();
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    // The service worker will auto-detect the base path
-    navigator.serviceWorker.register('/sw.js')
+    // Use relative path so it works with any base path
+    const basePath = import.meta.env.BASE_URL;
+    const swPath = `${basePath}sw.js`;
+    navigator.serviceWorker.register(swPath)
       .then((registration) => {
         console.log('ServiceWorker registration successful:', registration.scope);
       })
