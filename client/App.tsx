@@ -14,8 +14,8 @@ const queryClient = new QueryClient();
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    const swPath = import.meta.env.PROD ? '/transacional.github.io/sw.js' : '/sw.js';
-    navigator.serviceWorker.register(swPath)
+    // The service worker will auto-detect the base path
+    navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
         console.log('ServiceWorker registration successful:', registration.scope);
       })
