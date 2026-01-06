@@ -1,0 +1,5 @@
+# Copy this file to .npmrc and replace YOUR_NPM_TOKEN with your actual token
+# Never commit the actual .npmrc file with your token!
+
+@frete.com:registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN
