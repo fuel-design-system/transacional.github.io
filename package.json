@@ -21,6 +21,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@frete.com/fuel-fonts": "1.2.1-next.2",
+    "@frete.com/fuel-react": "2.0.0-next.22",
+    "@frete.com/fuel-tokens": "0.0.0-beta.13",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "zod": "^3.25.76"
