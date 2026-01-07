@@ -41,7 +41,7 @@ export default function ChatPage() {
     'Quanto está pagando?',
     'Consegue melhorar o preço?'
   ];
-  const [messages] = useState<Message[]>([
+  const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       sender: 'contact',
@@ -54,6 +54,19 @@ export default function ChatPage() {
       isRead: true,
     },
   ]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessages(prev => [...prev, {
+        id: '2',
+        sender: 'user',
+        text: 'Sim, seu veículo é truck?',
+        timestamp: '09:41',
+      }]);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const contact = contacts[contactId || '1'];
 
