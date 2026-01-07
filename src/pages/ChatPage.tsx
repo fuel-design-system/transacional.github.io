@@ -177,79 +177,89 @@ export default function ChatPage() {
 
       {/* Bottom Tabs and Input */}
       <div className="chat-bottom">
-        <div className="chat-stepper">
-          <button
-            className={`step-item ${activeTab === 1 ? 'active' : ''} ${completedTabs.includes(1) ? 'completed' : ''}`}
-            onClick={() => handleStepChange(1)}
-          >
-            <div className="step-badge-wrapper">
-              {activeTab === 1 && !completedTabs.includes(1) && (
-                <div className="pulse"></div>
-              )}
-              <div className="step-badge">
-                {completedTabs.includes(1) ? (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
-                  </svg>
-                ) : (
-                  <span>1</span>
+        {!isInputFocused ? (
+          <div className="chat-stepper">
+            <button
+              className={`step-item ${activeTab === 1 ? 'active' : ''} ${completedTabs.includes(1) ? 'completed' : ''}`}
+              onClick={() => handleStepChange(1)}
+            >
+              <div className="step-badge-wrapper">
+                {activeTab === 1 && !completedTabs.includes(1) && (
+                  <div className="pulse"></div>
                 )}
+                <div className="step-badge">
+                  {completedTabs.includes(1) ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
+                    </svg>
+                  ) : (
+                    <span>1</span>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="step-label">Negociação</div>
-          </button>
-          <button
-            className={`step-item ${activeTab === 2 ? 'active' : ''} ${completedTabs.includes(2) ? 'completed' : ''}`}
-            onClick={() => handleStepChange(2)}
-          >
-            <div className="step-badge-wrapper">
-              {activeTab === 2 && !completedTabs.includes(2) && (
-                <div className="pulse"></div>
-              )}
-              <div className="step-badge">
-                {completedTabs.includes(2) ? (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
-                  </svg>
-                ) : (
-                  <span>2</span>
+              <div className="step-label">Negociação</div>
+            </button>
+            <button
+              className={`step-item ${activeTab === 2 ? 'active' : ''} ${completedTabs.includes(2) ? 'completed' : ''}`}
+              onClick={() => handleStepChange(2)}
+            >
+              <div className="step-badge-wrapper">
+                {activeTab === 2 && !completedTabs.includes(2) && (
+                  <div className="pulse"></div>
                 )}
+                <div className="step-badge">
+                  {completedTabs.includes(2) ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
+                    </svg>
+                  ) : (
+                    <span>2</span>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="step-label">Documentos</div>
-          </button>
-          <button
-            className={`step-item ${activeTab === 3 ? 'active' : ''} ${completedTabs.includes(3) ? 'completed' : ''}`}
-            onClick={() => handleStepChange(3)}
-          >
-            <div className="step-badge-wrapper">
-              {activeTab === 3 && !completedTabs.includes(3) && (
-                <div className="pulse"></div>
-              )}
-              <div className="step-badge">
-                {completedTabs.includes(3) ? (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
-                  </svg>
-                ) : (
-                  <span>3</span>
+              <div className="step-label">Documentos</div>
+            </button>
+            <button
+              className={`step-item ${activeTab === 3 ? 'active' : ''} ${completedTabs.includes(3) ? 'completed' : ''}`}
+              onClick={() => handleStepChange(3)}
+            >
+              <div className="step-badge-wrapper">
+                {activeTab === 3 && !completedTabs.includes(3) && (
+                  <div className="pulse"></div>
                 )}
+                <div className="step-badge">
+                  {completedTabs.includes(3) ? (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="white"/>
+                    </svg>
+                  ) : (
+                    <span>3</span>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="step-label">Fechamento</div>
-          </button>
-          <div className="stepper-divider"></div>
-          <div
-            className="stepper-divider-active"
-            style={{
-              width:
-                completedTabs.includes(3) ? '100%' :
-                activeTab === 3 || completedTabs.includes(2) ? '83%' :
-                activeTab === 2 || completedTabs.includes(1) ? '50%' :
-                '16%'
-            }}
-          ></div>
-        </div>
+              <div className="step-label">Fechamento</div>
+            </button>
+            <div className="stepper-divider"></div>
+            <div
+              className="stepper-divider-active"
+              style={{
+                width:
+                  completedTabs.includes(3) ? '100%' :
+                  activeTab === 3 || completedTabs.includes(2) ? '83%' :
+                  activeTab === 2 || completedTabs.includes(1) ? '50%' :
+                  '16%'
+              }}
+            ></div>
+          </div>
+        ) : (
+          <div className="quick-replies">
+            {quickReplies.map((reply, index) => (
+              <button key={index} className="quick-reply-btn" onClick={() => setMessage(reply)}>
+                {reply}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="message-input-container">
           <div className="message-input-wrapper">
