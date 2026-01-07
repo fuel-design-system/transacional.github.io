@@ -210,6 +210,7 @@ export default function ChatPage() {
                 )}
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
         )}
         {activeTab === 2 && (
