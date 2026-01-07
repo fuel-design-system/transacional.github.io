@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/ChatBottomSheet.scss';
 
 interface Contact {
@@ -16,6 +17,9 @@ interface ChatBottomSheetProps {
 }
 
 export default function ChatBottomSheet({ isOpen, onClose }: ChatBottomSheetProps) {
+  const navigate = useNavigate();
+  const { id: freightId } = useParams();
+
   const contacts: Contact[] = [
     {
       id: '1',
@@ -61,6 +65,11 @@ export default function ChatBottomSheet({ isOpen, onClose }: ChatBottomSheetProp
     e.stopPropagation();
   };
 
+  const handleContactClick = (contactId: string) => {
+    onClose();
+    navigate(`/freight/${freightId}/chat/${contactId}`);
+  };
+
   return (
     <div className={`chat-bottom-sheet-overlay ${isOpen ? 'open' : ''}`} onClick={handleOverlayClick}>
       <div className={`chat-bottom-sheet ${isOpen ? 'open' : ''}`} onClick={handleContentClick}>
@@ -83,7 +92,7 @@ export default function ChatBottomSheet({ isOpen, onClose }: ChatBottomSheetProp
           <div className="contacts-list">
             {contacts.map((contact, index) => (
               <div key={contact.id}>
-                <div className="contact-item">
+                <div className="contact-item" onClick={() => handleContactClick(contact.id)}>
                   <div className="contact-info">
                     <div className="avatar-container">
                       {contact.avatar ? (
