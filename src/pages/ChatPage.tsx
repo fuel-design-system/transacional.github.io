@@ -56,18 +56,16 @@ export default function ChatPage() {
     },
   ]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMessages(prev => [...prev, {
-        id: '2',
-        sender: 'user',
-        text: 'Sim, seu veículo é truck?',
-        timestamp: '09:41',
-      }]);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Script de conversa simulada
+  const conversationScript: { [key: string]: string } = {
+    'sim': 'Ótimo! Qual o peso da carga?',
+    'não': 'Entendo. Me avise quando tiver uma carga disponível.',
+    'truck': 'Perfeito! Quando precisa da coleta?',
+    'peso': 'Entendido. Qual o valor do frete?',
+    'quando': 'Ok, consigo fazer nessa data. Qual o valor que está oferecendo?',
+    'valor': 'Vou analisar e te retorno. Obrigado!',
+    'default': 'Entendi. Pode me dar mais detalhes?'
+  };
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
