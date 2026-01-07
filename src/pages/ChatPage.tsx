@@ -69,6 +69,10 @@ export default function ChatPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   const contact = contacts[contactId || '1'];
 
   const handleBackClick = () => {
