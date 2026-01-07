@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/ChatPage.scss';
+import freightsData from '../data/freights.json';
 
 interface Contact {
   id: string;
@@ -35,7 +36,11 @@ export default function ChatPage() {
   const [completedTabs, setCompletedTabs] = useState<number[]>([]);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [hasAutoReplied, setHasAutoReplied] = useState(false);
+  const [conversationStep, setConversationStep] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Busca os dados do frete
+  const freight = freightsData.find(f => f.id === Number(freightId));
 
   const quickReplies = [
     'Onde carrega?',
@@ -64,27 +69,31 @@ export default function ChatPage() {
     ];
   });
 
-  // Script de conversa simulada
-  const conversationScript: { [key: string]: string } = {
-    'sim': 'Ótimo! Meu veículo é um Scania R450 truck. Qual o peso total da carga?',
-    'disponível': 'Sim, a carga ainda está disponível! Você tem experiência com eletrônicos?',
-    'truck': 'Sim, possuo um truck Scania. Quando precisa fazer a coleta?',
-    'toneladas': 'Perfeito, meu caminhão comporta essa carga. Qual o valor do frete?',
-    'peso': 'Entendido. Meu caminhão aguenta até 14 toneladas. Qual seria o valor?',
-    'amanhã': 'Consigo fazer amanhã sim. Qual o valor que está pagando pelo frete?',
-    'segunda': 'Segunda-feira funciona bem pra mim. E o valor do frete?',
-    'r$': 'Deixa eu analisar a rota e te retorno em alguns minutos. Pode ser?',
-    'valor': 'Qual valor você está oferecendo para esse frete?',
-    'obrigado': 'Por nada! Qualquer dúvida estou à disposição.',
-    'ok': 'Combinado então! Vou aguardar sua confirmação.',
-    'default': 'Entendi. Pode me dar mais detalhes sobre isso?'
-  };
+  // Script de conversa com etapas definidas
+  const conversationFlowSteps = [
+    // Step 0: Primeira mensagem automática do operador
+    { step: 0, response: 'Sim, está disponível' },
+    // Step 1: Aguardando "Onde carrega?"
+    { step: 1, response: 'Carrega na Fazenda 2 irmãos' },
+    // Step 2: Aguardando "Livre de descarga?"
+    { step: 2, response: 'Isso e não precisa agendar descarga' },
+    // Step 3: Aguardando "Ta pagando quanto?"
+    {
+      step: 3,
+      response: () => {
+        if (!freight) return 'R$ 5.500 + pedágio incluso';
+        const priceFormatted = `R$ ${freight.price}`;
+        const tollInfo = freight.priceType === 'Pedágio incluso' ? 'pedágio incluso' : 'pedágio a parte';
+        return `${priceFormatted} + ${tollInfo}`;
+      }
+    },
+  ];
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Simula a primeira resposta automática do usuário (branco, esquerda)
+  // Simula a primeira resposta automática do operador (branco, esquerda)
   useEffect(() => {
     if (messages.length === 1 && !hasAutoReplied) {
       const timer = setTimeout(() => {
@@ -96,13 +105,14 @@ export default function ChatPage() {
         const userMessage: Message = {
           id: '2',
           sender: 'user',
-          text: 'Sim, seu veículo é truck?',
+          text: 'Sim, está disponível',
           timestamp,
         };
 
         setMessages(prev => [...prev, userMessage]);
         setHasAutoReplied(true);
-      }, 3000);
+        setConversationStep(0);
+      }, 2000);
 
       return () => clearTimeout(timer);
     }
@@ -131,18 +141,45 @@ export default function ChatPage() {
 
   const simulateUserResponse = (contactMessage: string) => {
     const lowerMessage = contactMessage.toLowerCase();
-    let response = conversationScript.default;
+    let response = '';
+    let nextStep = conversationStep;
 
-    // Verifica qual palavra-chave corresponde à mensagem
-    for (const [key, value] of Object.entries(conversationScript)) {
-      if (lowerMessage.includes(key)) {
-        response = value;
-        break;
-      }
+    // Detecção de palavras-chave para pular etapas
+    if (lowerMessage.includes('onde') && lowerMessage.includes('carrega')) {
+      // Pergunta sobre local de carga (Step 1)
+      nextStep = 1;
+    } else if (lowerMessage.includes('livre') || lowerMessage.includes('descarga')) {
+      // Pergunta sobre descarga (Step 2)
+      nextStep = 2;
+    } else if (
+      lowerMessage.includes('pagando') ||
+      lowerMessage.includes('valor') ||
+      lowerMessage.includes('quanto') ||
+      lowerMessage.includes('preço') ||
+      lowerMessage.includes('r$')
+    ) {
+      // Pergunta sobre valor (Step 3)
+      nextStep = 3;
+    } else {
+      // Segue o fluxo sequencial
+      nextStep = conversationStep + 1;
     }
 
-    // Simula delay de digitação (2-4 segundos)
-    const delay = Math.random() * 2000 + 2000;
+    // Busca a resposta correspondente ao step
+    const stepData = conversationFlowSteps.find(s => s.step === nextStep);
+
+    if (stepData) {
+      response = typeof stepData.response === 'function'
+        ? stepData.response()
+        : stepData.response;
+      setConversationStep(nextStep);
+    } else {
+      // Resposta padrão se não houver match
+      response = 'Entendi. Pode me dar mais detalhes sobre isso?';
+    }
+
+    // Simula delay de digitação (1.5-3 segundos)
+    const delay = Math.random() * 1500 + 1500;
 
     setTimeout(() => {
       const now = new Date();
