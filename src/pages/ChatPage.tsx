@@ -277,7 +277,7 @@ export default function ChatPage() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
+              onBlur={() => setTimeout(() => setIsInputFocused(false), 200)}
             />
             <div className="input-actions">
               <button className="input-action-btn">
