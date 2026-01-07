@@ -161,6 +161,7 @@ export default function ChatPage() {
             </div>
             <div className="step-label">Fechamento</div>
           </button>
+          <div className="stepper-divider"></div>
         </div>
 
         <div className="message-input-container">
