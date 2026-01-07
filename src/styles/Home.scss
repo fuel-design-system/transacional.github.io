@@ -164,8 +164,12 @@
     transform: scale(0.98);
   }
 
-  &.chip-active {
-    border-color: $interaction-enable;
+  &.chip-first {
+    margin-left: $space-4;
+  }
+
+  &.chip-last {
+    margin-right: $space-4;
   }
 }
 
