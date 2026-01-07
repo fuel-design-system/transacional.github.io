@@ -111,6 +111,10 @@ export default function ChatPage() {
 
     setMessages(prev => [...prev, newMessage]);
     setMessage('');
+    setIsInputFocused(false);
+
+    // Remove o foco do input
+    (document.activeElement as HTMLElement)?.blur();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
