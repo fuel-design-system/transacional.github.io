@@ -1,0 +1,62 @@
+@use '@styles/tokens' as *;
+@use '@styles/mixins' as *;
+
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  cursor: pointer;
+
+  &[data-disabled="true"] {
+    @include disabled;
+  }
+}
+
+.checkbox {
+  @include flex-center;
+  @include transition-colors;
+  @include focus-visible;
+  
+  width: 1rem;
+  height: 1rem;
+  border-radius: $radius-sm;
+  border: 2px solid $primary;
+  background-color: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background-color: $interaction-enable-alpha;
+  }
+
+  &[data-state="checked"] {
+    background-color: $primary;
+    color: $primary-foreground;
+
+    .checkbox-icon {
+      display: block;
+    }
+  }
+
+  &:disabled {
+    @include disabled;
+  }
+}
+
+.checkbox-icon {
+  display: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.checkbox-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
