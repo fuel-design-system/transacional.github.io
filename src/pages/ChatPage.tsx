@@ -33,6 +33,14 @@ export default function ChatPage() {
   const [activeTab, setActiveTab] = useState(1);
   const [message, setMessage] = useState('');
   const [completedTabs, setCompletedTabs] = useState<number[]>([]);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const quickReplies = [
+    'Onde carrega?',
+    'Quando carrega?',
+    'Quanto está pagando?',
+    'Consegue melhorar o preço?'
+  ];
   const [messages] = useState<Message[]>([
     {
       id: '1',
