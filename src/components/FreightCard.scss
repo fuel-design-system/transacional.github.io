@@ -8,6 +8,16 @@
   border-radius: 12px;
   background-color: $bg-default;
   position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 .freight-info {
