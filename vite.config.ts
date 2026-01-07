@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: '/',
+  base: '/transacional.github.io/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
