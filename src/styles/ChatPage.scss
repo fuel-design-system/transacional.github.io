@@ -244,11 +244,11 @@
 
           .pulse {
             position: absolute;
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: #0C884C;
-            animation: pulse 2s ease-out infinite;
+            animation: pulse 0.8s ease-out infinite;
           }
 
           .step-badge {
@@ -338,7 +338,7 @@
         opacity: 0.24;
       }
       50% {
-        transform: scale(1.1);
+        transform: scale(1.4);
         opacity: 0.12;
       }
       100% {
