@@ -7,7 +7,17 @@
     <link rel="manifest" href="/transacional.github.io/manifest.json" />
     <link rel="icon" type="image/svg+xml" href="/transacional.github.io/icon-192.svg" />
     <title>Fretebras</title>
-    <script type="module" crossorigin src="/transacional.github.io/assets/index-DP3SJjTl.js"></script>
+    <script>
+      // Restaura a rota após redirecionamento do 404.html
+      (function() {
+        const redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/transacional.github.io/assets/index-ntTmReie.js"></script>
     <link rel="stylesheet" crossorigin href="/transacional.github.io/assets/index-koDXqnJV.css">
   </head>
   <body>
