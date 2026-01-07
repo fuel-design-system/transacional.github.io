@@ -189,7 +189,7 @@
     flex-direction: column;
     background: #FFF;
 
-    .chat-tabs {
+    .chat-stepper {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -197,7 +197,7 @@
       padding: 12px 0;
       position: relative;
 
-      .tab-item {
+      .step-item {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -210,51 +210,83 @@
         transition: all 0.2s;
         position: relative;
 
-        &:not(:last-child) {
-          &::after {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: calc(50% + 16px);
-            width: 48px;
-            height: 0;
-            border-top: 1px dashed #DFE1E6;
-            z-index: 0;
-          }
+        // Linhas conectoras
+        &:nth-child(1)::after,
+        &:nth-child(2)::after {
+          content: '';
+          position: absolute;
+          top: 12px;
+          left: calc(50% + 12px);
+          width: 56px;
+          height: 1px;
+          background: #DFE1E6;
+          z-index: 0;
         }
 
-        &.active:not(:last-child) {
-          &::after {
-            top: 16px;
-            left: calc(50% + 20px);
-          }
+        // Linha sólida verde quando o step anterior está completo
+        &:nth-child(2).completed::after,
+        &:nth-child(2).active::after {
+          background: #0C884C;
         }
 
-        .tab-badge {
-          display: flex;
-          width: 24px;
-          height: 24px;
-          justify-content: center;
-          align-items: center;
-          border-radius: 99px;
-          transition: all 0.2s;
+        &:nth-child(3).completed::after,
+        &:nth-child(3).active::after {
+          background: #0C884C;
+        }
+
+        // Se o step 1 está completo, linha entre 1 e 2 fica verde
+        &:nth-child(1).completed::after {
+          background: #0C884C;
+        }
+
+        .step-badge-wrapper {
           position: relative;
-          z-index: 1;
-          background: #FFF;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-          span {
-            color: #BABEC9;
-            text-align: center;
-            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            line-height: 160%;
-            text-transform: uppercase;
-            transition: color 0.2s;
+          .pulse {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(12, 136, 76, 0.24);
+            animation: pulse 2s ease-out infinite;
+          }
+
+          .step-badge {
+            display: flex;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 99px;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 1;
+            background: #F4F4F5;
+
+            span {
+              color: #636B7E;
+              text-align: center;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 10px;
+              font-weight: 700;
+              line-height: 160%;
+              text-transform: uppercase;
+              transition: color 0.2s;
+            }
+
+            svg {
+              width: 16px;
+              height: 16px;
+            }
           }
         }
 
-        .tab-label {
+        .step-label {
           color: #636B7E;
           text-align: center;
           font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
@@ -264,55 +296,59 @@
           transition: all 0.2s;
         }
 
+        // Estado completado (check verde)
         &.completed {
-          .tab-badge {
-            background: transparent;
-            border: none;
-            width: 24px;
-            height: 24px;
+          .step-badge-wrapper .step-badge {
+            background: #0C884C;
 
             svg {
-              width: 24px;
-              height: 24px;
+              fill: white;
             }
           }
 
-          .tab-label {
+          .step-label {
             color: #636B7E;
             font-weight: 500;
           }
         }
 
+        // Estado ativo (badge verde com número branco)
         &.active {
-          .tab-badge {
+          .step-badge-wrapper .step-badge {
             background: #0C884C;
-            border: 4px solid rgba(12, 136, 76, 0.24);
-            width: 32px;
-            height: 32px;
 
             span {
               color: #FFF;
             }
           }
 
-          .tab-label {
+          .step-label {
             color: #111;
             font-weight: 700;
           }
         }
 
+        // Ativo + completado = check verde sem mudança extra
         &.active.completed {
-          .tab-badge {
-            width: 32px;
-            height: 32px;
-            border: 4px solid rgba(12, 136, 76, 0.24);
-
-            svg {
-              width: 24px;
-              height: 24px;
-            }
+          .step-badge-wrapper .step-badge {
+            background: #0C884C;
           }
         }
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.24;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.12;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.24;
       }
     }
 
