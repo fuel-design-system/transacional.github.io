@@ -165,7 +165,7 @@
             flex-direction: column;
             max-width: 328px;
             gap: 0;
-            padding: 0;
+            padding: 8px;
             border-radius: 12px 12px 2px 12px;
             background: #003C80;
             overflow: hidden;
@@ -175,7 +175,7 @@
               align-items: flex-start;
               gap: 8px;
               padding: 12px;
-              border-radius: 8px 8px 0 0;
+              border-radius: 8px;
               background: rgba(219, 236, 255, 0.20);
               position: relative;
 
@@ -244,11 +244,11 @@
             .message-text {
               color: #FFF;
               font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-              font-size: 14px;
+              font-size: 16px;
               font-weight: 500;
               line-height: 150%;
               white-space: pre-wrap;
-              padding: 12px 12px 0 12px;
+              padding: 12px 0 0 0;
 
               strong {
                 font-weight: 700;
@@ -260,7 +260,7 @@
               justify-content: flex-end;
               align-items: center;
               gap: 4px;
-              padding: 4px 12px 12px 12px;
+              padding: 4px 0 0 0;
 
               .read-status {
                 width: 16px;
