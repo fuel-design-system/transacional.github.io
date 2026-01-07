@@ -32,6 +32,10 @@ const contacts: { [key: string]: Contact } = {
 export default function ChatPage() {
   const navigate = useNavigate();
   const { freightId, contactId } = useParams();
+
+  // Chave única para cada conversa
+  const chatStorageKey = `chat_${freightId}_${contactId}`;
+
   const [isExiting, setIsExiting] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const [message, setMessage] = useState('');
