@@ -122,8 +122,8 @@ export default function ChatPage() {
     setActiveTab(step);
   };
 
-  const simulateContactResponse = (userMessage: string) => {
-    const lowerMessage = userMessage.toLowerCase();
+  const simulateUserResponse = (contactMessage: string) => {
+    const lowerMessage = contactMessage.toLowerCase();
     let response = conversationScript.default;
 
     // Verifica qual palavra-chave corresponde à mensagem
@@ -143,19 +143,14 @@ export default function ChatPage() {
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const timestamp = `${hours}:${minutes}`;
 
-      const contactMessage: Message = {
+      const userMessage: Message = {
         id: String(Date.now()),
-        sender: 'contact',
-        senderName: 'Rafael T (DDD 11)',
-        senderInitial: 'R',
-        senderRating: '4.9',
-        senderVehicle: 'Bitruck | Graneleiro',
+        sender: 'user',
         text: response,
         timestamp,
-        isRead: true,
       };
 
-      setMessages(prev => [...prev, contactMessage]);
+      setMessages(prev => [...prev, userMessage]);
     }, delay);
   };
 
@@ -167,13 +162,18 @@ export default function ChatPage() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const timestamp = `${hours}:${minutes}`;
 
-    const userMessageText = message.trim();
+    const contactMessageText = message.trim();
 
     const newMessage: Message = {
       id: String(Date.now()),
-      sender: 'user',
-      text: userMessageText,
+      sender: 'contact',
+      senderName: 'Rafael T (DDD 11)',
+      senderInitial: 'R',
+      senderRating: '4.9',
+      senderVehicle: 'Bitruck | Graneleiro',
+      text: contactMessageText,
       timestamp,
+      isRead: true,
     };
 
     setMessages(prev => [...prev, newMessage]);
@@ -183,8 +183,8 @@ export default function ChatPage() {
     // Remove o foco do input
     (document.activeElement as HTMLElement)?.blur();
 
-    // Simula resposta do contato
-    simulateContactResponse(userMessageText);
+    // Simula resposta do usuário (branco, esquerda)
+    simulateUserResponse(contactMessageText);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
