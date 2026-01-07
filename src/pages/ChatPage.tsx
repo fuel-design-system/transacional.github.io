@@ -269,6 +269,8 @@ export default function ChatPage() {
               placeholder="Digite sua mensagem"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setIsInputFocused(false)}
             />
             <div className="input-actions">
               <button className="input-action-btn">
