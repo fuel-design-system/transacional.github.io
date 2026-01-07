@@ -89,6 +89,32 @@ export default function ChatPage() {
     setActiveTab(step);
   };
 
+  const handleSendMessage = () => {
+    if (message.trim() === '') return;
+
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timestamp = `${hours}:${minutes}`;
+
+    const newMessage: Message = {
+      id: String(Date.now()),
+      sender: 'user',
+      text: message.trim(),
+      timestamp,
+    };
+
+    setMessages(prev => [...prev, newMessage]);
+    setMessage('');
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
   if (!contact) {
     return <div>Contato não encontrado</div>;
   }
