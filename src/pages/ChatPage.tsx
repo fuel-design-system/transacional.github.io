@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/ChatPage.scss';
 import freightsData from '../data/freights.json';
+import NegotiationStepsSheet from '../components/NegotiationStepsSheet';
 
 interface Contact {
   id: string;
