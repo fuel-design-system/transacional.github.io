@@ -38,6 +38,7 @@ export default function ChatPage() {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [hasAutoReplied, setHasAutoReplied] = useState(false);
   const [conversationStep, setConversationStep] = useState(0);
+  const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Busca os dados do frete
