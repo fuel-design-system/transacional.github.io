@@ -4,7 +4,7 @@ import FreightDetail from './pages/FreightDetail';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/transacional.github.io">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/freight/:id" element={<FreightDetail />} />
