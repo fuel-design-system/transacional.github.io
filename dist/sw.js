@@ -1,22 +1,22 @@
-const CACHE_NAME = 'fretebras-v19';
+const CACHE_NAME = 'fretebras-v21';
 
-// Detect base path automatically based on the location
+// Detect base path automatically
 const getBasePath = () => {
-  const pathname = self.location.pathname;
-  // If we're on GitHub Pages, pathname will be like /transacional.github.io/sw.js
-  // If we're on localhost or custom domain, pathname will be like /sw.js
-  const match = pathname.match(/^(\/[^\/]+\.github\.io)/);
-  return match ? match[1] : '';
+  // Get the path where sw.js is located
+  const swPath = self.location.pathname;
+  // Remove /sw.js to get the base path
+  const basePath = swPath.replace(/\/sw\.js$/, '');
+  return basePath || '';
 };
 
 const BASE_PATH = getBasePath();
 console.log('[ServiceWorker] Base path detected:', BASE_PATH || '(root)');
+console.log('[ServiceWorker] Full location:', self.location.href);
 
-// URLs to cache
+// URLs to cache - only cache static assets, not JS/CSS bundles with hashes
 const urlsToCache = [
   `${BASE_PATH}/`,
   `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/404.html`,
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/icon-192.svg`,
   `${BASE_PATH}/icon-512.svg`,
@@ -61,14 +61,41 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  const url = new URL(event.request.url);
+
+  // Don't cache JS/CSS files with hashes (they change every build)
+  const isHashedAsset = /\.(js|css)$/.test(url.pathname) && /-[a-zA-Z0-9]{8,}\.(js|css)$/.test(url.pathname);
+
+  // For hashed assets, always fetch from network
+  if (isHashedAsset) {
+    event.respondWith(
+      fetch(event.request).catch((error) => {
+        console.error('[ServiceWorker] Failed to fetch hashed asset:', event.request.url, error);
+        throw error;
+      })
+    );
+    return;
+  }
+
+  // For other requests, use cache-first strategy
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
         if (response) {
           console.log('[ServiceWorker] Serving from cache:', event.request.url);
+          // For HTML files, still fetch in background to update cache
+          if (event.request.mode === 'navigate') {
+            fetch(event.request).then((fetchResponse) => {
+              if (fetchResponse && fetchResponse.status === 200) {
+                caches.open(CACHE_NAME).then((cache) => {
+                  cache.put(event.request, fetchResponse);
+                });
+              }
+            }).catch(() => {});
+          }
           return response;
         }
-        
+
         console.log('[ServiceWorker] Fetching:', event.request.url);
         return fetch(event.request).then((response) => {
           // Don't cache non-successful responses
@@ -79,10 +106,13 @@ self.addEventListener('fetch', (event) => {
           // Clone the response
           const responseToCache = response.clone();
 
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
+          // Only cache static assets (not API calls)
+          if (event.request.method === 'GET') {
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+          }
 
           return response;
         });
