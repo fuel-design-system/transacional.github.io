@@ -19,6 +19,7 @@ interface Message {
   text: string;
   timestamp: string;
   isRead?: boolean;
+  type?: 'text' | 'document-request';
 }
 
 const contacts: { [key: string]: Contact } = {
@@ -72,19 +73,42 @@ export default function ChatPage() {
   // Script de conversa com etapas definidas
   const conversationFlowSteps = [
     // Step 0: Primeira mensagem automática do operador
-    { step: 0, response: 'Sim, está disponível' },
+    { step: 0, response: 'Sim, está disponível', type: 'text' },
     // Step 1: Aguardando "Onde carrega?"
-    { step: 1, response: 'Carrega na Fazenda 2 irmãos' },
+    { step: 1, response: 'Carrega na Fazenda 2 irmãos', type: 'text' },
     // Step 2: Aguardando "Livre de descarga?"
-    { step: 2, response: 'Isso e não precisa agendar descarga' },
+    { step: 2, response: 'Isso e não precisa agendar descarga', type: 'text' },
     // Step 3: Aguardando "Ta pagando quanto?"
     {
       step: 3,
+      type: 'text',
       response: () => {
         if (!freight) return 'R$ 5.500 + pedágio incluso';
         const priceFormatted = `R$ ${freight.price}`;
         const tollInfo = freight.priceType === 'Pedágio incluso' ? 'pedágio incluso' : 'pedágio a parte';
         return `${priceFormatted} + ${tollInfo}`;
+      },
+      afterResponse: () => {
+        // Após enviar o valor, aguarda 2 segundos e envia a solicitação de documentos
+        setTimeout(() => {
+          const now = new Date();
+          const hours = String(now.getHours()).padStart(2, '0');
+          const minutes = String(now.getMinutes()).padStart(2, '0');
+          const timestamp = `${hours}:${minutes}`;
+
+          const documentMessage: Message = {
+            id: String(Date.now()),
+            sender: 'contact',
+            senderName: contact?.name || 'Carlos S.',
+            senderInitial: contact?.name?.charAt(0) || 'C',
+            text: 'solicitou seus documentos.',
+            timestamp,
+            isRead: true,
+            type: 'document-request',
+          };
+
+          setMessages(prev => [...prev, documentMessage]);
+        }, 2000);
       }
     },
   ];
@@ -195,6 +219,11 @@ export default function ChatPage() {
       };
 
       setMessages(prev => [...prev, userMessage]);
+
+      // Executa ação após a resposta, se houver
+      if (stepData?.afterResponse) {
+        stepData.afterResponse();
+      }
     }, delay);
   };
 
