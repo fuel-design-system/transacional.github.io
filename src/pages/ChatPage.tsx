@@ -110,6 +110,48 @@ export default function ChatPage() {
 
       {/* Chat Area */}
       <div className="chat-area">
+        {activeTab === 1 && (
+          <div className="messages-content">
+            {messages.map((msg) => (
+              <div key={msg.id} className={`message ${msg.sender}`}>
+                {msg.sender === 'contact' && (
+                  <div className="message-stack">
+                    <div className="message-header">
+                      <div className="message-avatar">
+                        <span>{msg.senderInitial}</span>
+                      </div>
+                      <div className="message-sender-info">
+                        <div className="sender-name">{msg.senderName}</div>
+                        <div className="sender-details">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M6.32286 1.19811L7.80986 4.14441L10.6719 4.42798C10.811 4.43954 10.9307 4.53098 10.9784 4.66218C11.0262 4.79339 10.9932 4.94038 10.8941 5.03866L8.53869 7.37339L9.41196 10.5459C9.44846 10.6834 9.40094 10.8294 9.29057 10.9191C9.18019 11.0088 9.02749 11.0254 8.90045 10.9615L5.99889 9.52456L3.10133 10.9597C2.97429 11.0236 2.82158 11.007 2.71121 10.9173C2.60084 10.8277 2.55332 10.6816 2.58982 10.5441L3.46308 7.37161L1.10593 5.03688C1.00677 4.9386 0.973838 4.79161 1.02158 4.66041C1.06932 4.5292 1.18901 4.43776 1.32813 4.4262L4.19014 4.14264L5.67491 1.19811C5.73717 1.0765 5.86228 1 5.99889 1C6.1355 1 6.2606 1.0765 6.32286 1.19811Z" fill="white" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          <span className="rating">{msg.senderRating}</span>
+                          <span className="separator">•</span>
+                          <span className="vehicle">{msg.senderVehicle}</span>
+                        </div>
+                      </div>
+                      {msg.isVerified && (
+                        <svg className="verified-badge" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M5.92452 14.3772L4.75152 12.4389L2.54252 11.9439L2.74636 9.68504L1.24902 8.00037L2.74636 6.3157L2.54252 4.05687L4.75152 3.56187L5.92452 1.62354L8.00019 2.50937L10.0759 1.62354L11.2489 3.56187L13.4579 4.05687L13.254 6.3157L14.7514 8.00037L13.254 9.68504L13.4579 11.9439L11.2489 12.4389L10.0759 14.3772L8.00019 13.4914L5.92452 14.3772ZM7.15019 10.1695L10.886 6.45037L10.2669 5.84404L7.15019 8.94404L5.73352 7.5312L5.11436 8.15037L7.15019 10.1695Z" fill="white"/>
+                        </svg>
+                      )}
+                    </div>
+                    <div className="message-text">{msg.text}</div>
+                    <div className="message-footer">
+                      {msg.isRead && (
+                        <svg className="read-status" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M11.9767 4.46978L11.0367 3.52979L6.81 7.75645L7.75 8.69645L11.9767 4.46978ZM14.8033 3.52979L7.75 10.5831L4.96333 7.80312L4.02333 8.74312L7.75 12.4698L15.75 4.46978L14.8033 3.52979ZM0.25 8.74312L3.97667 12.4698L4.91667 11.5298L1.19667 7.80312L0.25 8.74312Z" fill="#3993F9"/>
+                        </svg>
+                      )}
+                      <span className="timestamp">{msg.timestamp}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
         {activeTab === 2 && (
           <div className="documents-content">
             <div className="documents-empty">
