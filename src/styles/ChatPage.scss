@@ -140,8 +140,10 @@
   .chat-area {
     flex: 1;
     overflow-y: auto;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="360" height="700" viewBox="0 0 360 700"><rect fill="%23F4F4F5" width="360" height="700"/></svg>');
+    background: url('https://cdn.builder.io/api/v1/image/assets%2F7de6902bb7ea42d4be5082a42dd00e60%2F675a1c576bc849f88a8022d3c01f2818?format=webp&width=800');
     background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
   }
 
   .chat-bottom {
