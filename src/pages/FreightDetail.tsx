@@ -29,78 +29,81 @@ export default function FreightDetail() {
           Há 3min • 50km da sua localização
         </div>
 
-        {/* Route Section */}
-        <div className="route-section">
-          <svg className="route-graphic" width="7" height="90" viewBox="0 0 7 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="3.5" cy="7.5" r="3" stroke="#BABEC9"/>
-            <rect x="3" y="15" width="1" height="60" fill="#DFE1E6"/>
-            <path d="M6.19141 79.5L3.5 84.8818L0.808594 79.5H6.19141Z" stroke="#BABEC9"/>
-          </svg>
-          <div className="route-details">
-            <div className="location-block">
-              <div className="city-name">{freight.origin}</div>
-              <div className="date-info">30/11/2023</div>
-            </div>
-            <div className="location-block">
-              <div className="city-name">{freight.destination}</div>
-              <div className="date-info">01/12/2023</div>
+        {/* Route, Description and Cargo Card */}
+        <div className="detail-card">
+          {/* Route Section */}
+          <div className="route-section">
+            <svg className="route-graphic" width="7" height="90" viewBox="0 0 7 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="3.5" cy="7.5" r="3" stroke="#BABEC9"/>
+              <rect x="3" y="15" width="1" height="60" fill="#DFE1E6"/>
+              <path d="M6.19141 79.5L3.5 84.8818L0.808594 79.5H6.19141Z" stroke="#BABEC9"/>
+            </svg>
+            <div className="route-details">
+              <div className="location-block">
+                <div className="city-name">{freight.origin}</div>
+                <div className="date-info">30/11/2023</div>
+              </div>
+              <div className="location-block">
+                <div className="city-name">{freight.destination}</div>
+                <div className="date-info">01/12/2023</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Description */}
-        <div className="description-section">
-          CARRETA DE 15 METROS / PESO 5 TON LIVRE DE CARGA E DESCARGA / 5 DIAS PARA DEPOSITO DEPOIS DO CANHOTO.
-        </div>
+          {/* Description */}
+          <div className="description-section">
+            CARRETA DE 15 METROS / PESO 5 TON LIVRE DE CARGA E DESCARGA / 5 DIAS PARA DEPOSITO DEPOIS DO CANHOTO.
+          </div>
 
-        {/* Cargo Section */}
-        <div className="cargo-section">
-          <div className="section-title">Carga</div>
-          <div className="cargo-items">
-            <div className="cargo-item">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.5 3.5C3.42893 2.32843 5.07107 1.67157 8 0.5L15.5 3.5M0.5 3.5L8 6.5M0.5 3.5V12.5L8 15.5M8 6.5L15.5 3.5M8 6.5V15.5M15.5 3.5V12.5L8 15.5M13.75 11L12.5 11.5" stroke="#636B7E" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>Pedras</span>
-            </div>
-            <div className="cargo-item">
-              <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.513672 4.68359L2.49121 0.774306C2.57631 0.606062 2.74883 0.5 2.93737 0.5H7.52892M14.1563 4.68359L12.5837 0.811849C12.5071 0.623319 12.324 0.5 12.1205 0.5H7.52892M12.5837 13.1121H8.32526M7.52892 0.5V4.34143M7.52892 4.34143H0.5V14.9979H14.1561V4.34143H7.52892Z" stroke="black" strokeLinejoin="bevel"/>
-              </svg>
-              <span>500 kg (total)</span>
-            </div>
-            <div className="cargo-item-row">
+          {/* Cargo Section */}
+          <div className="cargo-section">
+            <div className="section-title">Carga</div>
+            <div className="cargo-items">
               <div className="cargo-item">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="11" height="11" x="0" y="5" stroke="#636B7E"/>
-                  <path d="M0.0732233 1.6533C-0.0244078 1.75093 -0.0244078 1.90922 0.0732233 2.00685L1.66421 3.59784C1.76184 3.69548 1.92014 3.69548 2.01777 3.59784C2.1154 3.50021 2.1154 3.34192 2.01777 3.24429L0.603553 1.83008L2.01777 0.415864C2.1154 0.318233 2.1154 0.159942 2.01777 0.062311C1.92014 -0.03532 1.76184 -0.03532 1.66421 0.062311L0.0732233 1.6533ZM11.4268 2.00685C11.5244 1.90922 11.5244 1.75093 11.4268 1.6533L9.83579 0.0623103C9.73815 -0.0353207 9.57986 -0.0353207 9.48223 0.0623104C9.3846 0.159941 9.3846 0.318233 9.48223 0.415864L10.8964 1.83008L9.48223 3.24429C9.3846 3.34192 9.3846 3.50021 9.48223 3.59784C9.57986 3.69548 9.73816 3.69548 9.83579 3.59784L11.4268 2.00685ZM0.25 1.83008L0.25 2.08008L11.25 2.08008L11.25 1.83008L11.25 1.58008L0.25 1.58008L0.25 1.83008Z" fill="#636B7E"/>
-                  <path d="M1.66404 11.4268C1.76167 11.5244 1.91997 11.5244 2.0176 11.4268L3.60859 9.83579C3.70622 9.73816 3.70622 9.57986 3.60859 9.48223C3.51096 9.3846 3.35266 9.3846 3.25503 9.48223L1.84082 10.8964L0.426607 9.48223C0.328976 9.3846 0.170684 9.3846 0.0730533 9.48223C-0.0245778 9.57986 -0.0245778 9.73816 0.0730533 9.83579L1.66404 11.4268ZM2.0176 0.0732236C1.91997 -0.0244075 1.76167 -0.0244075 1.66404 0.0732236L0.0730529 1.66421C-0.0245781 1.76185 -0.0245781 1.92014 0.073053 2.01777C0.170684 2.1154 0.328975 2.1154 0.426606 2.01777L1.84082 0.603554L3.25503 2.01777C3.35266 2.1154 3.51096 2.1154 3.60859 2.01777C3.70622 1.92014 3.70622 1.76184 3.60859 1.66421L2.0176 0.0732236ZM1.84082 11.25L2.09082 11.25L2.09082 0.25L1.84082 0.25L1.59082 0.25L1.59082 11.25L1.84082 11.25Z" fill="#636B7E"/>
-                  <rect width="3" height="4" x="4" y="5" stroke="#636B7E"/>
+                  <path d="M0.5 3.5C3.42893 2.32843 5.07107 1.67157 8 0.5L15.5 3.5M0.5 3.5L8 6.5M0.5 3.5V12.5L8 15.5M8 6.5L15.5 3.5M8 6.5V15.5M15.5 3.5V12.5L8 15.5M13.75 11L12.5 11.5" stroke="#636B7E" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>1.00 m³ (unidade)</span>
+                <span>Pedras</span>
               </div>
               <div className="cargo-item">
-                <span>1 unidade</span>
+                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0.513672 4.68359L2.49121 0.774306C2.57631 0.606062 2.74883 0.5 2.93737 0.5H7.52892M14.1563 4.68359L12.5837 0.811849C12.5071 0.623319 12.324 0.5 12.1205 0.5H7.52892M12.5837 13.1121H8.32526M7.52892 0.5V4.34143M7.52892 4.34143H0.5V14.9979H14.1561V4.34143H7.52892Z" stroke="black" strokeLinejoin="bevel"/>
+                </svg>
+                <span>500 kg (total)</span>
               </div>
+              <div className="cargo-item-row">
+                <div className="cargo-item">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="11" height="11" x="0" y="5" stroke="#636B7E"/>
+                    <path d="M0.0732233 1.6533C-0.0244078 1.75093 -0.0244078 1.90922 0.0732233 2.00685L1.66421 3.59784C1.76184 3.69548 1.92014 3.69548 2.01777 3.59784C2.1154 3.50021 2.1154 3.34192 2.01777 3.24429L0.603553 1.83008L2.01777 0.415864C2.1154 0.318233 2.1154 0.159942 2.01777 0.062311C1.92014 -0.03532 1.76184 -0.03532 1.66421 0.062311L0.0732233 1.6533ZM11.4268 2.00685C11.5244 1.90922 11.5244 1.75093 11.4268 1.6533L9.83579 0.0623103C9.73815 -0.0353207 9.57986 -0.0353207 9.48223 0.0623104C9.3846 0.159941 9.3846 0.318233 9.48223 0.415864L10.8964 1.83008L9.48223 3.24429C9.3846 3.34192 9.3846 3.50021 9.48223 3.59784C9.57986 3.69548 9.73816 3.69548 9.83579 3.59784L11.4268 2.00685ZM0.25 1.83008L0.25 2.08008L11.25 2.08008L11.25 1.83008L11.25 1.58008L0.25 1.58008L0.25 1.83008Z" fill="#636B7E"/>
+                    <path d="M1.66404 11.4268C1.76167 11.5244 1.91997 11.5244 2.0176 11.4268L3.60859 9.83579C3.70622 9.73816 3.70622 9.57986 3.60859 9.48223C3.51096 9.3846 3.35266 9.3846 3.25503 9.48223L1.84082 10.8964L0.426607 9.48223C0.328976 9.3846 0.170684 9.3846 0.0730533 9.48223C-0.0245778 9.57986 -0.0245778 9.73816 0.0730533 9.83579L1.66404 11.4268ZM2.0176 0.0732236C1.91997 -0.0244075 1.76167 -0.0244075 1.66404 0.0732236L0.0730529 1.66421C-0.0245781 1.76185 -0.0245781 1.92014 0.073053 2.01777C0.170684 2.1154 0.328975 2.1154 0.426606 2.01777L1.84082 0.603554L3.25503 2.01777C3.35266 2.1154 3.51096 2.1154 3.60859 2.01777C3.70622 1.92014 3.70622 1.76184 3.60859 1.66421L2.0176 0.0732236ZM1.84082 11.25L2.09082 11.25L2.09082 0.25L1.84082 0.25L1.59082 0.25L1.59082 11.25L1.84082 11.25Z" fill="#636B7E"/>
+                    <rect width="3" height="4" x="4" y="5" stroke="#636B7E"/>
+                  </svg>
+                  <span>1.00 m³ (unidade)</span>
+                </div>
+                <div className="cargo-item">
+                  <span>1 unidade</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Vehicle Compatibility */}
+          <div className="compatibility-section">
+            <div className="check-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.793 4.04004L5.79688 13.0361L1.20703 8.44629L2.28027 7.37305L5.79688 10.8896L13.7197 2.9668L14.793 4.04004Z" fill="#0769DA" stroke="#0769DA"/>
+              </svg>
+            </div>
+            <div className="compatibility-text">
+              <span className="medium-text">Seu veículo Bitruck | Graneleiro é compatível com a carga</span>
+              <span className="link-text">...Ver todos</span>
             </div>
           </div>
         </div>
 
-        {/* Vehicle Compatibility */}
-        <div className="compatibility-section">
-          <div className="check-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.793 4.04004L5.79688 13.0361L1.20703 8.44629L2.28027 7.37305L5.79688 10.8896L13.7197 2.9668L14.793 4.04004Z" fill="#0769DA" stroke="#0769DA"/>
-            </svg>
-          </div>
-          <div className="compatibility-text">
-            <span className="medium-text">Seu veículo Bitruck | Graneleiro é compatível com a carga</span>
-            <span className="link-text">...Ver todos</span>
-          </div>
-        </div>
-
-        {/* Service Fee Section */}
-        <div className="service-fee-section">
+        {/* Service Fee Section Card */}
+        <div className="detail-card service-fee-section">
           <div className="fee-title">
             Uma taxa de serviço será cobrada caso você carregue esse frete
           </div>
@@ -127,8 +130,8 @@ export default function FreightDetail() {
           </div>
         </div>
 
-        {/* Company Section */}
-        <div className="company-detail-section">
+        {/* Company Section Card */}
+        <div className="detail-card company-detail-section">
           <div className="company-info">
             <div className="company-title">Transportadora ativa há 4 anos</div>
             <div className="company-rating">
@@ -142,8 +145,8 @@ export default function FreightDetail() {
           <button className="profile-button">Ver perfil</button>
         </div>
 
-        {/* Payment Methods */}
-        <div className="payment-section">
+        {/* Payment Methods Card */}
+        <div className="detail-card payment-section">
           <div className="section-title">Formas de pagamento</div>
           <div className="payment-methods">
             <div className="payment-item">
@@ -168,8 +171,8 @@ export default function FreightDetail() {
           </div>
         </div>
 
-        {/* Problems Section */}
-        <div className="problems-section">
+        {/* Problems Section Card */}
+        <div className="detail-card problems-section">
           <div className="section-title">Problemas com o frete?</div>
           <button className="support-button">
             <span>Atendimento</span>
@@ -186,8 +189,8 @@ export default function FreightDetail() {
           </button>
         </div>
 
-        {/* Return Guarantee */}
-        <div className="return-section">
+        {/* Return Guarantee Card */}
+        <div className="detail-card return-section">
           <div className="return-header">
             <div className="return-title">Garanta sua volta</div>
             <div className="return-subtitle">De Catalão e região para Aguaí, SP</div>
