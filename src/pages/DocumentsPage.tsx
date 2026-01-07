@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/DocumentsPage.scss';
 
 export default function DocumentsPage() {
   const navigate = useNavigate();
+  const { freightId, contactId } = useParams();
   const [isExiting, setIsExiting] = useState(false);
   const [isMopChecked, setIsMopChecked] = useState(false);
 
@@ -15,8 +16,10 @@ export default function DocumentsPage() {
   };
 
   const handleContinue = () => {
-    // TODO: Implementar ação de continuar
-    console.log('Continuar clicado');
+    setIsExiting(true);
+    setTimeout(() => {
+      navigate(`/freight/${freightId}/chat/${contactId}/confirm`);
+    }, 300);
   };
 
   return (

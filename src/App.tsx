@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import FreightDetail from './pages/FreightDetail';
 import ChatPage from './pages/ChatPage';
 import DocumentsPage from './pages/DocumentsPage';
+import ConfirmRouteValuePage from './pages/ConfirmRouteValuePage';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/freight/:id" element={<FreightDetail />} />
         <Route path="/freight/:freightId/chat/:contactId" element={<ChatPage />} />
         <Route path="/freight/:freightId/chat/:contactId/documents" element={<DocumentsPage />} />
+        <Route path="/freight/:freightId/chat/:contactId/confirm" element={<ConfirmRouteValuePage />} />
       </Routes>
     </BrowserRouter>
   );
