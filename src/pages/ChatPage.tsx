@@ -15,7 +15,6 @@ interface Message {
   senderInitial?: string;
   senderRating?: string;
   senderVehicle?: string;
-  isVerified?: boolean;
   text: string;
   timestamp: string;
   isRead?: boolean;
@@ -42,7 +41,6 @@ export default function ChatPage() {
       senderInitial: 'R',
       senderRating: '4.9',
       senderVehicle: 'Bitruck | Graneleiro',
-      isVerified: true,
       text: 'Olá. Estou interessado no seu frete de Curitiba-PR para Porto Alegre-RS de Eletrônicos.\n\nA carga ainda está disponível?',
       timestamp: '09:41',
       isRead: true,
