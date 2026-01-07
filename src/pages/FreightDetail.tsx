@@ -29,9 +29,8 @@ export default function FreightDetail() {
           Há 3min • 50km da sua localização
         </div>
 
-        {/* Route, Description and Cargo Card */}
+        {/* Route Card */}
         <div className="detail-card">
-          {/* Route Section */}
           <div className="route-section">
             <svg className="route-graphic" width="7" height="90" viewBox="0 0 7 90" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="3.5" cy="7.5" r="3" stroke="#BABEC9"/>
@@ -49,13 +48,17 @@ export default function FreightDetail() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Description */}
+        {/* Description Card */}
+        <div className="detail-card">
           <div className="description-section">
             CARRETA DE 15 METROS / PESO 5 TON LIVRE DE CARGA E DESCARGA / 5 DIAS PARA DEPOSITO DEPOIS DO CANHOTO.
           </div>
+        </div>
 
-          {/* Cargo Section */}
+        {/* Cargo Card */}
+        <div className="detail-card">
           <div className="cargo-section">
             <div className="section-title">Carga</div>
             <div className="cargo-items">
@@ -87,8 +90,10 @@ export default function FreightDetail() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Vehicle Compatibility */}
+        {/* Vehicle Compatibility Card */}
+        <div className="detail-card compatibility-card">
           <div className="compatibility-section">
             <div className="check-icon">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
