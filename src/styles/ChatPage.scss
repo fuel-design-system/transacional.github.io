@@ -157,6 +157,46 @@
         width: 100%;
         animation: messageSlideUp 0.3s ease-out;
 
+        &.user {
+          justify-content: flex-start;
+
+          .user-message {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            max-width: 340px;
+            width: fit-content;
+            padding: 8px 16px;
+            border-radius: 12px 12px 12px 2px;
+            background: #FFF;
+            animation: messageSlideUp 0.3s ease-out;
+
+            .user-message-text {
+              color: #111;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 150%;
+            }
+
+            .user-message-footer {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              gap: 4px;
+
+              .timestamp {
+                color: #636B7E;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 160%;
+                letter-spacing: 0.24px;
+              }
+            }
+          }
+        }
+
         &.contact {
           justify-content: flex-end;
 
