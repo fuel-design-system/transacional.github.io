@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/FreightDetail.scss';
 import freightsData from '../data/freights.json';
+import ChatBottomSheet from '../components/ChatBottomSheet';
 
 export default function FreightDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [isExiting, setIsExiting] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const freight = freightsData.find(f => f.id === Number(id));
 
   // Garante que a página sempre inicie no topo
@@ -23,6 +25,14 @@ export default function FreightDetail() {
     setTimeout(() => {
       navigate(-1);
     }, 300);
+  };
+
+  const handleChatClick = () => {
+    setIsChatOpen(true);
+  };
+
+  const handleCloseChatSheet = () => {
+    setIsChatOpen(false);
   };
 
   return (
@@ -247,13 +257,15 @@ export default function FreightDetail() {
             </div>
           </div>
         </div>
-        <button className="chat-button">
+        <button className="chat-button" onClick={handleChatClick}>
           <span>Conversar</span>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.41699 17.1986V2.4165H17.5837V14.5832H5.03241L2.41699 17.1986Z" fill="white"/>
           </svg>
         </button>
       </div>
+
+      <ChatBottomSheet isOpen={isChatOpen} onClose={handleCloseChatSheet} />
     </div>
   );
 }
