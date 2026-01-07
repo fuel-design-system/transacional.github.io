@@ -22,6 +22,31 @@ export default function ConfirmRouteValuePage() {
     console.log('Continuar clicado', { freightValue, notAgreedYet });
   };
 
+  // Currency mask function
+  const formatCurrency = (value: string): string => {
+    // Remove all non-numeric characters
+    const numericValue = value.replace(/\D/g, '');
+
+    if (!numericValue) return '';
+
+    // Convert to cents (divide by 100 for decimal places)
+    const numberValue = parseInt(numericValue) / 100;
+
+    // Format as Brazilian Real currency
+    return numberValue.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  };
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const formattedValue = formatCurrency(inputValue);
+    setFreightValue(formattedValue);
+  };
+
   const hasValue = freightValue.trim() !== '';
 
   return (
@@ -69,11 +94,12 @@ export default function ConfirmRouteValuePage() {
               <div className={`input-wrapper ${isFocused || hasValue ? 'focused' : ''}`}>
                 <input
                   type="text"
+                  inputMode="numeric"
                   value={freightValue}
-                  onChange={(e) => setFreightValue(e.target.value)}
+                  onChange={handleValueChange}
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
-                  placeholder={isFocused || hasValue ? 'Digite o valor' : ''}
+                  placeholder={isFocused || hasValue ? 'R$ 0,00' : ''}
                   className="value-input"
                 />
                 <label className="floating-label">
