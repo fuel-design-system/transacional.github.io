@@ -58,13 +58,18 @@ export default function ChatPage() {
 
   // Script de conversa simulada
   const conversationScript: { [key: string]: string } = {
-    'sim': 'Ótimo! Qual o peso da carga?',
-    'não': 'Entendo. Me avise quando tiver uma carga disponível.',
-    'truck': 'Perfeito! Quando precisa da coleta?',
-    'peso': 'Entendido. Qual o valor do frete?',
-    'quando': 'Ok, consigo fazer nessa data. Qual o valor que está oferecendo?',
-    'valor': 'Vou analisar e te retorno. Obrigado!',
-    'default': 'Entendi. Pode me dar mais detalhes?'
+    'sim': 'Ótimo! Meu veículo é um Scania R450 truck. Qual o peso total da carga?',
+    'disponível': 'Sim, a carga ainda está disponível! Você tem experiência com eletrônicos?',
+    'truck': 'Sim, possuo um truck Scania. Quando precisa fazer a coleta?',
+    'toneladas': 'Perfeito, meu caminhão comporta essa carga. Qual o valor do frete?',
+    'peso': 'Entendido. Meu caminhão aguenta até 14 toneladas. Qual seria o valor?',
+    'amanhã': 'Consigo fazer amanhã sim. Qual o valor que está pagando pelo frete?',
+    'segunda': 'Segunda-feira funciona bem pra mim. E o valor do frete?',
+    'r$': 'Deixa eu analisar a rota e te retorno em alguns minutos. Pode ser?',
+    'valor': 'Qual valor você está oferecendo para esse frete?',
+    'obrigado': 'Por nada! Qualquer dúvida estou à disposição.',
+    'ok': 'Combinado então! Vou aguardar sua confirmação.',
+    'default': 'Entendi. Pode me dar mais detalhes sobre isso?'
   };
 
   useEffect(() => {
