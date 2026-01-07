@@ -310,6 +310,49 @@ export default function ChatPage() {
       <div className="chat-area">
         {activeTab === 1 && (
           <div className="messages-content">
+            {/* Route Info Card */}
+            <div className={`route-info-card ${isRouteCardExpanded ? 'expanded' : ''}`}>
+              <button
+                className="route-card-header"
+                onClick={() => setIsRouteCardExpanded(!isRouteCardExpanded)}
+              >
+                <div className="route-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.27006 4.80281L10.3895 1.03264C10.4705 0.99969 10.5595 0.991461 10.6453 1.00898C10.731 1.02651 10.8096 1.069 10.8713 1.13112C10.9329 1.19323 10.9748 1.27219 10.9917 1.35806C11.0085 1.44393 10.9996 1.53287 10.9661 1.61369L7.20033 10.7331C7.16456 10.8172 7.10365 10.8883 7.02593 10.9365C6.94822 10.9847 6.8575 11.0077 6.76621 11.0024C6.67491 10.997 6.5875 10.9636 6.51594 10.9067C6.44438 10.8497 6.39217 10.7721 6.36645 10.6843L5.26201 6.81653C5.25538 6.79868 5.24473 6.7826 5.23088 6.76953C5.21704 6.75645 5.20037 6.74674 5.18217 6.74113L1.31885 5.63669C1.23109 5.61098 1.15342 5.55877 1.09647 5.48721C1.03953 5.41565 1.0061 5.32823 1.00076 5.23694C0.995416 5.14564 1.01842 5.05492 1.06663 4.97721C1.11484 4.8995 1.18589 4.83858 1.27006 4.80281Z" fill="white"/>
+                  </svg>
+                </div>
+                <div className="route-text">
+                  {freight ? `${freight.origin.split(',')[1]?.trim() || freight.origin}→${freight.destination.split(',')[1]?.trim() || freight.destination} (${freight.product})` : 'SP→MG (Diversos)'}
+                </div>
+                <svg className="chevron-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.41421 4C2.52331 4 2.07714 5.07714 2.70711 5.70711L5.29289 8.29289C5.68342 8.68342 6.31658 8.68342 6.70711 8.29289L9.2929 5.70711C9.92286 5.07714 9.47669 4 8.58579 4H3.41421Z" fill="#636B7E"/>
+                </svg>
+              </button>
+
+              <div className="route-card-content">
+                <div className="route-title-section">
+                  <div className="route-icon-large">
+                    <div className="icon-wrapper">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.6935 6.40376L13.8527 1.37686C13.9608 1.33293 14.0795 1.32196 14.1938 1.34532C14.3081 1.36869 14.4129 1.42535 14.4951 1.50817C14.5773 1.59099 14.6332 1.69627 14.6557 1.81076C14.6781 1.92525 14.6663 2.04384 14.6215 2.15159L9.60052 14.3108C9.55283 14.423 9.47161 14.5177 9.36799 14.582C9.26437 14.6463 9.14342 14.677 9.02169 14.6699C8.89996 14.6627 8.78341 14.6182 8.688 14.5422C8.59258 14.4663 8.52297 14.3628 8.48869 14.2457L7.0161 9.08872C7.00725 9.06492 6.99305 9.04348 6.97459 9.02605C6.95613 9.00861 6.93391 8.99566 6.90965 8.98818L1.75855 7.5156C1.64153 7.48132 1.53797 7.4117 1.46205 7.31629C1.38612 7.22087 1.34155 7.10432 1.33442 6.98259C1.3273 6.86086 1.35798 6.73991 1.42226 6.63629C1.48654 6.53267 1.58127 6.45146 1.6935 6.40376Z" fill="white"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="route-text-info">
+                    <div className="route-title">Motorista está próximo da coleta</div>
+                    <div className="route-subtitle">{freight ? `${freight.origin} • Há 19 min` : 'Belo Horizonte, MG • Há 19 min'}</div>
+                  </div>
+                </div>
+                <div className="route-banner-section">
+                  <div className="route-toast">
+                    <div className="toast-content">
+                      Mensagem automática Fretebras
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {messages.map((msg, msgIndex) => {
               const isFirstContactMessage = msg.sender === 'contact' && msgIndex === 0;
 
