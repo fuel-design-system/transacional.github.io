@@ -1,0 +1,230 @@
+.chat-bottom-sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+
+  &.open {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.64);
+    pointer-events: all;
+  }
+}
+
+.chat-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFF;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 6px 12px -6px rgba(38, 47, 74, 0.12), 0 8px 24px -4px rgba(38, 47, 74, 0.08);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1001;
+  will-change: transform;
+
+  &.open {
+    transform: translateY(0);
+  }
+
+  .bottom-sheet-header {
+    display: flex;
+    padding: 8px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    .holder {
+      width: 48px;
+      height: 4px;
+      border-radius: 50px;
+      background: #DDDFE4;
+    }
+
+    .header-content {
+      width: 100%;
+
+      .title-close {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+
+        .sheet-title {
+          color: #111;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 150%;
+          margin: 0;
+        }
+
+        .close-button {
+          display: flex;
+          width: 24px;
+          height: 24px;
+          padding: 4px;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          background: transparent;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.05);
+          }
+
+          &:active {
+            background: rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+
+  .bottom-sheet-content {
+    display: flex;
+    padding: 16px 24px 24px 24px;
+    flex-direction: column;
+
+    .contacts-list {
+      display: flex;
+      flex-direction: column;
+
+      .contact-item {
+        display: flex;
+        padding: 8px 0;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:active {
+          background: rgba(0, 0, 0, 0.02);
+        }
+
+        .contact-info {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          flex: 1;
+
+          .avatar-container {
+            width: 40px;
+            height: 40px;
+            position: relative;
+
+            .avatar-image {
+              width: 40px;
+              height: 40px;
+              border-radius: 20px;
+              overflow: hidden;
+              position: relative;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+
+              .online-badge {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 10px;
+                height: 10px;
+                background: #0AB15F;
+                border: 2px solid #FFF;
+                border-radius: 50%;
+              }
+            }
+
+            .avatar-initials {
+              display: flex;
+              width: 40px;
+              height: 40px;
+              justify-content: center;
+              align-items: center;
+              border-radius: 48px;
+              background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.15) 100%), #636B7E;
+              color: #FFF;
+              text-align: center;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 12px;
+              font-weight: 700;
+              line-height: 160%;
+              letter-spacing: 0.24px;
+            }
+          }
+
+          .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+
+            .contact-name {
+              color: #111;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 16px;
+              font-weight: 700;
+              line-height: 150%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .fast-response-tag {
+              display: inline-flex;
+              padding: 2px 4px;
+              justify-content: center;
+              align-items: center;
+              gap: 4px;
+              border-radius: 4px;
+              background: #3C82FF;
+              width: fit-content;
+
+              span {
+                color: #FFF;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 10px;
+                font-weight: 700;
+                line-height: 160%;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+              }
+            }
+          }
+        }
+      }
+
+      .contact-divider {
+        height: 1px;
+        background: #DDDFE4;
+        margin: 8px 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .chat-bottom-sheet {
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    max-width: 500px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &.open {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}

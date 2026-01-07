@@ -1,0 +1,990 @@
+.chat-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFF;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  animation: slideInFromRight 0.3s ease-out;
+
+  &.exiting {
+    animation: slideOutToRight 0.3s ease-out;
+  }
+
+  .chat-header {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #DDDFE4;
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      gap: 12px;
+      background: #FFF;
+
+      .back-button {
+        display: flex;
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+
+        &:active {
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .contact-header-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+
+        .avatar-with-status {
+          position: relative;
+          width: 40px;
+          height: 40px;
+
+          .header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .online-indicator {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #0AB15F;
+            border: 2px solid #FFF;
+            border-radius: 50%;
+          }
+        }
+
+        .contact-text-info {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+
+          .contact-header-name {
+            color: #080707;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 150%;
+          }
+
+          .contact-status {
+            color: #747881;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 160%;
+            letter-spacing: 0.24px;
+          }
+        }
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 8px;
+
+        .action-icon {
+          display: flex;
+          width: 32px;
+          height: 32px;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          background: transparent;
+          border-radius: 500px;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.05);
+          }
+
+          &:active {
+            background: rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+
+  .chat-area {
+    flex: 1;
+    overflow-y: auto;
+    background: url('https://cdn.builder.io/api/v1/image/assets%2F7de6902bb7ea42d4be5082a42dd00e60%2F675a1c576bc849f88a8022d3c01f2818?format=webp&width=800');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+
+    .messages-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100%;
+      gap: 12px;
+      padding: 16px;
+      position: relative;
+
+      .route-info-card {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        display: flex;
+        padding: 8px 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        z-index: 10;
+
+        .route-card-header {
+          display: flex;
+          padding: 0 8px;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          border-radius: 64px;
+          background: #1A1A1A;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          height: 40px;
+
+          &:hover {
+            background: #2A2A2A;
+          }
+
+          &:active {
+            background: #0A0A0A;
+          }
+
+          .route-icon {
+            display: flex;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+            align-items: center;
+            gap: 7.5px;
+            flex-shrink: 0;
+            margin-top: 8px;
+          }
+
+          .route-text {
+            color: #FFF;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.2;
+          }
+
+          .chevron-icon {
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+          }
+        }
+
+        .route-card-content {
+          display: flex;
+          height: 0;
+          flex-direction: column;
+          align-items: flex-start;
+          align-self: stretch;
+          border-radius: 16px;
+          background: #1A1A1A;
+          overflow: hidden;
+          opacity: 0;
+          transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+          margin: 0 16px;
+
+          .route-title-section {
+            display: flex;
+            padding: 16px;
+            align-items: flex-start;
+            gap: 16px;
+            align-self: stretch;
+            background: #1A1A1A;
+
+            .route-icon-large {
+              display: flex;
+              height: 47px;
+              padding: 4px 0;
+              align-items: flex-start;
+              gap: 10px;
+
+              .icon-wrapper {
+                display: flex;
+                padding: 8px;
+                align-items: center;
+                gap: 8px;
+                border-radius: 8px;
+                background: rgba(219, 236, 255, 0.20);
+              }
+            }
+
+            .route-text-info {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 2px;
+              flex: 1 0 0;
+
+              .route-title {
+                align-self: stretch;
+                color: #FFF;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 150%;
+              }
+
+              .route-subtitle {
+                align-self: stretch;
+                color: #BABEC9;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 150%;
+              }
+            }
+          }
+
+          .route-banner-section {
+            display: flex;
+            padding: 16px 8px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            background: #1A1A1A;
+
+            .route-toast {
+              display: flex;
+              padding: 0 12px;
+              align-items: flex-start;
+              gap: 8px;
+              align-self: stretch;
+              border-radius: 8px;
+
+              .toast-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                flex: 1 0 0;
+                color: #636B7E;
+                text-align: center;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 160%;
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        &.expanded {
+          .route-card-header {
+            .chevron-icon {
+              transform: rotate(180deg);
+            }
+          }
+
+          .route-card-content {
+            height: auto;
+            opacity: 1;
+            padding: 0;
+          }
+        }
+      }
+
+      .message {
+        display: flex;
+        width: 100%;
+        animation: messageSlideUp 0.3s ease-out;
+
+        &.user {
+          justify-content: flex-start;
+
+          .user-message {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            max-width: 340px;
+            width: fit-content;
+            padding: 8px 16px;
+            border-radius: 12px 12px 12px 2px;
+            background: #FFF;
+            animation: messageSlideUp 0.3s ease-out;
+
+            .user-message-text {
+              color: #111;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 150%;
+            }
+
+            .user-message-footer {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              gap: 4px;
+
+              .timestamp {
+                color: #636B7E;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 160%;
+                letter-spacing: 0.24px;
+              }
+            }
+          }
+        }
+
+        &.contact {
+          justify-content: flex-end;
+
+          &.document-request {
+            justify-content: flex-start;
+          }
+
+          .message-stack {
+            display: flex;
+            flex-direction: column;
+            max-width: 316px;
+            width: fit-content;
+            gap: 0;
+            padding: 0;
+            border-radius: 12px 12px 2px 12px;
+            background: #003C80;
+            overflow: hidden;
+
+            .message-header {
+              display: flex;
+              align-items: flex-start;
+              gap: 8px;
+              padding: 12px;
+              border-radius: 8px;
+              background: rgba(219, 236, 255, 0.20);
+              position: relative;
+              margin: 8px;
+
+              .message-avatar {
+                display: flex;
+                width: 32px;
+                height: 32px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 500px;
+                background: #BABEC9;
+                flex-shrink: 0;
+
+                span {
+                  color: #111;
+                  text-align: center;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 14px;
+                  font-weight: 500;
+                  line-height: 150%;
+                }
+              }
+
+              .message-sender-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                flex: 1;
+
+                .sender-name {
+                  color: #FFF;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 16px;
+                  font-weight: 500;
+                  line-height: 150%;
+                }
+
+                .sender-details {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  opacity: 0.6;
+
+                  .rating,
+                  .separator,
+                  .vehicle {
+                    color: #FFF;
+                    font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 160%;
+                    letter-spacing: 0.24px;
+                  }
+                }
+              }
+            }
+
+            .message-text {
+              color: #FFF;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 16px;
+              font-weight: 500;
+              line-height: 150%;
+              white-space: pre-wrap;
+              padding: 12px 12px 0 12px;
+
+              strong {
+                font-weight: 700;
+              }
+            }
+
+            .message-footer {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              gap: 4px;
+              padding: 8px;
+
+              .read-status {
+                width: 16px;
+                height: 16px;
+              }
+
+              .timestamp {
+                color: #FFF;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 160%;
+                letter-spacing: 0.24px;
+              }
+            }
+
+            // Document request message styles
+            &.document-message {
+              max-width: 316px;
+              min-width: 290px;
+              padding: 8px;
+              background: #F4F4F5;
+              border-radius: 12px 12px 12px 2px;
+
+              .document-card {
+                display: flex;
+                padding: 16px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                border-radius: 8px;
+                background: rgba(0, 43, 92, 0.06);
+                margin-bottom: 12px;
+
+                .document-icon-wrapper {
+                  display: flex;
+                  width: 64px;
+                  height: 64px;
+                  padding: 9.6px;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 6.4px;
+                  border-radius: 6.4px;
+                  background: #DBECFF;
+                }
+              }
+
+              .document-text {
+                padding: 0 8px;
+                margin-bottom: 8px;
+                color: #111;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 150%;
+                text-align: left;
+                width: 100%;
+
+                .sender-name-bold {
+                  font-weight: 700;
+                }
+              }
+
+              .document-action {
+                display: flex;
+                padding: 4px 8px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+                margin-bottom: 8px;
+
+                .document-button {
+                  display: flex;
+                  min-width: 64px;
+                  min-height: 48px;
+                  padding: 0 16px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 8px;
+                  border-radius: 100px;
+                  background: #0769DA;
+                  border: none;
+                  cursor: pointer;
+                  width: 100%;
+                  color: #FFF;
+                  text-align: center;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 14px;
+                  font-weight: 500;
+                  line-height: 150%;
+                  transition: background 0.2s;
+
+                  &:hover {
+                    background: #0557B8;
+                  }
+
+                  &:active {
+                    background: #044899;
+                  }
+                }
+              }
+
+              .message-footer {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 4px;
+                padding: 0 8px;
+
+                .timestamp {
+                  color: #636B7E;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 12px;
+                  font-weight: 500;
+                  line-height: 160%;
+                  letter-spacing: 0.24px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .documents-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 24px;
+
+      .documents-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        max-width: 280px;
+        text-align: center;
+
+        svg {
+          opacity: 0.6;
+        }
+
+        .empty-title {
+          color: #111;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 150%;
+        }
+
+        .empty-subtitle {
+          color: #636B7E;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 150%;
+        }
+      }
+    }
+  }
+
+  .chat-bottom {
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+
+    .chat-stepper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 44px;
+      padding: 12px 0 0;
+      position: relative;
+
+      .stepper-divider {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        background: #F4F4F5;
+        z-index: 0;
+      }
+
+      .stepper-divider-active {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        height: 1px;
+        background: #0C884C;
+        z-index: 1;
+        transition: width 0.3s ease;
+      }
+
+      .step-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        width: 80px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+        z-index: 2;
+
+        .step-badge-wrapper {
+          position: relative;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 3;
+
+          .pulse {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #0C884C;
+            animation: pulse 2s ease-out infinite;
+          }
+
+          .step-badge {
+            display: flex;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 99px;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 1;
+            background: #F4F4F5;
+
+            span {
+              color: #636B7E;
+              text-align: center;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 10px;
+              font-weight: 700;
+              line-height: 160%;
+              text-transform: uppercase;
+              transition: color 0.2s;
+            }
+
+            svg {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+
+        .step-label {
+          color: #636B7E;
+          text-align: center;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 160%;
+          transition: all 0.2s;
+        }
+
+        // Estado completado (check verde)
+        &.completed {
+          .step-badge-wrapper .step-badge {
+            background: #0C884C;
+
+            svg {
+              fill: white;
+            }
+          }
+
+          .step-label {
+            color: #636B7E;
+            font-weight: 500;
+          }
+        }
+
+        // Estado ativo (badge verde com número branco)
+        &.active {
+          .step-badge-wrapper .step-badge {
+            background: #0C884C;
+
+            span {
+              color: #FFF;
+            }
+          }
+
+          .step-label {
+            color: #111;
+            font-weight: 700;
+          }
+        }
+
+        // Ativo + completado = check verde sem mudança extra
+        &.active.completed {
+          .step-badge-wrapper .step-badge {
+            background: #0C884C;
+          }
+        }
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.40;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 0.24;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.40;
+      }
+    }
+
+    .quick-replies {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      border-top: 1px solid #DDDFE4;
+
+      .quick-reply-btn {
+        display: flex;
+        min-width: 64px;
+        min-height: 32px;
+        max-height: 32px;
+        padding: 0 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 500px;
+        background: rgba(0, 43, 92, 0.06);
+        border: none;
+        color: #111;
+        text-align: center;
+        font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 160%;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: rgba(0, 43, 92, 0.12);
+        }
+
+        &:active {
+          background: rgba(0, 43, 92, 0.18);
+        }
+      }
+    }
+
+    .message-input-container {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 16px 24px;
+
+      .message-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        background: #F4F4F5;
+        border-radius: 20px;
+        padding: 10px 16px;
+
+        .message-input {
+          flex: 1;
+          border: none;
+          background: transparent;
+          color: #111;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 150%;
+          outline: none;
+
+          &::placeholder {
+            color: #636B7E;
+          }
+        }
+
+        .input-actions {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          .input-action-btn {
+            display: flex;
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.05);
+            }
+
+            &:active {
+              background: rgba(0, 0, 0, 0.1);
+            }
+          }
+        }
+      }
+
+      .mic-button,
+      .send-button {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background: #0769DA;
+        border-radius: 458.333px;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: #0557B8;
+          transform: scale(1.05);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
+}
+
+@keyframes messageSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .chat-page {
+    left: 50%;
+    max-width: 500px;
+    transform: translateX(-50%);
+
+    animation: slideInFromRightDesktop 0.3s ease-out;
+
+    &.exiting {
+      animation: slideOutToRightDesktop 0.3s ease-out;
+    }
+  }
+
+  @keyframes slideInFromRightDesktop {
+    from {
+      transform: translateX(50%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes slideOutToRightDesktop {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(50%);
+    }
+  }
+}
