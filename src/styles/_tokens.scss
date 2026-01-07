@@ -1,0 +1,41 @@
+// Colors
+$text-strong: #111;
+$text-medium: #636B7E;
+$text-inverted: #FFF;
+$icon-medium: #636B7E;
+$bg-default: #FFF;
+$bg-weak: #F4F4F5;
+$bg-medium: #DFE1E6;
+$interaction-enable: #0769DA;
+$interaction-enable-alpha: rgba(0, 43, 92, 0.06);
+$border-default: rgba(0, 43, 92, 0.16);
+$border-divider: #DFE1E6;
+$success: #0C884C;
+$warning: #F5963D;
+$error: #E04747;
+$surface-primary: #0769DA;
+$bg-inverted: #111;
+
+// Spacing
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+
+// Font
+$font-satoshi: 'Satoshi', -apple-system, 'Roboto', 'Helvetica', sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Border Radius
+$radius-pill: 500px;
+
+// Shadows
+$shadow-search: 0 14px 64px -4px rgba(17, 17, 17, 0.08), 0 8px 22px -6px rgba(17, 17, 17, 0.12);
+
+// Transitions
+$transition-base: 200ms;
+$transition-ease: cubic-bezier(0, 0, 0.2, 1);

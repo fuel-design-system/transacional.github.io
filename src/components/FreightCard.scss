@@ -1,0 +1,212 @@
+@use '../styles/tokens' as *;
+
+.freight-card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 12px;
+  background-color: $bg-default;
+  position: relative;
+}
+
+.freight-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  align-self: stretch;
+  border-radius: 16px;
+}
+
+.freight-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  align-self: stretch;
+  padding: $space-4;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-1;
+  align-self: stretch;
+}
+
+.price {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: $text-strong;
+  text-overflow: ellipsis;
+  font-family: $font-satoshi;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  line-height: 1.5;
+}
+
+.freight-details {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  align-self: stretch;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: $text-medium;
+  text-overflow: ellipsis;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1.6;
+}
+
+.detail-separator {
+  color: $text-medium;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1.6;
+}
+
+.route-section {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  align-self: stretch;
+}
+
+.route-icon {
+  display: flex;
+  padding: 5px 0;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-1;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.route-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-1;
+  flex: 1;
+}
+
+.route-origin,
+.route-destination {
+  align-self: stretch;
+  color: $text-strong;
+  font-family: $font-satoshi;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.5;
+}
+
+.divider {
+  width: calc(100% - 32px);
+  height: 1px;
+  background-color: $border-divider;
+  margin: $space-2 auto;
+}
+
+.company-section {
+  display: flex;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  align-items: center;
+  gap: $space-2;
+  padding-bottom: $space-4;
+}
+
+.company-avatar {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.company-text {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.company-label {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: $text-medium;
+  text-overflow: ellipsis;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1.6;
+}
+
+.company-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: $text-medium;
+  text-overflow: ellipsis;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: 1.6;
+}
+
+.tags {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 1px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 0 12px 0 8px;
+  overflow: hidden;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-1;
+  align-self: stretch;
+  padding: 0 $space-2;
+
+  span {
+    color: $text-inverted;
+    font-family: $font-satoshi;
+    font-size: 10px;
+    font-weight: $font-weight-bold;
+    line-height: 1.6;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+}
+
+.tag-new {
+  background-color: $surface-primary;
+}
+
+.tag-vip {
+  background-color: $bg-inverted;
+}

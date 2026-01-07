@@ -1,0 +1,23 @@
+@use 'tokens' as *;
+
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-satoshi;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $text-strong;
+  background-color: $bg-default;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+}

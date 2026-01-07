@@ -1,0 +1,235 @@
+@use 'tokens' as *;
+
+.home-page {
+  min-height: 100vh;
+  background-color: $bg-weak;
+  padding-bottom: 88px; // Altura da navbar
+}
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: 24px 0 16px;
+  max-width: 100%;
+}
+
+// Busca e Perfil
+.search-profile-container {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  width: 100%;
+  padding: 0 $space-4;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  flex: 1;
+  height: 53px;
+  padding: 0 $space-4;
+  border-radius: 48px;
+  background-color: $bg-default;
+  box-shadow: $shadow-search;
+  cursor: pointer;
+  transition: box-shadow $transition-base $transition-ease;
+
+  &:hover {
+    box-shadow: 0 14px 64px -4px rgba(17, 17, 17, 0.12), 0 8px 22px -6px rgba(17, 17, 17, 0.16);
+  }
+}
+
+.search-text {
+  flex: 1;
+  color: $text-strong;
+  font-family: $font-satoshi;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.5;
+}
+
+.search-icon {
+  width: 13.333px;
+  height: 13.333px;
+  flex-shrink: 0;
+}
+
+// Perfil do Usuário
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $icon-medium;
+  color: $text-inverted;
+  font-family: $font-satoshi;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: 1.5;
+}
+
+.status-indicator {
+  position: absolute;
+  right: -3px;
+  top: -2px;
+  width: 16px;
+  height: 16px;
+}
+
+.rating-badge {
+  display: flex;
+  height: 23px;
+  padding: 2px $space-2;
+  align-items: center;
+  gap: $space-1;
+  border-radius: $radius-pill;
+  background-color: $bg-default;
+  margin-top: -8px;
+  position: relative;
+  z-index: 1;
+}
+
+.rating-content {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.star-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.rating-text {
+  color: $text-medium;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: 1.6;
+}
+
+// Filtros com Chips
+.filters-container {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.chip {
+  display: flex;
+  min-width: fit-content;
+  min-height: 32px;
+  max-height: 32px;
+  padding: 0 $space-3;
+  justify-content: center;
+  align-items: center;
+  gap: $space-2;
+  border-radius: $radius-pill;
+  border: 1px solid $border-default;
+  background-color: $bg-default;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all $transition-base $transition-ease;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: $interaction-enable;
+    background-color: $interaction-enable-alpha;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &.chip-first {
+    margin-left: $space-4;
+  }
+
+  &.chip-last {
+    margin-right: $space-4;
+  }
+}
+
+.chip-label {
+  color: $text-strong;
+  font-family: $font-satoshi;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.chevron-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+// Cards de Fretes
+.freight-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-4 $space-4 0;
+
+  .freight-card:last-child {
+    margin-bottom: $space-4;
+  }
+}
+
+// Responsividade
+@media (min-width: 768px) {
+  .home-header {
+    padding: 24px 0;
+  }
+
+  .search-profile-container {
+    padding: 0 32px;
+  }
+
+  .freight-cards-container {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 0;
+  }
+
+  .search-profile-container {
+    padding: 0 48px;
+  }
+
+  .freight-cards-container {
+    padding: 0 48px;
+  }
+}
