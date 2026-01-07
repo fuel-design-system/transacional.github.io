@@ -131,11 +131,6 @@ export default function ChatPage() {
                           <span className="vehicle">{msg.senderVehicle}</span>
                         </div>
                       </div>
-                      {msg.isVerified && (
-                        <svg className="verified-badge" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M5.92452 14.3772L4.75152 12.4389L2.54252 11.9439L2.74636 9.68504L1.24902 8.00037L2.74636 6.3157L2.54252 4.05687L4.75152 3.56187L5.92452 1.62354L8.00019 2.50937L10.0759 1.62354L11.2489 3.56187L13.4579 4.05687L13.254 6.3157L14.7514 8.00037L13.254 9.68504L13.4579 11.9439L11.2489 12.4389L10.0759 14.3772L8.00019 13.4914L5.92452 14.3772ZM7.15019 10.1695L10.886 6.45037L10.2669 5.84404L7.15019 8.94404L5.73352 7.5312L5.11436 8.15037L7.15019 10.1695Z" fill="white"/>
-                        </svg>
-                      )}
                     </div>
                     <div className="message-text">
                       {msg.text.split('\n\n').map((line, index) => (
