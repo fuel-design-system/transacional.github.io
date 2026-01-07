@@ -8,6 +8,19 @@ interface Contact {
   isOnline: boolean;
 }
 
+interface Message {
+  id: string;
+  sender: 'user' | 'contact';
+  senderName?: string;
+  senderInitial?: string;
+  senderRating?: string;
+  senderVehicle?: string;
+  isVerified?: boolean;
+  text: string;
+  timestamp: string;
+  isRead?: boolean;
+}
+
 const contacts: { [key: string]: Contact } = {
   '1': { id: '1', name: 'Carlos S.', isOnline: true },
   '2': { id: '2', name: 'Carla Moura', isOnline: false },
