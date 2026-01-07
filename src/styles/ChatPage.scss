@@ -153,9 +153,10 @@
     .chat-tabs {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       gap: 44px;
       padding: 12px 0;
+      position: relative;
 
       .tab-item {
         display: flex;
@@ -168,6 +169,19 @@
         background: transparent;
         cursor: pointer;
         transition: all 0.2s;
+        position: relative;
+
+        &:not(:last-child) {
+          &::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: calc(100% + 10px);
+            width: 24px;
+            height: 0;
+            border-top: 1px dashed #DFE1E6;
+          }
+        }
 
         .tab-badge {
           display: flex;
@@ -177,6 +191,9 @@
           align-items: center;
           border-radius: 99px;
           transition: all 0.2s;
+          position: relative;
+          z-index: 1;
+          background: #FFF;
 
           span {
             color: #BABEC9;
