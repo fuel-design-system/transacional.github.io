@@ -529,9 +529,39 @@ export default function ChatPage() {
               <button
                 key={index}
                 className="quick-reply-btn"
-                onMouseDown={(e) => {
+                onClick={(e) => {
                   e.preventDefault();
                   setMessage(reply);
+
+                  // Envia a mensagem automaticamente
+                  const now = new Date();
+                  const hours = String(now.getHours()).padStart(2, '0');
+                  const minutes = String(now.getMinutes()).padStart(2, '0');
+                  const timestamp = `${hours}:${minutes}`;
+
+                  const contactMessageText = reply.trim();
+
+                  const newMessage: Message = {
+                    id: String(Date.now()),
+                    sender: 'contact',
+                    senderName: 'Rafael T (DDD 11)',
+                    senderInitial: 'R',
+                    senderRating: '4.9',
+                    senderVehicle: 'Bitruck | Graneleiro',
+                    text: contactMessageText,
+                    timestamp,
+                    isRead: true,
+                  };
+
+                  setMessages(prev => [...prev, newMessage]);
+                  setMessage('');
+                  setIsInputFocused(false);
+
+                  // Remove o foco do input
+                  (document.activeElement as HTMLElement)?.blur();
+
+                  // Simula resposta do usuário (branco, esquerda)
+                  simulateUserResponse(contactMessageText);
                 }}
               >
                 {reply}
