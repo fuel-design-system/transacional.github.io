@@ -366,7 +366,7 @@ export default function ChatPage() {
                         <span className="sender-name-bold">{msg.senderName}</span> {msg.text}
                       </div>
                       <div className="document-action">
-                        <button className="document-button" onClick={() => setActiveTab(2)}>
+                        <button className="document-button" onClick={() => navigate(`/freight/${freightId}/chat/${contactId}/documents`)}>
                           Liberar meus documentos
                         </button>
                       </div>
