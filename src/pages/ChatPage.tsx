@@ -72,9 +72,6 @@ export default function ChatPage() {
     'Consegue melhorar o preço?'
   ];
 
-  // Chave única para cada conversa
-  const chatStorageKey = `chat_${freightId}_${contactId}`;
-
   const [messages, setMessages] = useState<Message[]>(() => {
     // Tenta recuperar mensagens do sessionStorage
     const savedMessages = sessionStorage.getItem(chatStorageKey);
