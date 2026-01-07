@@ -23,7 +23,7 @@ export default function FreightDetail() {
   const handleBackClick = () => {
     setIsExiting(true);
     setTimeout(() => {
-      navigate(-1);
+      navigate('/');
     }, 300);
   };
 

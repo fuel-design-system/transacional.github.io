@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/ChatPage.scss';
 import freightsData from '../data/freights.json';
+import NegotiationStepsSheet from '../components/NegotiationStepsSheet';
 
 interface Contact {
   id: string;
@@ -31,15 +32,35 @@ const contacts: { [key: string]: Contact } = {
 export default function ChatPage() {
   const navigate = useNavigate();
   const { freightId, contactId } = useParams();
+
+  // Chave única para cada conversa
+  const chatStorageKey = `chat_${freightId}_${contactId}`;
+
   const [isExiting, setIsExiting] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const [message, setMessage] = useState('');
   const [completedTabs, setCompletedTabs] = useState<number[]>([]);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [hasAutoReplied, setHasAutoReplied] = useState(false);
-  const [conversationStep, setConversationStep] = useState(0);
+  const [hasAutoReplied, setHasAutoReplied] = useState(() => {
+    const saved = sessionStorage.getItem(`${chatStorageKey}_autoReplied`);
+    return saved ? JSON.parse(saved) : false;
+  });
+  const [conversationStep, setConversationStep] = useState(() => {
+    const saved = sessionStorage.getItem(`${chatStorageKey}_step`);
+    return saved ? JSON.parse(saved) : 0;
+  });
   const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(false);
+  const [isStepsSheetOpen, setIsStepsSheetOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Salva estados importantes no sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_autoReplied`, JSON.stringify(hasAutoReplied));
+  }, [hasAutoReplied, chatStorageKey]);
+
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_step`, JSON.stringify(conversationStep));
+  }, [conversationStep, chatStorageKey]);
 
   // Busca os dados do frete
   const freight = freightsData.find(f => f.id === Number(freightId));
@@ -50,7 +71,15 @@ export default function ChatPage() {
     'Quanto está pagando?',
     'Consegue melhorar o preço?'
   ];
+
   const [messages, setMessages] = useState<Message[]>(() => {
+    // Tenta recuperar mensagens do sessionStorage
+    const savedMessages = sessionStorage.getItem(chatStorageKey);
+    if (savedMessages) {
+      return JSON.parse(savedMessages);
+    }
+
+    // Se não houver mensagens salvas, cria a inicial
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -70,6 +99,11 @@ export default function ChatPage() {
       },
     ];
   });
+
+  // Salva mensagens no sessionStorage sempre que mudam
+  useEffect(() => {
+    sessionStorage.setItem(chatStorageKey, JSON.stringify(messages));
+  }, [messages, chatStorageKey]);
 
   // Script de conversa com etapas definidas
   const conversationFlowSteps = [
@@ -153,15 +187,8 @@ export default function ChatPage() {
   };
 
   const handleStepChange = (step: number) => {
-    // Ao mudar para um step posterior, marca os anteriores como completados
-    const newCompleted = [...completedTabs];
-    for (let i = 1; i < step; i++) {
-      if (!newCompleted.includes(i)) {
-        newCompleted.push(i);
-      }
-    }
-    setCompletedTabs(newCompleted);
-    setActiveTab(step);
+    // Abre o bottom sheet ao clicar em qualquer step
+    setIsStepsSheetOpen(true);
   };
 
   const simulateUserResponse = (contactMessage: string) => {
@@ -371,7 +398,7 @@ export default function ChatPage() {
                         <span className="sender-name-bold">{msg.senderName}</span> {msg.text}
                       </div>
                       <div className="document-action">
-                        <button className="document-button" onClick={() => setActiveTab(2)}>
+                        <button className="document-button" onClick={() => navigate(`/freight/${freightId}/chat/${contactId}/documents`)}>
                           Liberar meus documentos
                         </button>
                       </div>
@@ -529,9 +556,39 @@ export default function ChatPage() {
               <button
                 key={index}
                 className="quick-reply-btn"
-                onMouseDown={(e) => {
+                onClick={(e) => {
                   e.preventDefault();
                   setMessage(reply);
+
+                  // Envia a mensagem automaticamente
+                  const now = new Date();
+                  const hours = String(now.getHours()).padStart(2, '0');
+                  const minutes = String(now.getMinutes()).padStart(2, '0');
+                  const timestamp = `${hours}:${minutes}`;
+
+                  const contactMessageText = reply.trim();
+
+                  const newMessage: Message = {
+                    id: String(Date.now()),
+                    sender: 'contact',
+                    senderName: 'Rafael T (DDD 11)',
+                    senderInitial: 'R',
+                    senderRating: '4.9',
+                    senderVehicle: 'Bitruck | Graneleiro',
+                    text: contactMessageText,
+                    timestamp,
+                    isRead: true,
+                  };
+
+                  setMessages(prev => [...prev, newMessage]);
+                  setMessage('');
+                  setIsInputFocused(false);
+
+                  // Remove o foco do input
+                  (document.activeElement as HTMLElement)?.blur();
+
+                  // Simula resposta do usuário (branco, esquerda)
+                  simulateUserResponse(contactMessageText);
                 }}
               >
                 {reply}
@@ -553,12 +610,12 @@ export default function ChatPage() {
               onKeyPress={handleKeyPress}
             />
             <div className="input-actions">
-              <button className="input-action-btn">
+              <button className="input-action-btn" onClick={() => navigate(`/freight/${freightId}/chat/${contactId}/documents`)}>
                 <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
                   <path d="M14.2274 13.4117C14.2274 14.5685 13.8255 15.553 13.0216 16.365C12.2177 17.1771 11.2385 17.5832 10.0841 17.5832C8.91366 17.5832 7.92915 17.1603 7.13053 16.3144C6.33192 15.4687 5.93262 14.4525 5.93262 13.2659V5.37796C5.93262 4.55532 6.2179 3.85609 6.78845 3.28025C7.35887 2.70442 8.0554 2.4165 8.87803 2.4165C9.71456 2.4165 10.4146 2.72178 10.9782 3.33234C11.5419 3.94289 11.8237 4.67338 11.8237 5.5238V12.9278C11.8237 13.4105 11.6555 13.8232 11.3191 14.1657C10.9827 14.508 10.5728 14.6792 10.0893 14.6792C9.59387 14.6792 9.1779 14.5013 8.84137 14.1455C8.50484 13.7896 8.33658 13.3559 8.33658 12.8444V5.32046H9.4197V12.9278C9.4197 13.115 9.48297 13.2732 9.60949 13.4023C9.73602 13.5315 9.8929 13.5961 10.0801 13.5961C10.2672 13.5961 10.424 13.5315 10.5505 13.4023C10.6771 13.2732 10.7403 13.115 10.7403 12.9278V5.37005C10.7456 4.85185 10.5666 4.4106 10.2032 4.0463C9.83991 3.68199 9.39685 3.49984 8.87408 3.49984C8.3538 3.49984 7.91401 3.69025 7.5547 4.07109C7.19553 4.45206 7.01595 4.90157 7.01595 5.41963V13.4117C7.02123 14.2664 7.32088 14.9913 7.91491 15.5863C8.50894 16.1814 9.23296 16.4859 10.087 16.4998C10.9406 16.5137 11.6662 16.2057 12.2639 15.5759C12.8614 14.9462 13.1548 14.19 13.1441 13.3075V5.32046H14.2274V13.4117Z" fill="#636B7E"/>
                 </svg>
               </button>
-              <button className="input-action-btn">
+              <button className="input-action-btn" onClick={() => navigate(`/freight/${freightId}/chat/${contactId}/documents`)}>
                 <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
                   <path d="M10.0003 14.1787C10.9149 14.1787 11.6735 13.8705 12.276 13.2541C12.8785 12.6378 13.1797 11.8862 13.1797 10.9993C13.1797 10.1264 12.8785 9.37831 12.276 8.75497C11.6735 8.13164 10.9149 7.81997 10.0003 7.81997C9.08574 7.81997 8.3272 8.13164 7.7247 8.75497C7.1222 9.37831 6.82095 10.1299 6.82095 11.0098C6.82095 11.8896 7.1222 12.6378 7.7247 13.2541C8.3272 13.8705 9.08574 14.1787 10.0003 14.1787ZM10.0003 13.0956C9.38491 13.0956 8.88171 12.8922 8.49074 12.4854C8.09963 12.0787 7.90408 11.5764 7.90408 10.9785C7.90408 10.3923 8.09963 9.89984 8.49074 9.50122C8.88171 9.10247 9.38491 8.9031 10.0003 8.9031C10.6157 8.9031 11.1189 9.10247 11.5099 9.50122C11.901 9.89984 12.0966 10.3923 12.0966 10.9785C12.0966 11.5764 11.901 12.0787 11.5099 12.4854C11.1189 12.8922 10.6157 13.0956 10.0003 13.0956ZM2.41699 16.5827V5.41602H6.17658L7.67658 3.41602H12.3241L13.8241 5.41602H17.5837V16.5827H2.41699ZM3.50033 15.4993H16.5003V6.49935H13.2664L11.7564 4.49935H8.24241L6.73428 6.49935H3.50033V15.4993Z" fill="#636B7E"/>
                 </svg>
@@ -580,6 +637,12 @@ export default function ChatPage() {
           )}
         </div>
       </div>
+
+      <NegotiationStepsSheet
+        isOpen={isStepsSheetOpen}
+        onClose={() => setIsStepsSheetOpen(false)}
+        currentStep={activeTab}
+      />
     </div>
   );
 }
