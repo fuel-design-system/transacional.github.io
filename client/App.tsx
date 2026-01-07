@@ -1,36 +1,12 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
-
-// Register service worker for PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // Use relative path so it works with any base path
-    const basePath = import.meta.env.BASE_URL;
-    const swPath = `${basePath}sw.js`;
-    navigator.serviceWorker.register(swPath)
-      .then((registration) => {
-        console.log('ServiceWorker registration successful:', registration.scope);
-      })
-      .catch((err) => {
-        console.log('ServiceWorker registration failed:', err);
-      });
-  });
-}
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter basename={import.meta.env.PROD ? '/transacional.github.io' : ''}>
+export default function App() {
+  return (
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-  </QueryClientProvider>
-);
-
-export default App;
+  );
+}
