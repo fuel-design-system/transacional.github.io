@@ -398,6 +398,12 @@
     }
   }
 
+  .payment-section {
+    &.detail-card {
+      padding: 24px;
+    }
+  }
+
   .payment-methods {
     display: flex;
     flex-direction: column;
@@ -422,6 +428,12 @@
         font-weight: 500;
         line-height: 150%;
       }
+    }
+  }
+
+  .problems-section {
+    &.detail-card {
+      padding: 24px;
     }
   }
 
@@ -455,9 +467,10 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 16px;
-    border-radius: 16px;
-    border: 1px solid rgba(0, 43, 92, 0.06);
+
+    &.detail-card {
+      padding: 24px;
+    }
 
     .return-header {
       display: flex;
