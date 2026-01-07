@@ -226,6 +226,10 @@
     flex-direction: column;
     gap: 16px;
 
+    &.detail-card {
+      padding: 24px;
+    }
+
     .fee-title {
       color: #111;
       font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
