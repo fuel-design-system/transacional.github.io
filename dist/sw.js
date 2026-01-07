@@ -1,16 +1,17 @@
-const CACHE_NAME = 'fretebras-v19';
+const CACHE_NAME = 'fretebras-v20';
 
-// Detect base path automatically based on the location
+// Detect base path automatically
 const getBasePath = () => {
-  const pathname = self.location.pathname;
-  // If we're on GitHub Pages, pathname will be like /transacional.github.io/sw.js
-  // If we're on localhost or custom domain, pathname will be like /sw.js
-  const match = pathname.match(/^(\/[^\/]+\.github\.io)/);
-  return match ? match[1] : '';
+  // Get the path where sw.js is located
+  const swPath = self.location.pathname;
+  // Remove /sw.js to get the base path
+  const basePath = swPath.replace(/\/sw\.js$/, '');
+  return basePath || '';
 };
 
 const BASE_PATH = getBasePath();
 console.log('[ServiceWorker] Base path detected:', BASE_PATH || '(root)');
+console.log('[ServiceWorker] Full location:', self.location.href);
 
 // URLs to cache
 const urlsToCache = [

@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      // Solução para SPAs no GitHub Pages
+      // Solução para SPAs - funciona em qualquer domínio
       // Salva a rota atual antes de redirecionar
-      const path = location.pathname.replace('/transacional.github.io', '');
-      sessionStorage.setItem('redirect', path + location.search + location.hash);
+      const basePath = window.location.pathname.split('/').slice(0, -1).join('/') || '/';
+      const currentPath = window.location.pathname + window.location.search + window.location.hash;
+      sessionStorage.setItem('redirect', currentPath);
+
+      // Redireciona para a raiz do app
+      window.location.replace(basePath.endsWith('/') ? basePath : basePath + '/');
     </script>
-    <meta http-equiv="refresh" content="0;URL='/transacional.github.io/'" />
   </head>
   <body>
+    <p>Redirecionando...</p>
   </body>
 </html>
