@@ -1,5 +1,6 @@
 import '../styles/Home.scss';
 import FreightCard from '../components/FreightCard';
+import Navbar from '../components/Navbar';
 import freightsData from '../data/freights.json';
 
 export default function Home() {
@@ -97,6 +98,8 @@ export default function Home() {
           />
         ))}
       </div>
+
+      <Navbar />
     </div>
   );
 }
