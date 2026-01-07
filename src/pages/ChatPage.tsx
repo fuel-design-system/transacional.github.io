@@ -37,11 +37,26 @@ export default function ChatPage() {
   const [message, setMessage] = useState('');
   const [completedTabs, setCompletedTabs] = useState<number[]>([]);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [hasAutoReplied, setHasAutoReplied] = useState(false);
-  const [conversationStep, setConversationStep] = useState(0);
+  const [hasAutoReplied, setHasAutoReplied] = useState(() => {
+    const saved = sessionStorage.getItem(`${chatStorageKey}_autoReplied`);
+    return saved ? JSON.parse(saved) : false;
+  });
+  const [conversationStep, setConversationStep] = useState(() => {
+    const saved = sessionStorage.getItem(`${chatStorageKey}_step`);
+    return saved ? JSON.parse(saved) : 0;
+  });
   const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(false);
   const [isStepsSheetOpen, setIsStepsSheetOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Salva estados importantes no sessionStorage
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_autoReplied`, JSON.stringify(hasAutoReplied));
+  }, [hasAutoReplied, chatStorageKey]);
+
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_step`, JSON.stringify(conversationStep));
+  }, [conversationStep, chatStorageKey]);
 
   // Busca os dados do frete
   const freight = freightsData.find(f => f.id === Number(freightId));
