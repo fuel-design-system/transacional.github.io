@@ -144,6 +144,134 @@
     background-position: center;
     background-repeat: repeat;
 
+    .messages-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+
+      .message {
+        display: flex;
+        width: 100%;
+
+        &.contact {
+          justify-content: flex-end;
+
+          .message-stack {
+            display: flex;
+            flex-direction: column;
+            max-width: 328px;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px 12px 2px 12px;
+            background: #003C80;
+
+            .message-header {
+              display: flex;
+              align-items: flex-start;
+              gap: 8px;
+              position: relative;
+
+              .message-avatar {
+                display: flex;
+                width: 32px;
+                height: 32px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 500px;
+                background: #BABEC9;
+                flex-shrink: 0;
+
+                span {
+                  color: #111;
+                  text-align: center;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 14px;
+                  font-weight: 500;
+                  line-height: 150%;
+                }
+              }
+
+              .message-sender-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                flex: 1;
+
+                .sender-name {
+                  color: #FFF;
+                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                  font-size: 16px;
+                  font-weight: 500;
+                  line-height: 150%;
+                }
+
+                .sender-details {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  opacity: 0.6;
+
+                  .rating,
+                  .separator,
+                  .vehicle {
+                    color: #FFF;
+                    font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 160%;
+                    letter-spacing: 0.24px;
+                  }
+                }
+              }
+
+              .verified-badge {
+                position: absolute;
+                right: 0;
+                top: 24px;
+                width: 16px;
+                height: 16px;
+              }
+            }
+
+            .message-text {
+              color: #FFF;
+              font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 150%;
+              white-space: pre-wrap;
+
+              strong {
+                font-weight: 700;
+              }
+            }
+
+            .message-footer {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              gap: 4px;
+
+              .read-status {
+                width: 16px;
+                height: 16px;
+              }
+
+              .timestamp {
+                color: #FFF;
+                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                line-height: 160%;
+                letter-spacing: 0.24px;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .documents-content {
       display: flex;
       flex-direction: column;
