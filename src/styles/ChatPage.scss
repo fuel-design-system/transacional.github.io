@@ -210,7 +210,7 @@
         transition: all 0.2s;
         position: relative;
 
-        // Linhas conectoras
+        // Linhas conectoras (tracejadas por padrão)
         &:nth-child(1)::after,
         &:nth-child(2)::after {
           content: '';
@@ -219,25 +219,22 @@
           left: calc(50% + 12px);
           width: 56px;
           height: 1px;
-          background: #DFE1E6;
+          border-top: 1px dashed #DFE1E6;
           z-index: 0;
         }
 
-        // Linha sólida verde quando o step anterior está completo
-        &:nth-child(2).completed::after,
-        &:nth-child(2).active::after {
-          background: #0C884C;
-        }
-
-        &:nth-child(3).completed::after,
-        &:nth-child(3).active::after {
-          background: #0C884C;
-        }
-
-        // Se o step 1 está completo, linha entre 1 e 2 fica verde
+        // Linha 1->2 fica sólida verde quando step 1 completo OU step 2 ativo/completo
         &:nth-child(1).completed::after {
-          background: #0C884C;
+          border-top: 1px solid #0C884C;
         }
+
+        // Linha 2->3 fica sólida verde quando step 2 completo OU step 3 ativo
+        &:nth-child(2).completed::after {
+          border-top: 1px solid #0C884C;
+        }
+
+        // Step 2 ativo = linha 1->2 verde (se step 1 completo)
+        // Step 3 ativo = linha 2->3 verde (se step 2 completo)
 
         .step-badge-wrapper {
           position: relative;
