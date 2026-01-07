@@ -254,7 +254,14 @@ export default function ChatPage() {
         ) : (
           <div className="quick-replies">
             {quickReplies.map((reply, index) => (
-              <button key={index} className="quick-reply-btn" onClick={() => setMessage(reply)}>
+              <button
+                key={index}
+                className="quick-reply-btn"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setMessage(reply);
+                }}
+              >
                 {reply}
               </button>
             ))}
