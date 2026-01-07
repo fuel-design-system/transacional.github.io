@@ -82,6 +82,7 @@ export default function Home() {
         {freightsData.map((freight) => (
           <FreightCard
             key={freight.id}
+            id={freight.id}
             price={freight.price}
             isNew={freight.isNew}
             isVip={freight.isVip}

@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './FreightCard.scss';
 
 interface FreightCardProps {
+  id: number;
   price: string;
   isNew?: boolean;
   isVip?: boolean;
@@ -17,6 +19,7 @@ interface FreightCardProps {
 }
 
 export default function FreightCard({
+  id,
   price,
   isNew,
   isVip,
@@ -30,8 +33,14 @@ export default function FreightCard({
   destination,
   company,
 }: FreightCardProps) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/freight/${id}`);
+  };
+
   return (
-    <div className="freight-card">
+    <div className="freight-card" onClick={handleCardClick}>
       <div className="freight-info">
         {/* Preço e informações */}
         <div className="freight-content">
