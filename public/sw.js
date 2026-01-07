@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fretebras-v20';
+const CACHE_NAME = 'fretebras-v21';
 
 // Detect base path automatically
 const getBasePath = () => {
@@ -13,11 +13,10 @@ const BASE_PATH = getBasePath();
 console.log('[ServiceWorker] Base path detected:', BASE_PATH || '(root)');
 console.log('[ServiceWorker] Full location:', self.location.href);
 
-// URLs to cache
+// URLs to cache - only cache static assets, not JS/CSS bundles with hashes
 const urlsToCache = [
   `${BASE_PATH}/`,
   `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/404.html`,
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/icon-192.svg`,
   `${BASE_PATH}/icon-512.svg`,
