@@ -21,6 +21,13 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: "dist/spa",
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler'
+        }
+      }
+    },
     plugins: [
       react(),
       expressPlugin(),
@@ -30,6 +37,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         "@": path.resolve(__dirname, "./client"),
         "@shared": path.resolve(__dirname, "./shared"),
+        "@styles": path.resolve(__dirname, "./client/styles"),
       },
     },
   };
