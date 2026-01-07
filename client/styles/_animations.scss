@@ -1,0 +1,181 @@
+/**
+ * Animações e Keyframes
+ */
+
+@use 'tokens' as *;
+
+// ============================================================================
+// KEYFRAMES
+// ============================================================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes accordionDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--accordion-content-height);
+  }
+}
+
+@keyframes accordionUp {
+  from {
+    height: var(--accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+// ============================================================================
+// ANIMATION CLASSES
+// ============================================================================
+
+.animate-fade-in {
+  animation: fadeIn $transition-base $transition-ease-out;
+}
+
+.animate-fade-out {
+  animation: fadeOut $transition-base $transition-ease-in;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp $transition-base $transition-ease-out;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown $transition-base $transition-ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft $transition-base $transition-ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight $transition-base $transition-ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn $transition-fast $transition-ease-out;
+}
+
+.animate-scale-out {
+  animation: scaleOut $transition-fast $transition-ease-in;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-accordion-down {
+  animation: accordionDown $transition-base ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordionUp $transition-base ease-out;
+}
