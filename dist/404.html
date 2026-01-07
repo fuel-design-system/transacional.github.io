@@ -6,7 +6,8 @@
     <script>
       // Solução para SPAs no GitHub Pages
       // Salva a rota atual antes de redirecionar
-      sessionStorage.setItem('redirect', location.pathname.slice(0, -1) + location.search + location.hash);
+      const path = location.pathname.replace('/transacional.github.io', '');
+      sessionStorage.setItem('redirect', path + location.search + location.hash);
     </script>
     <meta http-equiv="refresh" content="0;URL='/transacional.github.io/'" />
   </head>
