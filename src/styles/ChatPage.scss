@@ -372,6 +372,10 @@
         &.contact {
           justify-content: flex-end;
 
+          &.document-request {
+            justify-content: flex-start;
+          }
+
           .message-stack {
             display: flex;
             flex-direction: column;
@@ -485,7 +489,7 @@
 
             // Document request message styles
             &.document-message {
-              max-width: 256px;
+              max-width: 316px;
               padding: 8px;
               background: #F4F4F5;
               border-radius: 12px 12px 12px 2px;
