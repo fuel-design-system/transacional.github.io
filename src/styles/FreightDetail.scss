@@ -332,6 +332,10 @@
     flex-direction: column;
     gap: 16px;
 
+    &.detail-card {
+      padding: 24px;
+    }
+
     .company-info {
       display: flex;
       flex-direction: column;
