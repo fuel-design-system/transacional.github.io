@@ -467,10 +467,33 @@ export default function ChatPage() {
                       </div>
                     </div>
                   )}
-                  {msg.sender === 'user' && (
+                  {msg.sender === 'user' && msg.type !== 'document-submitted' && (
                     <div className="user-message">
                       <div className="user-message-text">{msg.text}</div>
                       <div className="user-message-footer">
+                        <span className="timestamp">{msg.timestamp}</span>
+                      </div>
+                    </div>
+                  )}
+                  {msg.sender === 'user' && msg.type === 'document-submitted' && (
+                    <div className="document-submitted-message">
+                      <div className="document-images">
+                        <div className="image-grid">
+                          <div className="doc-image"></div>
+                          <div className="doc-image"></div>
+                          <div className="doc-image"></div>
+                          <div className="doc-badge">+2</div>
+                        </div>
+                      </div>
+                      <div className="document-caption">
+                        <span className="caption-bold">Você enviou os documentos para formalizar a negociação!</span>
+                        <br />
+                        Aguarde a análise dos documentos pela empresa.
+                      </div>
+                      <div className="document-footer">
+                        <div className="verified-badge">
+                          Verificado por Fretebras
+                        </div>
                         <span className="timestamp">{msg.timestamp}</span>
                       </div>
                     </div>
