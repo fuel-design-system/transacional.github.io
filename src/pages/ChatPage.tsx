@@ -37,6 +37,23 @@ export default function ChatPage() {
   // Chave única para cada conversa
   const chatStorageKey = `chat_${freightId}_${contactId}`;
 
+  // Limpa o chat se vier da página de detalhes do frete
+  useEffect(() => {
+    const state = location.state as { fromFreightDetails?: boolean };
+    if (state?.fromFreightDetails) {
+      // Limpa todas as mensagens e estados do chat
+      sessionStorage.removeItem(chatStorageKey);
+      sessionStorage.removeItem(`${chatStorageKey}_autoReplied`);
+      sessionStorage.removeItem(`${chatStorageKey}_step`);
+      sessionStorage.removeItem(`${chatStorageKey}_activeTab`);
+      sessionStorage.removeItem(`${chatStorageKey}_currentStep`);
+      sessionStorage.removeItem(`${chatStorageKey}_completedTabs`);
+
+      // Limpa o state para não limpar novamente ao navegar
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, []);
+
   const [activeTab, setActiveTab] = useState(() => {
     const saved = sessionStorage.getItem(`${`chat_${freightId}_${contactId}`}_activeTab`);
     return saved ? JSON.parse(saved) : 1;

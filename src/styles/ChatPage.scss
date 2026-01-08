@@ -339,7 +339,7 @@
             .user-message-text {
               color: #111;
               font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-              font-size: 16px;
+              font-size: 14px;
               font-weight: 500;
               line-height: 150%;
             }
@@ -882,7 +882,7 @@
             .message-text {
               color: #FFF;
               font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-              font-size: 16px;
+              font-size: 14px;
               font-weight: 500;
               line-height: 150%;
               white-space: pre-wrap;
@@ -952,7 +952,7 @@
                 margin-bottom: 8px;
                 color: #111;
                 font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 500;
                 line-height: 150%;
                 text-align: left;
@@ -1421,9 +1421,12 @@
       .send-button {
         display: flex;
         width: 44px;
+        min-width: 44px;
+        max-width: 44px;
         height: 44px;
         justify-content: center;
         align-items: center;
+        flex-shrink: 0;
         border: none;
         background: #0769DA;
         border-radius: 458.333px;
