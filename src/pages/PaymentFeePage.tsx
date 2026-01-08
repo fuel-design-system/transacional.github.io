@@ -66,21 +66,18 @@ export default function PaymentFeePage() {
                   <span className="description-bold">seu Pix da Carteira Fretebras:</span>
                 </div>
                 <div className="pix-key-container">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="pix-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.82508 8.94134C7.96269 8.80376 8.20226 8.80333 8.33992 8.94134L10.3009 10.9015C10.6635 11.264 11.1458 11.464 11.6587 11.464H11.8946L9.40476 13.9546L9.2532 14.0906C8.52521 14.6842 7.47487 14.6842 6.74695 14.0906L6.59617 13.9546L4.11258 11.471H4.4993C4.94796 11.471 5.37345 11.3184 5.7157 11.0374L5.85711 10.9093L7.82508 8.94134ZM3.55633 5.08509C3.58798 5.09701 3.622 5.1054 3.65789 5.1054H4.4993C4.85297 5.10545 5.19938 5.249 5.4493 5.49915L7.41726 7.46712C7.60066 7.65028 7.84189 7.74212 8.08289 7.74212C8.32362 7.74202 8.56435 7.64972 8.74773 7.46634L10.7087 5.50618C10.9274 5.28726 11.2199 5.1503 11.5266 5.11946L11.6587 5.11243H12.343C12.3807 5.11238 12.4163 5.10375 12.4493 5.09055L13.9548 6.59602C14.7299 7.3715 14.7299 8.62834 13.9548 9.40384L12.4493 10.9093C12.4163 10.8961 12.3807 10.8875 12.343 10.8874H11.6587C11.3049 10.8874 10.9586 10.7438 10.7087 10.4937L8.74773 8.53352C8.39242 8.17793 7.77294 8.17822 7.41726 8.53352L5.4493 10.5007C5.19938 10.7508 4.85297 10.8944 4.4993 10.8945H3.65789C3.622 10.8945 3.58804 10.9029 3.55633 10.9148L2.04617 9.40384C1.31914 8.67679 1.27338 7.52681 1.90945 6.7468L2.04617 6.59602L3.55633 5.08509ZM6.59617 2.04602C7.37167 1.27047 8.62915 1.27047 9.40476 2.04602L11.8946 4.53587H11.6587C11.1458 4.53587 10.6635 4.73588 10.3009 5.09837L8.33992 7.0593C8.19791 7.20151 7.96675 7.20079 7.82508 7.0593L5.85711 5.09134C5.49449 4.72889 5.01206 4.52889 4.4993 4.52884H4.11258L6.59617 2.04602Z" fill="#636B7E"/>
                   </svg>
-                  <input
-                    type="text"
-                    className="pix-key-input"
-                    value={pixKey}
-                    readOnly
-                  />
-                  <button className="copy-button" onClick={handleCopyPix}>
-                    <span className="copy-text">Copiar</span>
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4.69824 5.26709V16.0933H13.5244V17.1558H3.63574V5.26709H4.69824ZM16.3643 2.42725V14.5728H6.21875V2.42725H16.3643ZM7.28125 13.5103H15.3018V3.48975H7.28125V13.5103Z" fill="#0769DA" stroke="#0769DA" strokeWidth="0.0208333"/>
-                    </svg>
-                  </button>
+                  <div className="pix-key-content">
+                    <div className="pix-key-text">{pixKey}</div>
+                    <button className="copy-button" onClick={handleCopyPix}>
+                      <span className="copy-text">Copiar</span>
+                      <svg className="copy-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.69824 5.26733V16.0935H13.5244V17.156H3.63574V5.26733H4.69824ZM16.3643 2.42749V14.573H6.21875V2.42749H16.3643ZM7.28125 13.5105H15.3018V3.48999H7.28125V13.5105Z" fill="#0769DA" stroke="#0769DA" strokeWidth="0.0208333"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
                 <button className="learn-more-link" onClick={handleLearnMore}>Saiba mais</button>
               </div>

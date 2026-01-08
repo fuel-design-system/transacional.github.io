@@ -119,60 +119,69 @@
             display: flex;
             align-items: center;
             gap: $space-2;
+            align-self: stretch;
+            border-radius: 8px;
+            background: rgba(0, 43, 92, 0.06);
+            padding: 12px;
 
-            svg {
+            .pix-icon {
               width: 16px;
               height: 16px;
               flex-shrink: 0;
             }
 
-            .pix-key-input {
-              flex: 1;
-              color: $text-strong;
-              font-family: $font-satoshi;
-              font-size: $font-size-xs;
-              font-weight: $font-weight-medium;
-              line-height: 160%;
-              border: none;
-              background: transparent;
-              outline: none;
-              padding: 0;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              cursor: default;
-              user-select: all;
-            }
-
-            .copy-button {
+            .pix-key-content {
               display: flex;
               align-items: center;
-              gap: 4px;
-              border: none;
-              background: transparent;
-              padding: 0;
-              cursor: pointer;
-              transition: opacity 0.2s;
+              gap: $space-2;
+              flex: 1;
 
-              &:hover {
-                opacity: 0.8;
-              }
-
-              &:active {
-                opacity: 0.6;
-              }
-
-              .copy-text {
-                color: $interaction-enable;
+              .pix-key-text {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                flex: 1;
+                overflow: hidden;
+                color: $text-strong;
+                text-overflow: ellipsis;
                 font-family: $font-satoshi;
                 font-size: $font-size-xs;
                 font-weight: $font-weight-medium;
                 line-height: 160%;
+                user-select: all;
               }
 
-              svg {
-                width: 16px;
-                height: 16px;
+              .copy-button {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                border: none;
+                background: transparent;
+                padding: 0;
+                cursor: pointer;
+                transition: opacity 0.2s;
+
+                &:hover {
+                  opacity: 0.8;
+                }
+
+                &:active {
+                  opacity: 0.6;
+                }
+
+                .copy-text {
+                  color: $interaction-enable;
+                  text-align: center;
+                  font-family: $font-satoshi;
+                  font-size: $font-size-xs;
+                  font-weight: $font-weight-medium;
+                  line-height: 160%;
+                }
+
+                .copy-icon {
+                  width: 16px;
+                  height: 16px;
+                }
               }
             }
           }
