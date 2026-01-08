@@ -218,7 +218,9 @@
       if (swCleared || cacheCleared) {
         showStatus('✅ Tudo limpo! Recarregando em 2 segundos...', 'success');
         setTimeout(() => {
-          window.location.href = '/';
+          const pathParts = window.location.pathname.split('/');
+          const basePath = pathParts.slice(0, pathParts.indexOf('clear-cache.html')).join('/');
+          window.location.href = basePath || '/';
         }, 2000);
       } else {
         showStatus('⚠️ Nada para limpar', 'info');
@@ -226,7 +228,9 @@
     }
     
     function goHome() {
-      window.location.href = '/';
+      const pathParts = window.location.pathname.split('/');
+      const basePath = pathParts.slice(0, pathParts.indexOf('clear-cache.html')).join('/');
+      window.location.href = basePath || '/';
     }
     
     // Show current status on load
