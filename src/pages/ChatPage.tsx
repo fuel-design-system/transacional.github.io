@@ -280,6 +280,8 @@ export default function ChatPage() {
     if (messages.some(msg => msg.type === 'trip-confirmed')) {
       // Marca que a negociação foi concluída para mostrar o banner de taxa pendente
       sessionStorage.setItem('negotiationCompleted', 'true');
+      // Armazena o ID do frete negociado
+      sessionStorage.setItem('negotiatedFreightId', freightId || '');
       navigate('/');
     } else {
       navigate(`/freight/${freightId}`);
