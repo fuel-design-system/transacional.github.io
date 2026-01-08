@@ -132,14 +132,18 @@
       }
 
       .route-section {
+        display: flex;
+        flex-direction: column;
+        gap: $space-3;
+
         .route-label {
+          display: block;
           color: $text-medium;
           font-family: $font-satoshi;
           font-size: $font-size-xs;
           font-weight: $font-weight-medium;
           line-height: 1.6;
           letter-spacing: 0.24px;
-          margin-bottom: $space-2;
         }
 
         .route-info {
