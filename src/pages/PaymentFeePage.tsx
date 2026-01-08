@@ -27,8 +27,8 @@ export default function PaymentFeePage() {
   };
 
   const handleContinue = () => {
-    // Navega para a tela de confirmação de valor
-    navigate(`/freight/${freightId}/chat/${contactId}/confirm`);
+    // Conclui o fluxo e volta para o chat
+    navigate(`/freight/${freightId}/chat/${contactId}`);
   };
 
   return (

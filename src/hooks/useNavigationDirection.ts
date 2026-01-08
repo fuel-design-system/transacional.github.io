@@ -17,11 +17,11 @@ function getRouteDepth(pathname: string): number {
   // Documents
   if (/^\/freight\/[^/]+\/chat\/[^/]+\/documents$/.test(pathname)) return 3;
 
-  // Payment Fee
-  if (/^\/freight\/[^/]+\/chat\/[^/]+\/payment-fee$/.test(pathname)) return 4;
+  // Confirm Route Value
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/confirm$/.test(pathname)) return 4;
 
-  // Confirm
-  if (/^\/freight\/[^/]+\/chat\/[^/]+\/confirm$/.test(pathname)) return 5;
+  // Payment Fee
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/payment-fee$/.test(pathname)) return 5;
 
   return 0;
 }

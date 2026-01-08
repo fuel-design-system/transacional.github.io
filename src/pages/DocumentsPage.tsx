@@ -12,7 +12,7 @@ export default function DocumentsPage() {
   };
 
   const handleContinue = () => {
-    navigate(`/freight/${freightId}/chat/${contactId}/payment-fee`);
+    navigate(`/freight/${freightId}/chat/${contactId}/confirm`);
   };
 
   return (
