@@ -5,6 +5,47 @@
   background-color: $bg-weak;
   padding-bottom: 24px;
 
+  .payment-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    position: relative;
+
+    .back-button {
+      display: flex;
+      width: 48px;
+      height: 48px;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background: transparent;
+      border-radius: $radius-pill;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      &:active {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .payment-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: $text-strong;
+      text-align: center;
+      font-family: $font-satoshi;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+
   .page-content {
     display: flex;
     flex-direction: column;
