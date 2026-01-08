@@ -419,7 +419,7 @@
               display: flex;
               flex-direction: column;
               gap: 16px;
-              padding: 16px;
+              padding: 16px 16px 0;
               background: #FFF;
               border-radius: 12px 12px 12px 2px;
 
@@ -461,9 +461,7 @@
               display: flex;
               padding: 0 16px;
               background: #FFF;
-              border-radius: 0 0 12px 12px;
               margin-top: -12px;
-              padding-bottom: 16px;
 
               .agreement-button {
                 display: flex;
@@ -501,11 +499,10 @@
               display: flex;
               justify-content: space-between;
               align-items: center;
-              padding: 0 16px;
+              padding: 0 16px 16px;
               background: #FFF;
-              border-radius: 0 0 12px 12px;
-              margin-top: -12px;
-              padding-bottom: 16px;
+              border-radius: 0 0 12px 2px;
+              margin-top: -4px;
 
               .verified-info {
                 display: flex;
