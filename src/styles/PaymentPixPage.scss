@@ -54,59 +54,69 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
     padding: 0 $space-4;
     overflow-y: auto;
 
-    .pix-instruction {
-      color: $text-strong;
-      text-align: center;
-      font-family: $font-satoshi;
-      font-size: $font-size-base;
-      font-weight: $font-weight-medium;
-      line-height: 1.5;
-      margin: 0;
-      align-self: stretch;
-    }
-
-    .qr-code {
-      width: 200px;
-      height: 200px;
-      aspect-ratio: 1/1;
-    }
-
-    .copy-button {
+    .pix-card {
       display: flex;
-      min-width: 64px;
-      min-height: 48px;
-      max-height: 48px;
-      padding: 0 $space-4;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: $space-2;
+      gap: 12px;
       align-self: stretch;
-      border-radius: $radius-pill;
-      background: $interaction-enable;
-      color: $text-inverted;
-      border: none;
-      cursor: pointer;
-      font-family: $font-satoshi;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-medium;
-      line-height: 1.5;
-      transition: all 0.2s;
+      background: #FFF;
+      border-radius: 12px;
 
-      &:hover {
-        background: #0557B8;
+      .pix-instruction {
+        color: $text-strong;
+        text-align: center;
+        font-family: $font-satoshi;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        line-height: 1.5;
+        margin: 0;
+        align-self: stretch;
       }
 
-      &:active {
-        background: #044899;
+      .qr-code {
+        width: 256px;
+        height: 256px;
+        aspect-ratio: 1/1;
       }
 
-      svg {
-        width: 16px;
-        height: 16px;
+      .copy-button {
+        display: flex;
+        min-width: 64px;
+        min-height: 48px;
+        max-height: 48px;
+        padding: 0 $space-4;
+        justify-content: center;
+        align-items: center;
+        gap: $space-2;
+        align-self: stretch;
+        border-radius: $radius-pill;
+        background: $interaction-enable;
+        color: $text-inverted;
+        border: none;
+        cursor: pointer;
+        font-family: $font-satoshi;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        line-height: 1.5;
+        transition: all 0.2s;
+
+        &:hover {
+          background: #0557B8;
+        }
+
+        &:active {
+          background: #044899;
+        }
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
       }
     }
 
