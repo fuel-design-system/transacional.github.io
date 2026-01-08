@@ -1,0 +1,210 @@
+@use 'tokens' as *;
+
+.payment-success-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-weak;
+
+  .success-header {
+    height: 80px;
+    flex-shrink: 0;
+    background: $bg-weak;
+  }
+
+  .success-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 $space-4;
+    overflow-y: auto;
+
+    .success-icon {
+      display: flex;
+      width: 64px;
+      height: 64px;
+      justify-content: center;
+      align-items: center;
+      border-radius: $radius-pill;
+      background: #0C884C;
+
+      svg {
+        width: 12px;
+        height: 12px;
+        flex-shrink: 0;
+      }
+    }
+
+    .success-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+
+      .success-title {
+        color: $text-strong;
+        font-family: $font-satoshi;
+        font-size: 24px;
+        font-weight: $font-weight-medium;
+        line-height: 1.3;
+        letter-spacing: -0.96px;
+        margin: 0;
+        align-self: stretch;
+      }
+
+      .payment-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        align-self: stretch;
+
+        .fee-card {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          align-self: stretch;
+
+          .card-label {
+            flex: 1;
+            color: $text-medium;
+            font-family: $font-satoshi;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            line-height: 1.5;
+          }
+
+          .card-value {
+            color: $text-strong;
+            font-family: $font-satoshi;
+            font-size: $font-size-base;
+            font-weight: $font-weight-bold;
+            line-height: 1.5;
+          }
+        }
+
+        .payment-method-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+          border-radius: 12px;
+
+          .method-label {
+            height: 21px;
+            overflow: hidden;
+            color: $text-medium;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: $font-satoshi;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            line-height: 1.5;
+            margin: 0;
+            align-self: stretch;
+          }
+
+          .method-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            svg {
+              width: 24px;
+              height: 24px;
+              flex-shrink: 0;
+            }
+
+            .method-text {
+              color: $text-strong;
+              font-family: $font-satoshi;
+              font-size: $font-size-sm;
+              font-weight: $font-weight-medium;
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      .help-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+        cursor: pointer;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        svg {
+          flex-shrink: 0;
+        }
+
+        .help-text {
+          color: $text-medium;
+          font-family: $font-satoshi;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          line-height: 1.5;
+          margin: 0;
+
+          strong {
+            font-weight: $font-weight-bold;
+          }
+        }
+      }
+    }
+  }
+
+  .success-footer {
+    border-top: 1px solid $border-weak;
+    background: $bg-default;
+    padding: 24px $space-4;
+    box-shadow: 0 14px 64px -4px rgba(17, 17, 17, 0.08), 0 8px 22px -6px rgba(17, 17, 17, 0.12);
+
+    .close-button {
+      display: flex;
+      min-width: 64px;
+      min-height: 48px;
+      max-height: 48px;
+      padding: 0 $space-4;
+      justify-content: center;
+      align-items: center;
+      gap: $space-2;
+      width: 100%;
+      border-radius: $radius-pill;
+      background: $interaction-enable;
+      color: $text-inverted;
+      border: none;
+      cursor: pointer;
+      font-family: $font-satoshi;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      line-height: 1.5;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #0557B8;
+      }
+
+      &:active {
+        background: #044899;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .payment-success-page {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
