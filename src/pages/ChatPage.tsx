@@ -20,7 +20,7 @@ interface Message {
   text: string;
   timestamp: string;
   isRead?: boolean;
-  type?: 'text' | 'document-request' | 'document-submitted' | 'agreement-review';
+  type?: 'text' | 'document-request' | 'document-submitted' | 'agreement-review' | 'trip-confirmed';
 }
 
 const contacts: { [key: string]: Contact } = {
@@ -175,6 +175,25 @@ export default function ChatPage() {
         // Marca a etapa 2 como concluída e ativa a etapa 3 (Fechamento)
         setCompletedTabs(prev => prev.includes(2) ? prev : [...prev, 2]);
         setCurrentStep(3);
+
+        // Após mais 5 segundos, envia mensagem de confirmação de viagem
+        setTimeout(() => {
+          const now3 = new Date();
+          const hours3 = String(now3.getHours()).padStart(2, '0');
+          const minutes3 = String(now3.getMinutes()).padStart(2, '0');
+          const timestamp3 = `${hours3}:${minutes3}`;
+
+          const tripConfirmedMessage: Message = {
+            id: String(Date.now()),
+            sender: 'user',
+            text: '',
+            timestamp: timestamp3,
+            isRead: true,
+            type: 'trip-confirmed',
+          };
+
+          setMessages(prev => [...prev, tripConfirmedMessage]);
+        }, 5000);
       }, 3000);
 
       // Limpa o state para não adicionar a mensagem novamente
