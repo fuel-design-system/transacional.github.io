@@ -23,6 +23,9 @@ function getRouteDepth(pathname: string): number {
   // Payment Success
   if (pathname === '/payment/success') return 5;
 
+  // Contest Service Fee
+  if (pathname === '/contest-service-fee') return 2;
+
   // Freight detail
   if (/^\/freight\/[^/]+$/.test(pathname)) return 1;
 
