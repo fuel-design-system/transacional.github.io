@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/PendingPaymentPage.scss';
+import freightsData from '../data/freights.json';
 
 export default function PendingPaymentPage() {
   const navigate = useNavigate();
+
+  // Get the freight ID from sessionStorage
+  const freightId = sessionStorage.getItem('negotiatedFreightId');
+  const freight = freightsData.find(f => f.id === Number(freightId));
 
   return (
     <div className="pending-payment-page">
@@ -55,8 +60,8 @@ export default function PendingPaymentPage() {
                 <path d="M6.19141 40.5L3.5 45.8818L0.808594 40.5H6.19141Z" stroke="#BABEC9"/>
               </svg>
               <div className="cities">
-                <div className="origin-city">Uberlândia, MG</div>
-                <div className="destination-city">Primavera do Leste, MT</div>
+                <div className="origin-city">{freight?.origin || 'Uberlândia, MG'}</div>
+                <div className="destination-city">{freight?.destination || 'Primavera do Leste, MT'}</div>
               </div>
             </div>
           </div>
