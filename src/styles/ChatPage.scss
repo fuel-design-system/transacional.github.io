@@ -368,6 +368,9 @@
             max-width: 328px;
             min-width: 256px;
             width: fit-content;
+            background: #FFF;
+            padding: 8px;
+            border-radius: 12px 12px 12px 2px;
             animation: messageSlideUp 0.3s ease-out;
 
             .agreement-card {
@@ -375,7 +378,7 @@
               justify-content: center;
               align-items: center;
               gap: 8px;
-              border-radius: 12px 12px 0 0;
+              border-radius: 8px;
               background: #DBECFF;
               padding: 16px;
               margin-bottom: 0;
@@ -421,8 +424,6 @@
               flex-direction: column;
               gap: 16px;
               padding: 16px 16px 0;
-              background: #FFF;
-              border-radius: 12px 12px 12px 2px;
 
               .agreement-text {
                 color: #111;
@@ -463,7 +464,6 @@
               flex-direction: column;
               gap: 8px;
               padding: 0 16px;
-              background: #FFF;
 
               .agreement-button {
                 display: flex;
@@ -499,32 +499,9 @@
 
             .agreement-footer {
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-end;
               align-items: center;
-              padding: 0 16px 16px;
-              background: #FFF;
-              border-radius: 0 0 12px 2px;
-
-              .verified-info {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-
-                svg {
-                  width: 16px;
-                  height: 16px;
-                  flex-shrink: 0;
-                }
-
-                .verified-text {
-                  color: #BABEC9;
-                  text-align: center;
-                  font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-                  font-size: 12px;
-                  font-weight: 500;
-                  line-height: 160%;
-                }
-              }
+              padding: 0 16px 8px;
 
               .timestamp {
                 color: #636B7E;
