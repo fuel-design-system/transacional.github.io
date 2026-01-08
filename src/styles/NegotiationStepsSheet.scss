@@ -183,15 +183,17 @@
           color: #636B7E;
           font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
           font-size: 14px;
-          font-weight: 700;
+          font-weight: 500;
           line-height: 150%;
 
           &.active {
             color: #111;
+            font-weight: 700;
           }
 
           &.muted {
             color: #636B7E;
+            font-weight: 700;
           }
         }
 
@@ -205,10 +207,10 @@
 
           &.active {
             color: #111;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
-            line-height: 150%;
-            letter-spacing: 0;
+            line-height: 160%;
+            letter-spacing: 0.24px;
           }
         }
 
