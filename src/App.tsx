@@ -5,6 +5,7 @@ import ChatPage from './pages/ChatPage';
 import DocumentsPage from './pages/DocumentsPage';
 import ConfirmRouteValuePage from './pages/ConfirmRouteValuePage';
 import PaymentFeePage from './pages/PaymentFeePage';
+import PendingPaymentPage from './pages/PendingPaymentPage';
 import PageTransition from './components/PageTransition';
 
 function AppRoutes() {
@@ -14,6 +15,7 @@ function AppRoutes() {
     <PageTransition>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
+        <Route path="/pending-payment" element={<PendingPaymentPage />} />
         <Route path="/freight/:id" element={<FreightDetail />} />
         <Route path="/freight/:freightId/chat/:contactId" element={<ChatPage />} />
         <Route path="/freight/:freightId/chat/:contactId/documents" element={<DocumentsPage />} />
