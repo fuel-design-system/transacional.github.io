@@ -368,8 +368,9 @@
             max-width: 256px;
             min-width: 256px;
             width: fit-content;
-            padding: 0;
+            padding: 12px;
             border-radius: 12px 12px 2px 12px;
+            background: #003C80;
             animation: messageSlideUp 0.3s ease-out;
 
             .document-images {
@@ -390,10 +391,26 @@
                 position: relative;
 
                 .doc-image {
-                  width: 74px;
+                  width: 73px;
                   height: 74px;
-                  border-radius: 8px;
-                  background: #E5E7EB;
+                  border-radius: 7.135px;
+                  background-size: cover;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  flex-shrink: 0;
+
+                  &:nth-child(1) {
+                    background-image: url('https://api.builder.io/api/v1/image/assets/TEMP/02225e2dd164df19e198b140bf73f19449b6e6e6?width=146');
+                  }
+
+                  &:nth-child(2) {
+                    width: 74px;
+                    background-image: url('https://api.builder.io/api/v1/image/assets/TEMP/dc6ecb53ffd419f628c4d3c720bbb2e4a0eab47a?width=148');
+                  }
+
+                  &:nth-child(3) {
+                    background-image: url('https://api.builder.io/api/v1/image/assets/TEMP/f6d9d2466b65260a2040dd2c4ae76cd87b6c9c40?width=146');
+                  }
                 }
 
                 .doc-badge {
