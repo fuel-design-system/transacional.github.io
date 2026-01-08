@@ -322,11 +322,18 @@
 
       .step-connector {
         width: 2px;
-        height: 108px;
         background: #F4F4F5;
         position: absolute;
         left: 19px;
-        top: 72px;
+        top: 52px;
+      }
+
+      &:first-child .step-connector {
+        height: 54px;
+      }
+
+      &:nth-child(2) .step-connector {
+        height: 104px;
       }
 
       &:last-child .step-connector {
