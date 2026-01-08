@@ -88,7 +88,7 @@ export default function PendingPaymentPage() {
 
           {/* Botões de ação */}
           <div className="action-buttons">
-            <button className="primary-button">Pagar taxa</button>
+            <button className="primary-button" onClick={() => navigate('/payment/checkout')}>Pagar taxa</button>
             <button className="secondary-button">Assine o VIP por R$ 79,00/ mês</button>
           </div>
         </div>
