@@ -54,12 +54,17 @@ export default function PageTransition({ children }: PageTransitionProps) {
   useEffect(() => {
     const currentDepth = getRouteDepth(location.pathname);
     const prevDepth = prevDepthRef.current;
-    
+
+    // Check if we should skip the transition
+    const shouldSkipTransition = location.state && (location.state as { skipTransition?: boolean }).skipTransition;
+
     // Determine direction and set animation
-    if (currentDepth > prevDepth) {
-      setAnimationClass('slide-in-forward');
-    } else if (currentDepth < prevDepth) {
-      setAnimationClass('slide-in-backward');
+    if (!shouldSkipTransition) {
+      if (currentDepth > prevDepth) {
+        setAnimationClass('slide-in-forward');
+      } else if (currentDepth < prevDepth) {
+        setAnimationClass('slide-in-backward');
+      }
     }
 
     prevDepthRef.current = currentDepth;
@@ -70,7 +75,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
     }, 350);
 
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   return (
     <div className={`page-transition ${animationClass}`} key={location.pathname}>
