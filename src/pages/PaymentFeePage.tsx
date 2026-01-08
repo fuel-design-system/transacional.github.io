@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/PaymentFeePage.scss';
 import Toast from '../components/Toast';
 import PixInfoSheet from '../components/PixInfoSheet';
+import VIPWarningSheet from '../components/VIPWarningSheet';
 
 export default function PaymentFeePage() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function PaymentFeePage() {
   const [pixKey] = useState('(11) 9 9999-8888');
   const [showToast, setShowToast] = useState(false);
   const [isPixInfoSheetOpen, setIsPixInfoSheetOpen] = useState(false);
+  const [isVIPWarningSheetOpen, setIsVIPWarningSheetOpen] = useState(false);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -30,8 +32,14 @@ export default function PaymentFeePage() {
   };
 
   const handleContinue = () => {
-    // Conclui o fluxo e volta para o chat
-    navigate(`/freight/${freightId}/chat/${contactId}`);
+    // Abre o bottom sheet de aviso VIP
+    setIsVIPWarningSheetOpen(true);
+  };
+
+  const handleVIPWarningConfirm = () => {
+    // Fecha o sheet e navega para o chat com indicação de documentos enviados
+    setIsVIPWarningSheetOpen(false);
+    navigate(`/freight/${freightId}/chat/${contactId}`, { state: { documentsSubmitted: true } });
   };
 
   return (
@@ -131,6 +139,14 @@ export default function PaymentFeePage() {
       <PixInfoSheet
         isOpen={isPixInfoSheetOpen}
         onClose={() => setIsPixInfoSheetOpen(false)}
+        pixKey={pixKey}
+      />
+
+      {/* VIP Warning Sheet */}
+      <VIPWarningSheet
+        isOpen={isVIPWarningSheetOpen}
+        onClose={() => setIsVIPWarningSheetOpen(false)}
+        onConfirm={handleVIPWarningConfirm}
         pixKey={pixKey}
       />
     </div>
