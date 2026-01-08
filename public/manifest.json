@@ -2,27 +2,27 @@
   "name": "Fretebras - Plataforma de Fretes",
   "short_name": "Sem VIP",
   "description": "Plataforma de fretes e logística",
-  "start_url": "/transacional.github.io/",
-  "scope": "/transacional.github.io/",
+  "start_url": "/sem-vip.github.io/",
+  "scope": "/sem-vip.github.io/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#F4F4F5",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/transacional.github.io/icon-192.svg",
+      "src": "/sem-vip.github.io/icon-192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/transacional.github.io/icon-512.svg",
+      "src": "/sem-vip.github.io/icon-512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/transacional.github.io/favicon.svg",
+      "src": "/sem-vip.github.io/favicon.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

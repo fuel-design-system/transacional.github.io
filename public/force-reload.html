@@ -187,7 +187,10 @@
         
         // Redirect to home after 2 seconds
         setTimeout(() => {
-          window.location.href = '/';
+          // Get the base path from current location
+          const pathParts = window.location.pathname.split('/');
+          const basePath = pathParts.slice(0, pathParts.indexOf('force-reload.html')).join('/');
+          window.location.href = basePath || '/';
         }, 2000);
         
       } catch (error) {
@@ -195,7 +198,11 @@
         status.className = 'status error';
         status.innerHTML = `<p><strong>❌ Erro ao limpar cache</strong></p><p>${error.message}</p>`;
         homeBtn.style.display = 'inline-block';
-        homeBtn.onclick = () => window.location.href = '/';
+        homeBtn.onclick = () => {
+          const pathParts = window.location.pathname.split('/');
+          const basePath = pathParts.slice(0, pathParts.indexOf('force-reload.html')).join('/');
+          window.location.href = basePath || '/';
+        };
       }
     }
     
