@@ -1,0 +1,227 @@
+@use 'tokens' as *;
+
+.contest-service-fee-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-weak;
+
+  .contest-header {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    gap: 8px;
+    position: relative;
+
+    .back-button {
+      display: flex;
+      width: 48px;
+      height: 48px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      background: transparent;
+      border-radius: $radius-pill;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      &:active {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .contest-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      color: $text-strong;
+      text-align: center;
+      font-family: $font-satoshi;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+
+  .contest-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 0 $space-4 140px;
+    overflow-y: auto;
+
+    .explanation-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+
+      .explanation-text {
+        color: $text-strong;
+        font-family: $font-satoshi;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        line-height: 1.5;
+        margin: 0;
+        align-self: stretch;
+      }
+    }
+
+    .reason-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+
+      .reason-title {
+        color: $text-strong;
+        font-family: $font-satoshi;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .reason-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        border-radius: $radius-lg;
+
+        .reason-item {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          align-self: stretch;
+          padding: 16px 0;
+          cursor: pointer;
+          transition: background 0.2s;
+
+          &.with-border {
+            border-bottom: 1px solid $border-weak;
+          }
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.02);
+          }
+
+          &:active {
+            background: rgba(0, 0, 0, 0.05);
+          }
+
+          .reason-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            flex: 1;
+
+            .reason-label {
+              color: $text-strong;
+              font-family: $font-satoshi;
+              font-size: $font-size-sm;
+              font-weight: $font-weight-medium;
+              line-height: 1.5;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+            }
+          }
+
+          .radio-button {
+            display: flex;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+
+            svg {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .contest-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px $space-4;
+    border-top: 1px solid $border-weak;
+    background: $bg-default;
+    z-index: 10;
+
+    .continue-button {
+      display: flex;
+      min-width: 64px;
+      min-height: 48px;
+      max-height: 48px;
+      padding: 0 $space-4;
+      justify-content: center;
+      align-items: center;
+      gap: $space-2;
+      width: 100%;
+      border-radius: $radius-pill;
+      background: $interaction-enable;
+      color: $text-inverted;
+      border: none;
+      cursor: pointer;
+      font-family: $font-satoshi;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      line-height: 1.5;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #0557B8;
+      }
+
+      &:active {
+        background: #044899;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .contest-service-fee-page {
+    max-width: 768px;
+    margin: 0 auto;
+
+    .contest-footer {
+      max-width: 768px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
