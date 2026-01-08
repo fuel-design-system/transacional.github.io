@@ -20,7 +20,7 @@ interface Message {
   text: string;
   timestamp: string;
   isRead?: boolean;
-  type?: 'text' | 'document-request' | 'document-submitted';
+  type?: 'text' | 'document-request' | 'document-submitted' | 'agreement-review';
 }
 
 const contacts: { [key: string]: Contact } = {
@@ -153,6 +153,25 @@ export default function ChatPage() {
       // Marca a etapa 1 como concluída e ativa a etapa 2
       setCompletedTabs(prev => prev.includes(1) ? prev : [...prev, 1]);
       setCurrentStep(2);
+
+      // Após 3 segundos, envia a mensagem de revisão do acordo
+      setTimeout(() => {
+        const now2 = new Date();
+        const hours2 = String(now2.getHours()).padStart(2, '0');
+        const minutes2 = String(now2.getMinutes()).padStart(2, '0');
+        const timestamp2 = `${hours2}:${minutes2}`;
+
+        const agreementReviewMessage: Message = {
+          id: String(Date.now()),
+          sender: 'user',
+          text: '',
+          timestamp: timestamp2,
+          isRead: true,
+          type: 'agreement-review',
+        };
+
+        setMessages(prev => [...prev, agreementReviewMessage]);
+      }, 3000);
 
       // Limpa o state para não adicionar a mensagem novamente
       navigate(location.pathname, { replace: true, state: {} });
