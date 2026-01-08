@@ -18,8 +18,8 @@ export default function ConfirmRouteValuePage() {
   };
 
   const handleContinue = () => {
-    // TODO: Implementar ação de continuar
-    console.log('Continuar clicado', { freightValue, notAgreedYet });
+    // Navega para a página de formas de cobrança da taxa
+    navigate(`/freight/${freightId}/chat/${contactId}/payment-fee`);
   };
 
   // Currency mask function
