@@ -16,6 +16,16 @@ export default function PaymentFeePage() {
     // TODO: Mostrar feedback de copiado
   };
 
+  const handleLearnMore = () => {
+    // TODO: Abrir modal ou página com mais informações sobre o Pix da Carteira
+    console.log('Saiba mais sobre Pix da Carteira');
+  };
+
+  const handleSubscribeVIP = () => {
+    // TODO: Navegar para página de assinatura VIP
+    console.log('Assinar VIP');
+  };
+
   const handleContinue = () => {
     // Navega para a tela de confirmação de valor
     navigate(`/freight/${freightId}/chat/${contactId}/confirm`);
@@ -65,7 +75,7 @@ export default function PaymentFeePage() {
                     </svg>
                   </button>
                 </div>
-                <button className="learn-more-link">Saiba mais</button>
+                <button className="learn-more-link" onClick={handleLearnMore}>Saiba mais</button>
               </div>
             </div>
 
@@ -87,7 +97,7 @@ export default function PaymentFeePage() {
                   <span className="description-bold">Motorista VIP e fique isento da taxa de serviço </span>
                   <span className="description-normal">em todos os fretes.</span>
                 </div>
-                <button className="learn-more-link">Assine o VIP</button>
+                <button className="learn-more-link" onClick={handleSubscribeVIP}>Assine o VIP</button>
               </div>
             </div>
           </div>
