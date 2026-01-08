@@ -71,8 +71,9 @@
       align-items: center;
       gap: 12px;
       align-self: stretch;
-      background: #FFF;
-      border-radius: 12px;
+      background: $bg-default;
+      padding: 16px;
+      border-radius: $radius-lg;
 
       .pix-instruction {
         color: $text-strong;
@@ -133,6 +134,9 @@
       align-items: flex-start;
       gap: 24px;
       align-self: stretch;
+      background: $bg-default;
+      padding: 16px;
+      border-radius: $radius-lg;
 
       .instructions-title {
         color: $text-strong;
