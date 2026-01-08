@@ -7,10 +7,24 @@ interface PageTransitionProps {
 }
 
 function getRouteDepth(pathname: string): number {
+  // Root
   if (pathname === '/' || pathname === '') return 0;
+
+  // Freight detail
   if (/^\/freight\/[^/]+$/.test(pathname)) return 1;
+
+  // Chat
   if (/^\/freight\/[^/]+\/chat\/[^/]+$/.test(pathname)) return 2;
-  if (/^\/freight\/[^/]+\/chat\/[^/]+\/(documents|confirm)$/.test(pathname)) return 3;
+
+  // Documents
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/documents$/.test(pathname)) return 3;
+
+  // Confirm Route Value
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/confirm$/.test(pathname)) return 4;
+
+  // Payment Fee
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/payment-fee$/.test(pathname)) return 5;
+
   return 0;
 }
 
