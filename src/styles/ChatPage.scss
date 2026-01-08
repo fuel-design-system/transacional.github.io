@@ -323,7 +323,7 @@
         animation: messageSlideUp 0.3s ease-out;
 
         &.user {
-          justify-content: flex-start;
+          justify-content: flex-end;
 
           .user-message {
             display: flex;

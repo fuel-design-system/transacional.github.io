@@ -109,26 +109,31 @@ export default function ChatPage() {
   useEffect(() => {
     const state = location.state as { documentsSubmitted?: boolean };
     if (state?.documentsSubmitted) {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const timestamp = `${hours}:${minutes}`;
+      // Verifica se já existe uma mensagem do tipo document-submitted
+      const hasDocumentMessage = messages.some(msg => msg.type === 'document-submitted');
 
-      const documentSubmittedMessage: Message = {
-        id: String(Date.now()),
-        sender: 'user',
-        text: '',
-        timestamp,
-        isRead: true,
-        type: 'document-submitted',
-      };
+      if (!hasDocumentMessage) {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timestamp = `${hours}:${minutes}`;
 
-      setMessages(prev => [...prev, documentSubmittedMessage]);
+        const documentSubmittedMessage: Message = {
+          id: String(Date.now()),
+          sender: 'user',
+          text: '',
+          timestamp,
+          isRead: true,
+          type: 'document-submitted',
+        };
+
+        setMessages(prev => [...prev, documentSubmittedMessage]);
+      }
 
       // Limpa o state para não adicionar a mensagem novamente
       navigate(location.pathname, { replace: true, state: {} });
     }
-  }, [location.state, location.pathname, navigate, chatStorageKey]);
+  }, [location.state, location.pathname, navigate, messages]);
 
   // Script de conversa com etapas definidas
   const conversationFlowSteps = [
