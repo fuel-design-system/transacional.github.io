@@ -41,6 +41,10 @@ export default function ChatPage() {
     const saved = sessionStorage.getItem(`${`chat_${freightId}_${contactId}`}_activeTab`);
     return saved ? JSON.parse(saved) : 1;
   });
+  const [currentStep, setCurrentStep] = useState(() => {
+    const saved = sessionStorage.getItem(`${`chat_${freightId}_${contactId}`}_currentStep`);
+    return saved ? JSON.parse(saved) : 1;
+  });
   const [message, setMessage] = useState('');
   const [completedTabs, setCompletedTabs] = useState<number[]>(() => {
     const saved = sessionStorage.getItem(`${`chat_${freightId}_${contactId}`}_completedTabs`);
@@ -72,6 +76,10 @@ export default function ChatPage() {
   useEffect(() => {
     sessionStorage.setItem(`${chatStorageKey}_activeTab`, JSON.stringify(activeTab));
   }, [activeTab, chatStorageKey]);
+
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_currentStep`, JSON.stringify(currentStep));
+  }, [currentStep, chatStorageKey]);
 
   useEffect(() => {
     sessionStorage.setItem(`${chatStorageKey}_completedTabs`, JSON.stringify(completedTabs));
@@ -142,8 +150,9 @@ export default function ChatPage() {
 
       setMessages(prev => [...prev, documentSubmittedMessage]);
 
-      // Marca a etapa 1 como concluída
+      // Marca a etapa 1 como concluída e ativa a etapa 2
       setCompletedTabs(prev => prev.includes(1) ? prev : [...prev, 1]);
+      setCurrentStep(2);
 
       // Limpa o state para não adicionar a mensagem novamente
       navigate(location.pathname, { replace: true, state: {} });
