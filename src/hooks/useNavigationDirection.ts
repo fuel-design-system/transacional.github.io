@@ -14,8 +14,14 @@ function getRouteDepth(pathname: string): number {
   // Chat
   if (/^\/freight\/[^/]+\/chat\/[^/]+$/.test(pathname)) return 2;
 
-  // Documents, Confirm, or Payment Fee
-  if (/^\/freight\/[^/]+\/chat\/[^/]+\/(documents|confirm|payment-fee)$/.test(pathname)) return 3;
+  // Documents
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/documents$/.test(pathname)) return 3;
+
+  // Payment Fee
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/payment-fee$/.test(pathname)) return 4;
+
+  // Confirm
+  if (/^\/freight\/[^/]+\/chat\/[^/]+\/confirm$/.test(pathname)) return 5;
 
   return 0;
 }
