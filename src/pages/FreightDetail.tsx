@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/FreightDetail.scss';
 import freightsData from '../data/freights.json';
@@ -7,24 +7,15 @@ import ChatBottomSheet from '../components/ChatBottomSheet';
 export default function FreightDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [isExiting, setIsExiting] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const freight = freightsData.find(f => f.id === Number(id));
-
-  // Garante que a página sempre inicie no topo
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
 
   if (!freight) {
     return <div>Frete não encontrado</div>;
   }
 
   const handleBackClick = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      navigate('/');
-    }, 300);
+    navigate('/');
   };
 
   const handleChatClick = () => {
@@ -36,7 +27,7 @@ export default function FreightDetail() {
   };
 
   return (
-    <div className={`freight-detail-page ${isExiting ? 'exiting' : ''}`}>
+    <div className="freight-detail-page">
       <div className="detail-content">
         {/* Top Bar */}
         <div className="top-bar">
