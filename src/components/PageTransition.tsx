@@ -1,9 +1,9 @@
-import { ReactNode, useEffect, useState, useRef } from 'react';
+import { ReactElement, useEffect, useState, useRef, cloneElement } from 'react';
 import { useLocation } from 'react-router-dom';
 import './PageTransition.scss';
 
 interface PageTransitionProps {
-  children: ReactNode;
+  children: ReactElement;
 }
 
 function getRouteDepth(pathname: string): number {
@@ -55,11 +55,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [location, displayLocation]);
+  }, [location.pathname, displayLocation.pathname]);
 
   return (
     <div className={`page-transition ${transitionClass}`}>
-      {children}
+      {cloneElement(children, { location: displayLocation })}
     </div>
   );
 }
