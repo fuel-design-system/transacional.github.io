@@ -11,6 +11,18 @@ function getRouteDepth(pathname: string): number {
   // Pending Payment
   if (pathname === '/pending-payment') return 1;
 
+  // Payment Checkout
+  if (pathname === '/payment/checkout') return 2;
+
+  // Payment Loading
+  if (pathname === '/payment/loading') return 3;
+
+  // Payment Pix
+  if (pathname === '/payment/pix') return 4;
+
+  // Payment Success
+  if (pathname === '/payment/success') return 5;
+
   // Freight detail
   if (/^\/freight\/[^/]+$/.test(pathname)) return 1;
 
