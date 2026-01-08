@@ -29,22 +29,26 @@ export default function PaymentPixPage() {
       </div>
 
       <div className="pix-content">
-        <p className="pix-instruction">Escaneie o QR code ou copie o código:</p>
+        {/* Card Branco com QR Code */}
+        <div className="pix-card">
+          <p className="pix-instruction">Escaneie o QR code ou copie o código:</p>
 
-        <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/60df4f5d13895f926fb848a7a7860d8dbef836d9?width=400" 
-          alt="QR Code Pix" 
-          className="qr-code"
-        />
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/60df4f5d13895f926fb848a7a7860d8dbef836d9?width=400"
+            alt="QR Code Pix"
+            className="qr-code"
+          />
 
-        <button className="copy-button" onClick={handleCopyCode}>
-          <span>Copiar código</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M1.33325 2.37053C1.33325 1.79779 1.86388 1.3335 2.51844 1.3335H10.8147C11.4693 1.3335 11.9999 1.79779 11.9999 2.37053V3.14831C11.9999 3.43468 11.7346 3.66683 11.4073 3.66683C11.08 3.66683 10.8147 3.43468 10.8147 3.14831V2.37053H2.51844V10.9631H3.40733C3.7346 10.9631 3.99992 11.1953 3.99992 11.4816C3.99992 11.768 3.7346 12.0002 3.40733 12.0002H2.51844C1.86388 12.0002 1.33325 11.5359 1.33325 10.9631V2.37053Z" fill="white"/>
-            <path fillRule="evenodd" clipRule="evenodd" d="M6.37029 4.00016C5.79755 4.00016 5.33325 4.53079 5.33325 5.18535V13.4816C5.33325 14.1362 5.79755 14.6668 6.37029 14.6668H13.6295C14.2023 14.6668 14.6666 14.1362 14.6666 13.4816V5.18535C14.6666 4.53079 14.2023 4.00016 13.6295 4.00016H6.37029Z" fill="white"/>
-          </svg>
-        </button>
+          <button className="copy-button" onClick={handleCopyCode}>
+            <span>Copiar código</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M1.33325 2.37053C1.33325 1.79779 1.86388 1.3335 2.51844 1.3335H10.8147C11.4693 1.3335 11.9999 1.79779 11.9999 2.37053V3.14831C11.9999 3.43468 11.7346 3.66683 11.4073 3.66683C11.08 3.66683 10.8147 3.43468 10.8147 3.14831V2.37053H2.51844V10.9631H3.40733C3.7346 10.9631 3.99992 11.1953 3.99992 11.4816C3.99992 11.768 3.7346 12.0002 3.40733 12.0002H2.51844C1.86388 12.0002 1.33325 11.5359 1.33325 10.9631V2.37053Z" fill="white"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M6.37029 4.00016C5.79755 4.00016 5.33325 4.53079 5.33325 5.18535V13.4816C5.33325 14.1362 5.79755 14.6668 6.37029 14.6668H13.6295C14.2023 14.6668 14.6666 14.1362 14.6666 13.4816V5.18535C14.6666 4.53079 14.2023 4.00016 13.6295 4.00016H6.37029Z" fill="white"/>
+            </svg>
+          </button>
+        </div>
 
+        {/* Instruções - Fora do Card */}
         <div className="instructions-section">
           <p className="instructions-title">Como pagar usando o código "copia e cola"?</p>
 
