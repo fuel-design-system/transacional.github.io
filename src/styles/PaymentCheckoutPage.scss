@@ -49,7 +49,7 @@
 
   .checkout-content {
     flex: 1;
-    padding: 0 $space-4;
+    padding: 0 $space-4 160px;
     overflow-y: auto;
   }
 
@@ -236,6 +236,10 @@
   }
 
   .checkout-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-top: 1px solid $border-weak;
     background: $bg-default;
     padding: 24px $space-4 40px;
