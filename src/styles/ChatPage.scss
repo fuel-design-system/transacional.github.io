@@ -323,7 +323,7 @@
         animation: messageSlideUp 0.3s ease-out;
 
         &.user {
-          justify-content: flex-end;
+          justify-content: flex-start;
 
           .user-message {
             display: flex;
@@ -359,6 +359,14 @@
                 letter-spacing: 0.24px;
               }
             }
+          }
+        }
+
+        &.contact {
+          justify-content: flex-end;
+
+          &.document-request {
+            justify-content: flex-start;
           }
 
           .document-submitted-message {

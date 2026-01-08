@@ -488,15 +488,7 @@ export default function ChatPage() {
                       </div>
                     </div>
                   )}
-                  {msg.sender === 'user' && msg.type !== 'document-submitted' && (
-                    <div className="user-message">
-                      <div className="user-message-text">{msg.text}</div>
-                      <div className="user-message-footer">
-                        <span className="timestamp">{msg.timestamp}</span>
-                      </div>
-                    </div>
-                  )}
-                  {msg.sender === 'user' && msg.type === 'document-submitted' && (
+                  {msg.sender === 'contact' && msg.type === 'document-submitted' && (
                     <div className="document-submitted-message">
                       <div className="document-images">
                         <div className="image-grid">
@@ -515,6 +507,14 @@ export default function ChatPage() {
                         <div className="verified-badge">
                           Verificado por Fretebras
                         </div>
+                        <span className="timestamp">{msg.timestamp}</span>
+                      </div>
+                    </div>
+                  )}
+                  {msg.sender === 'user' && (
+                    <div className="user-message">
+                      <div className="user-message-text">{msg.text}</div>
+                      <div className="user-message-footer">
                         <span className="timestamp">{msg.timestamp}</span>
                       </div>
                     </div>
