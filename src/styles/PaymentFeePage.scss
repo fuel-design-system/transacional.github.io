@@ -56,6 +56,9 @@
       display: flex;
       flex-direction: column;
       gap: $space-4;
+      background: $bg-default;
+      border-radius: 16px;
+      padding: $space-4;
     }
 
     .payment-card {
@@ -123,16 +126,22 @@
               flex-shrink: 0;
             }
 
-            .pix-key {
+            .pix-key-input {
               flex: 1;
               color: $text-strong;
               font-family: $font-satoshi;
               font-size: $font-size-xs;
               font-weight: $font-weight-medium;
               line-height: 160%;
+              border: none;
+              background: transparent;
+              outline: none;
+              padding: 0;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
+              cursor: default;
+              user-select: all;
             }
 
             .copy-button {

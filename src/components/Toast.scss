@@ -1,0 +1,41 @@
+@use 'tokens' as *;
+
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  display: flex;
+  width: calc(100% - 32px);
+  max-width: 320px;
+  min-height: 48px;
+  padding: $space-2 $space-2 $space-2 $space-4;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  background: $bg-inverted;
+  box-shadow: 0 8px 12px 0 rgba(17, 17, 17, 0.08), 0 6px 12px -6px rgba(17, 17, 17, 0.12);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 9999;
+
+  &.toast-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .toast-message {
+    flex: 1;
+    color: $text-inverted;
+    font-family: $font-satoshi;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: 150%;
+  }
+}
+
+@media (min-width: 768px) {
+  .toast {
+    width: 320px;
+  }
+}
