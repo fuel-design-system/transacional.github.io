@@ -9,24 +9,16 @@
 }
 
 // Forward navigation - slide in from right
-.page-enter-forward {
+.slide-forward {
   animation: slideInFromRight 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.page-exit-forward {
-  animation: slideOutToLeft 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-// Backward navigation - slide out to right
-.page-enter-backward {
+// Backward navigation - slide in from left
+.slide-backward {
   animation: slideInFromLeft 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.page-exit-backward {
-  animation: slideOutToRight 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-// Keyframes for forward navigation
+// Keyframes for forward navigation (entering from right)
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
@@ -38,18 +30,7 @@
   }
 }
 
-@keyframes slideOutToLeft {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-30%);
-    opacity: 0;
-  }
-}
-
-// Keyframes for backward navigation
+// Keyframes for backward navigation (entering from left)
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-30%);
@@ -58,16 +39,5 @@
   to {
     transform: translateX(0);
     opacity: 1;
-  }
-}
-
-@keyframes slideOutToRight {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
   }
 }

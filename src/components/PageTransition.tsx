@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useNavigationDirection, NavigationDirection } from '../hooks/useNavigationDirection';
+import { useNavigationDirection } from '../hooks/useNavigationDirection';
 import './PageTransition.scss';
 
 interface PageTransitionProps {
@@ -10,47 +10,23 @@ interface PageTransitionProps {
 export default function PageTransition({ children }: PageTransitionProps) {
   const location = useLocation();
   const direction = useNavigationDirection();
-  const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransitionStage] = useState<'enter' | 'exit' | 'none'>('none');
-
-  useEffect(() => {
-    if (location.pathname !== displayLocation.pathname) {
-      setTransitionStage('exit');
-    }
-  }, [location, displayLocation]);
-
-  const handleAnimationEnd = () => {
-    if (transitionStage === 'exit') {
-      setDisplayLocation(location);
-      setTransitionStage('enter');
-    } else if (transitionStage === 'enter') {
-      setTransitionStage('none');
-    }
-  };
 
   const getTransitionClass = (): string => {
-    if (transitionStage === 'none') return 'page-transition';
+    const baseClass = 'page-transition';
     
-    if (transitionStage === 'exit') {
-      return direction === 'backward' 
-        ? 'page-transition page-exit-backward' 
-        : 'page-transition page-exit-forward';
+    if (direction === 'backward') {
+      return `${baseClass} slide-backward`;
+    } else if (direction === 'forward') {
+      return `${baseClass} slide-forward`;
     }
     
-    if (transitionStage === 'enter') {
-      return direction === 'backward' 
-        ? 'page-transition page-enter-backward' 
-        : 'page-transition page-enter-forward';
-    }
-
-    return 'page-transition';
+    return baseClass;
   };
 
   return (
     <div 
       className={getTransitionClass()}
-      onAnimationEnd={handleAnimationEnd}
-      key={displayLocation.pathname}
+      key={location.pathname}
     >
       {children}
     </div>
