@@ -456,18 +456,9 @@
 
             .document-footer {
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-end;
               align-items: center;
               align-self: stretch;
-
-              .verified-badge {
-                color: #BABEC9;
-                text-align: center;
-                font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-                font-size: 12px;
-                font-weight: 500;
-                line-height: 160%;
-              }
 
               .timestamp {
                 color: #BABEC9;
