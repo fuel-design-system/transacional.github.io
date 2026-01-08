@@ -10,8 +10,8 @@ function AppRoutes() {
   const location = useLocation();
 
   return (
-    <PageTransition key={location.pathname}>
-      <Routes location={location}>
+    <PageTransition>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/freight/:id" element={<FreightDetail />} />
         <Route path="/freight/:freightId/chat/:contactId" element={<ChatPage />} />

@@ -8,17 +8,37 @@
   -webkit-overflow-scrolling: touch;
 }
 
-// Forward navigation - slide in from right
-.slide-forward {
+// Forward navigation animations
+.exit-forward {
+  animation: slideOutToLeft 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.enter-forward {
   animation: slideInFromRight 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-// Backward navigation - slide in from left
-.slide-backward {
+// Backward navigation animations
+.exit-backward {
+  animation: slideOutToRight 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.enter-backward {
   animation: slideInFromLeft 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-// Keyframes for forward navigation (entering from right)
+// Forward - Exit to left (current page slides out to left)
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+}
+
+// Forward - Enter from right (new page slides in from right)
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
@@ -30,7 +50,19 @@
   }
 }
 
-// Keyframes for backward navigation (entering from left)
+// Backward - Exit to right (current page slides out to right)
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+// Backward - Enter from left (previous page slides in from left)
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-30%);
