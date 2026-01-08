@@ -8,6 +8,9 @@ function getRouteDepth(pathname: string): number {
   // Root
   if (pathname === '/' || pathname === '') return 0;
 
+  // Pending Payment
+  if (pathname === '/pending-payment') return 1;
+
   // Freight detail
   if (/^\/freight\/[^/]+$/.test(pathname)) return 1;
 
