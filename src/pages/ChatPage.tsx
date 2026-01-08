@@ -100,6 +100,35 @@ export default function ChatPage() {
     ];
   });
 
+  // Salva mensagens no sessionStorage sempre que mudam
+  useEffect(() => {
+    sessionStorage.setItem(chatStorageKey, JSON.stringify(messages));
+  }, [messages, chatStorageKey]);
+
+  // Detecta quando documentos foram enviados e adiciona mensagem
+  useEffect(() => {
+    const state = location.state as { documentsSubmitted?: boolean };
+    if (state?.documentsSubmitted) {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timestamp = `${hours}:${minutes}`;
+
+      const documentSubmittedMessage: Message = {
+        id: String(Date.now()),
+        sender: 'user',
+        text: '',
+        timestamp,
+        isRead: true,
+        type: 'document-submitted',
+      };
+
+      setMessages(prev => [...prev, documentSubmittedMessage]);
+
+      // Limpa o state para não adicionar a mensagem novamente
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location.state, location.pathname, navigate, chatStorageKey]);
 
   // Script de conversa com etapas definidas
   const conversationFlowSteps = [
