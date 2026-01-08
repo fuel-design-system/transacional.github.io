@@ -36,7 +36,6 @@ export default function ChatPage() {
   // Chave única para cada conversa
   const chatStorageKey = `chat_${freightId}_${contactId}`;
 
-  const [isExiting, setIsExiting] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const [message, setMessage] = useState('');
   const [completedTabs, setCompletedTabs] = useState<number[]>([]);
@@ -180,10 +179,7 @@ export default function ChatPage() {
   const contact = contacts[contactId || '1'];
 
   const handleBackClick = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      navigate(`/freight/${freightId}`);
-    }, 300);
+    navigate(`/freight/${freightId}`);
   };
 
   const handleStepChange = (step: number) => {
@@ -300,7 +296,7 @@ export default function ChatPage() {
   }
 
   return (
-    <div className={`chat-page ${isExiting ? 'exiting' : ''}`}>
+    <div className="chat-page">
       {/* Header */}
       <div className="chat-header">
         <div className="header-bar">

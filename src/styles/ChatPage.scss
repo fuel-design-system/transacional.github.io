@@ -1,18 +1,8 @@
 .chat-page {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  height: 100%;
   background: #FFF;
-  z-index: 2000;
   display: flex;
   flex-direction: column;
-  animation: slideInFromRight 0.3s ease-out;
-
-  &.exiting {
-    animation: slideOutToRight 0.3s ease-out;
-  }
 
   .chat-header {
     display: flex;
@@ -939,52 +929,9 @@
   }
 }
 
-@keyframes slideInFromRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOutToRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
 @media (min-width: 768px) {
   .chat-page {
-    left: 50%;
-    max-width: 500px;
-    transform: translateX(-50%);
-
-    animation: slideInFromRightDesktop 0.3s ease-out;
-
-    &.exiting {
-      animation: slideOutToRightDesktop 0.3s ease-out;
-    }
-  }
-
-  @keyframes slideInFromRightDesktop {
-    from {
-      transform: translateX(50%);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes slideOutToRightDesktop {
-    from {
-      transform: translateX(-50%);
-    }
-    to {
-      transform: translateX(50%);
-    }
+    max-width: 768px;
+    margin: 0 auto;
   }
 }
