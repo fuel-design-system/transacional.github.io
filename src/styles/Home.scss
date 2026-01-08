@@ -191,6 +191,68 @@
   flex-shrink: 0;
 }
 
+// Banner de Taxa Pendente
+.pending-payment-banner {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-4;
+  margin: 0 $space-4 $space-4;
+  border-radius: $radius-lg;
+  background-color: $bg-inverted;
+  cursor: pointer;
+  transition: transform $transition-base $transition-ease;
+  animation: slideDown 0.3s ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .warning-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .banner-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: $space-1;
+    flex: 1;
+
+    .banner-title {
+      color: $text-inverted;
+      font-family: $font-satoshi;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      line-height: 1.5;
+    }
+  }
+
+  .chevron-right {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // Cards de Fretes
 .freight-cards-container {
   display: flex;
