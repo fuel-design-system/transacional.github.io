@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCountdown } from '../hooks/useCountdown';
 import '../styles/PendingPaymentPage.scss';
@@ -10,9 +11,12 @@ export default function PendingPaymentPage() {
   const freightId = sessionStorage.getItem('negotiatedFreightId');
   const freight = freightsData.find(f => f.id === Number(freightId));
 
-  // Set countdown to 24 hours from now (you can adjust this)
-  const targetDate = new Date();
-  targetDate.setHours(targetDate.getHours() + 24);
+  // Set countdown to 24 hours from now (usando useMemo para manter a data fixa)
+  const targetDate = useMemo(() => {
+    const date = new Date();
+    date.setHours(date.getHours() + 24);
+    return date;
+  }, []);
   const countdown = useCountdown(targetDate);
 
   return (
