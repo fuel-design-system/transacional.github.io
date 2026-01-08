@@ -3,6 +3,9 @@
   height: 100%;
   position: relative;
   background-color: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 // Forward navigation - slide in from right
