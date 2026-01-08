@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/PaymentFeePage.scss';
 import Toast from '../components/Toast';
+import PixInfoSheet from '../components/PixInfoSheet';
 
 export default function PaymentFeePage() {
   const navigate = useNavigate();
   const { freightId, contactId } = useParams();
   const [pixKey] = useState('(11) 9 9999-8888');
   const [showToast, setShowToast] = useState(false);
+  const [isPixInfoSheetOpen, setIsPixInfoSheetOpen] = useState(false);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -19,8 +21,7 @@ export default function PaymentFeePage() {
   };
 
   const handleLearnMore = () => {
-    // TODO: Abrir modal ou página com mais informações sobre o Pix da Carteira
-    console.log('Saiba mais sobre Pix da Carteira');
+    setIsPixInfoSheetOpen(true);
   };
 
   const handleSubscribeVIP = () => {
@@ -124,6 +125,13 @@ export default function PaymentFeePage() {
         message="Chave Pix copiada com sucesso."
         isVisible={showToast}
         onClose={() => setShowToast(false)}
+      />
+
+      {/* Pix Info Sheet */}
+      <PixInfoSheet
+        isOpen={isPixInfoSheetOpen}
+        onClose={() => setIsPixInfoSheetOpen(false)}
+        pixKey={pixKey}
       />
     </div>
   );
