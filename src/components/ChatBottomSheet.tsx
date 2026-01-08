@@ -67,7 +67,9 @@ export default function ChatBottomSheet({ isOpen, onClose }: ChatBottomSheetProp
 
   const handleContactClick = (contactId: string) => {
     onClose();
-    navigate(`/freight/${freightId}/chat/${contactId}`);
+    navigate(`/freight/${freightId}/chat/${contactId}`, {
+      state: { fromFreightDetails: true }
+    });
   };
 
   return (
