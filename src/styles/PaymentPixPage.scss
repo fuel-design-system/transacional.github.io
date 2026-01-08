@@ -9,21 +9,28 @@
   .pix-header {
     display: flex;
     align-items: center;
-    padding: 24px 0;
+    height: 64px;
+    gap: 8px;
     position: relative;
 
     .back-button {
       display: flex;
-      width: 32px;
-      height: 32px;
-      padding: 4px;
-      align-items: flex-start;
+      width: 48px;
+      height: 48px;
       justify-content: center;
+      align-items: center;
+      gap: 8px;
       border: none;
       background: transparent;
-      border-radius: 8px;
+      border-radius: $radius-pill;
       cursor: pointer;
       transition: background 0.2s;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
 
       &:hover {
         background: rgba(0, 0, 0, 0.05);

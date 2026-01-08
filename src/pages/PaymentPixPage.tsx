@@ -21,8 +21,8 @@ export default function PaymentPixPage() {
     <div className="payment-pix-page">
       <div className="pix-header">
         <button className="back-button" onClick={() => navigate('/payment/checkout')}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 12H2M2 12L8 6M2 12L8 18" stroke="#111111" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.3399 10L1.66992 10M1.66992 10L6.66992 5M1.66992 10L6.66992 15" stroke="#636B7E" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
         <h1 className="pix-title">Pagar com Pix</h1>
