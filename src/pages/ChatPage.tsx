@@ -230,6 +230,8 @@ export default function ChatPage() {
   };
 
   const handleStepChange = (step: number) => {
+    // Muda para o tab correspondente
+    setActiveTab(step);
     // Abre o bottom sheet ao clicar em qualquer step
     setIsStepsSheetOpen(true);
   };
