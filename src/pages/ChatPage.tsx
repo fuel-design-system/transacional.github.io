@@ -106,6 +106,10 @@ export default function ChatPage() {
     sessionStorage.setItem(`${chatStorageKey}_completedTabs`, JSON.stringify(completedTabs));
   }, [completedTabs, chatStorageKey]);
 
+  useEffect(() => {
+    sessionStorage.setItem(`${chatStorageKey}_clickedDocButton`, JSON.stringify(hasClickedDocumentButton));
+  }, [hasClickedDocumentButton, chatStorageKey]);
+
   // Busca os dados do frete
   const freight = freightsData.find(f => f.id === Number(freightId));
 
