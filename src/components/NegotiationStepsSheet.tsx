@@ -5,9 +5,10 @@ interface NegotiationStepsSheetProps {
   isOpen: boolean;
   onClose: () => void;
   currentStep: number;
+  completedTabs: number[];
 }
 
-export default function NegotiationStepsSheet({ isOpen, onClose, currentStep }: NegotiationStepsSheetProps) {
+export default function NegotiationStepsSheet({ isOpen, onClose, currentStep, completedTabs }: NegotiationStepsSheetProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
