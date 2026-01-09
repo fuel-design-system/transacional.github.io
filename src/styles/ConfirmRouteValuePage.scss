@@ -181,6 +181,11 @@
           border: 2px solid #E53935;
         }
       }
+
+      &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
 
     .floating-label {
