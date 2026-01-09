@@ -61,7 +61,7 @@ export default function NegotiationStepsSheet({ isOpen, onClose, currentStep, co
             {/* Step 2 */}
             <div className="step-item">
               <div className="step-row">
-                {currentStep >= 3 ? (
+                {completedTabs.includes(2) ? (
                   <div className="step-badge completed">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect width="40" height="40" rx="20" fill="#0C884C"/>
@@ -74,13 +74,13 @@ export default function NegotiationStepsSheet({ isOpen, onClose, currentStep, co
                   </div>
                 )}
                 <div className="step-content">
-                  <div className={`step-title ${currentStep >= 3 ? 'muted' : 'active'}`}>Libere seus documentos</div>
-                  <div className={`step-description ${currentStep >= 3 ? '' : 'active'}`}>
+                  <div className={`step-title ${completedTabs.includes(2) ? 'muted' : 'active'}`}>Libere seus documentos</div>
+                  <div className={`step-description ${completedTabs.includes(2) ? '' : 'active'}`}>
                     Seus documentos serão enviados para análise da empresa.
                   </div>
-                  
-                  {/* Waiting status - only show if step 2 is active */}
-                  {currentStep === 2 && (
+
+                  {/* Waiting status - only show if step 2 is active and not completed */}
+                  {currentStep === 2 && !completedTabs.includes(2) && (
                     <div className="waiting-status">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.0088 2.42871C11.0541 2.42875 12.0368 2.62711 12.957 3.02441C13.8778 3.42195 14.6794 3.96122 15.3604 4.64258C16.0413 5.32393 16.5803 6.12559 16.9775 7.04688C17.3747 7.96802 17.5732 8.9526 17.5732 10C17.5732 11.0431 17.3765 12.0236 16.9824 12.9414C16.5882 13.8593 16.0488 14.6637 15.3652 15.3545C14.6817 16.0452 13.8789 16.5879 12.957 16.9824C12.0352 17.3767 11.0501 17.5742 10.002 17.5742C8.95893 17.5742 7.97833 17.3774 7.06055 16.9834C6.14257 16.5892 5.33733 16.046 4.64648 15.3555C3.95581 14.665 3.41298 13.8599 3.01855 12.9404C2.62433 12.0211 2.42773 11.0387 2.42773 9.99316C2.42774 8.94757 2.62441 7.96439 3.01855 7.04395C3.41271 6.12351 3.95512 5.32149 4.64551 4.6377C5.33608 3.95378 6.14185 3.41403 7.06152 3.01953C7.98073 2.62539 8.96337 2.42871 10.0088 2.42871ZM9.44824 9.9209H9.44434L9.45117 9.92871L12.9287 13.4062L12.9365 13.4131L13.7246 12.625L13.7178 12.6172L10.5527 9.45215V4.99121H9.44824V9.9209Z" fill="#0769DA" stroke="#0769DA" strokeWidth="0.0208333"/>
