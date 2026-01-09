@@ -528,7 +528,10 @@ export default function ChatPage() {
                         <span className="sender-name-bold">{msg.senderName}</span> {msg.text}
                       </div>
                       <div className="document-action">
-                        <button className="document-button" onClick={() => navigate(`/freight/${freightId}/chat/${contactId}/documents`)}>
+                        <button className="document-button" onClick={() => {
+                          setHasClickedDocumentButton(true);
+                          navigate(`/freight/${freightId}/chat/${contactId}/documents`);
+                        }}>
                           Liberar meus documentos
                         </button>
                       </div>
