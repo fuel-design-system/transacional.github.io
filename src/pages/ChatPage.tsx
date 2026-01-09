@@ -48,6 +48,7 @@ export default function ChatPage() {
       sessionStorage.removeItem(`${chatStorageKey}_activeTab`);
       sessionStorage.removeItem(`${chatStorageKey}_currentStep`);
       sessionStorage.removeItem(`${chatStorageKey}_completedTabs`);
+      sessionStorage.removeItem(`${chatStorageKey}_clickedDocButton`);
 
       // Limpa o state para não limpar novamente ao navegar
       navigate(location.pathname, { replace: true, state: {} });
