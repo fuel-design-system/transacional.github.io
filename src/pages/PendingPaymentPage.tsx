@@ -83,8 +83,10 @@ export default function PendingPaymentPage() {
 
           {/* Card 2: VIP Subscription */}
           <div className="payment-card">
-            <div className="card-tag">
-              <span className="tag-label">QUEM CARREGA SEMPRE</span>
+            <div className="card-tag-wrapper">
+              <div className="card-tag">
+                <span className="tag-label">QUEM CARREGA SEMPRE</span>
+              </div>
             </div>
             <div className="card-content">
               <button
