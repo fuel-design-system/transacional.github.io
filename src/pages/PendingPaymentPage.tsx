@@ -130,7 +130,6 @@ export default function PendingPaymentPage() {
             Continuar
           </button>
         )}
-
           <div className="divider"></div>
 
           <div className="contact-info">
