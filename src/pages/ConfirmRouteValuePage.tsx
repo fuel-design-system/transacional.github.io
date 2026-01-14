@@ -8,7 +8,6 @@ export default function ConfirmRouteValuePage() {
   const { freightId, contactId } = useParams();
   const [freightValue, setFreightValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const [hasError, setHasError] = useState(false);
 
   // Get freight data
   const freight = freightsData.find(f => f.id === Number(freightId));
@@ -52,10 +51,6 @@ export default function ConfirmRouteValuePage() {
     const inputValue = e.target.value;
     const formattedValue = formatCurrency(inputValue);
     setFreightValue(formattedValue);
-    // Limpa o erro quando o usuário começa a digitar
-    if (hasError) {
-      setHasError(false);
-    }
   };
 
   const hasValue = freightValue.trim() !== '';
@@ -80,7 +75,7 @@ export default function ConfirmRouteValuePage() {
           <div className="route-card">
             {/* Value Input */}
             <div className="value-section">
-              <div className={`input-wrapper ${isFocused || hasValue ? 'focused' : ''} ${hasError ? 'error' : ''}`}>
+              <div className={`input-wrapper ${isFocused || hasValue ? 'focused' : ''}`}>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -95,11 +90,6 @@ export default function ConfirmRouteValuePage() {
                   Qual o valor do frete combinado?
                 </label>
               </div>
-              {hasError && (
-                <span className="error-message">
-                  Informe o valor do frete combinado
-                </span>
-              )}
             </div>
           </div>
         </div>
