@@ -655,15 +655,7 @@ export default function ChatPage() {
                         </div>
                       </div>
                       <div className="trip-caption">
-                        <div className="trip-title">Carlos S. confirmou a viagem!</div>
-                        <div className="trip-route">📍 {freight ? `${freight.origin.split(',')[1]?.trim() || 'SP'} → ${freight.destination.split(',')[1]?.trim() || 'MG'} | ${freight.product}` : 'SP → MG | Pallets • Caixas'}</div>
-                        <div className="trip-text">
-                          Combine a coleta e receba o adiantamento no <span className="trip-bold">Pix da sua Carteira Fretebras.</span>
-                        </div>
-                      </div>
-                      <div className="trip-actions">
-                        <button className="trip-button primary">Já coletei o frete</button>
-                        <button className="trip-button secondary">Enviar meu Pix</button>
+                        <div className="trip-title">Carlos S. analisou seus documentos e confirmou viagem!</div>
                       </div>
                       <div className="trip-footer">
                         <span className="timestamp">{msg.timestamp}</span>
