@@ -75,7 +75,7 @@
         overflow: hidden;
         padding-bottom: 24px;
 
-        .card-tag {
+        .card-tag-wrapper {
           position: absolute;
           top: 0;
           right: 0;
@@ -84,19 +84,26 @@
           height: 24px;
           align-items: center;
           justify-content: flex-end;
-          background: #DBECFF;
           border-radius: 0 0 0 8px;
-          padding: 2px 8px;
           overflow: hidden;
 
-          .tag-label {
-            color: #0769DA;
-            font-family: $font-satoshi;
-            font-size: 10px;
-            font-weight: $font-weight-bold;
-            line-height: 1.6;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
+          .card-tag {
+            display: flex;
+            padding: 2px 8px;
+            justify-content: center;
+            align-items: center;
+            align-self: stretch;
+            background: #DBECFF;
+
+            .tag-label {
+              color: #0769DA;
+              font-family: $font-satoshi;
+              font-size: 10px;
+              font-weight: $font-weight-bold;
+              line-height: 1.6;
+              letter-spacing: 0.4px;
+              text-transform: uppercase;
+            }
           }
         }
 
