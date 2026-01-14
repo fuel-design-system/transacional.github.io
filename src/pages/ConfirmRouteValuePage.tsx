@@ -79,7 +79,7 @@ export default function ConfirmRouteValuePage() {
           <div className="route-card">
             {/* Value Input */}
             <div className="value-section">
-              <div className={`input-wrapper ${isFocused || hasValue ? 'focused' : ''} ${hasError ? 'error' : ''} ${notAgreedYet ? 'disabled' : ''}`}>
+              <div className={`input-wrapper ${isFocused || hasValue ? 'focused' : ''} ${hasError ? 'error' : ''}`}>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -89,7 +89,6 @@ export default function ConfirmRouteValuePage() {
                   onBlur={() => setIsFocused(false)}
                   placeholder={isFocused || hasValue ? 'R$ 0,00' : ''}
                   className="value-input"
-                  disabled={notAgreedYet}
                 />
                 <label className="floating-label">
                   Qual o valor do frete combinado?
