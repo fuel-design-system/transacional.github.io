@@ -43,8 +43,10 @@ export default function PendingPaymentPage() {
         <div className="payment-options">
           {/* Card 1: Wallet Payment */}
           <div className="payment-card">
-            <div className="card-tag">
-              <span className="tag-label">PRA 1 FRETE</span>
+            <div className="card-tag-wrapper">
+              <div className="card-tag">
+                <span className="tag-label">PRA 1 FRETE</span>
+              </div>
             </div>
             <div className="card-content">
               <button
