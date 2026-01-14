@@ -1,0 +1,268 @@
+.pix-payment-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFF;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 6px 12px -6px rgba(38, 47, 74, 0.12), 0 8px 24px -4px rgba(38, 47, 74, 0.08);
+  z-index: 3001;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  max-height: 90vh;
+  overflow: hidden;
+  will-change: transform;
+
+  &.open {
+    transform: translateY(0);
+  }
+
+  .sheet-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 8px 24px 40px 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .sheet-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sheet-handle {
+      width: 48px;
+      height: 4px;
+      border-radius: 50px;
+      background: #111;
+      opacity: 0.3;
+      margin-bottom: 8px;
+    }
+
+    .close-button-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+    }
+
+    .close-button {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 500px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      &:active {
+        background: rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  .icon-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .pix-icon-wrapper {
+      display: flex;
+      width: 56px;
+      height: 56px;
+      padding: 9.6px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6.4px;
+      background: #DBECFF;
+    }
+
+    .sheet-title {
+      color: #111;
+      font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: -0.8px;
+      margin: 0;
+    }
+  }
+
+  .bank-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .bank-info-text {
+      color: #636B7E;
+      font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 150%;
+      margin: 0;
+    }
+
+    .bank-container {
+      display: flex;
+      padding: 12px;
+      align-items: center;
+      gap: 8px;
+      border-radius: 8px;
+      border: 1px solid #DFE1E6;
+
+      .bank-name {
+        flex: 1;
+        color: #111;
+        font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 160%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .pix-card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .pix-card {
+      display: flex;
+      padding: 16px;
+      flex-direction: column;
+      gap: 16px;
+      border-radius: 16px;
+      background: rgba(0, 43, 92, 0.06);
+
+      .pix-key-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        svg {
+          flex-shrink: 0;
+        }
+
+        .pix-key-text-container {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0;
+
+          .pix-key-label {
+            color: #636B7E;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 150%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .pix-key-value {
+            color: #111;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 150%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        button {
+          display: flex;
+          min-height: 48px;
+          padding: 0 16px;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          border-radius: 100px;
+          border: none;
+          cursor: pointer;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 150%;
+          transition: all 0.2s;
+
+          span {
+            text-align: center;
+          }
+        }
+
+        .primary-button {
+          background: #0769DA;
+          color: #FFF;
+
+          &:hover {
+            background: #055bb5;
+          }
+
+          &:active {
+            background: #044a96;
+          }
+        }
+
+        .secondary-button {
+          background: rgba(0, 43, 92, 0.06);
+          color: #111;
+
+          &:hover {
+            background: rgba(0, 43, 92, 0.1);
+          }
+
+          &:active {
+            background: rgba(0, 43, 92, 0.14);
+          }
+        }
+      }
+    }
+
+    .warning-callout {
+      display: flex;
+      padding: 12px;
+      border-radius: 12px;
+      background: #F7C53B;
+
+      .callout-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        svg {
+          flex-shrink: 0;
+        }
+
+        .callout-text {
+          flex: 1;
+          color: #111;
+          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 150%;
+        }
+      }
+    }
+  }
+}
