@@ -4,6 +4,7 @@ import '../styles/ChatPage.scss';
 import freightsData from '../data/freights.json';
 import NegotiationStepsSheet from '../components/NegotiationStepsSheet';
 import PixPaymentSheet from '../components/PixPaymentSheet';
+import ServiceFeeBottomSheet from '../components/ServiceFeeBottomSheet';
 import Toast from '../components/Toast';
 
 interface Contact {
@@ -82,6 +83,7 @@ export default function ChatPage() {
   const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(false);
   const [isStepsSheetOpen, setIsStepsSheetOpen] = useState(false);
   const [isPixPaymentSheetOpen, setIsPixPaymentSheetOpen] = useState(false);
+  const [isServiceFeeSheetOpen, setIsServiceFeeSheetOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [hasClickedDocumentButton, setHasClickedDocumentButton] = useState(() => {
     const saved = sessionStorage.getItem(`${chatStorageKey}_clickedDocButton`);
@@ -90,6 +92,7 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasAddedDocumentMessage = useRef(false);
   const hasOpenedPixSheet = useRef(false);
+  const hasOpenedServiceFeeSheet = useRef(false);
 
   // Salva estados importantes no sessionStorage
   useEffect(() => {
@@ -184,6 +187,14 @@ export default function ChatPage() {
       // Marca a etapa 1 como concluída e ativa a etapa 2
       setCompletedTabs(prev => prev.includes(1) ? prev : [...prev, 1]);
       setCurrentStep(2);
+
+      // Após 3 segundos, exibe o bottom sheet de taxa de serviço
+      setTimeout(() => {
+        if (!hasOpenedServiceFeeSheet.current) {
+          setIsServiceFeeSheetOpen(true);
+          hasOpenedServiceFeeSheet.current = true;
+        }
+      }, 3000);
 
       // Após 3 segundos, envia a mensagem de revisão do acordo
       setTimeout(() => {
@@ -904,6 +915,15 @@ export default function ChatPage() {
         isOpen={isPixPaymentSheetOpen}
         onClose={() => setIsPixPaymentSheetOpen(false)}
         onCopyPix={handleCopyPix}
+      />
+
+      <ServiceFeeBottomSheet
+        isOpen={isServiceFeeSheetOpen}
+        onClose={() => setIsServiceFeeSheetOpen(false)}
+        onLearnMore={() => {
+          setIsServiceFeeSheetOpen(false);
+          // TODO: Navigate to service fee information page
+        }}
       />
 
       <Toast
