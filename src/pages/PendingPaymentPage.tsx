@@ -130,24 +130,6 @@ export default function PendingPaymentPage() {
             Continuar
           </button>
         )}
-          <div className="divider"></div>
-
-          <div className="contact-info">
-            <div className="contact-avatar">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F7de6902bb7ea42d4be5082a42dd00e60%2Fd2326185d8c14e199fd0ea93d543d691?format=webp&width=800" 
-                alt="Carlos S." 
-              />
-            </div>
-            <div className="contact-details">
-              <div className="contact-name">Carlos S.</div>
-              <div className="contact-status">Confirmou uma viagem com você</div>
-            </div>
-            <svg className="chat-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2.41675 17.1986V2.4165H17.5834V14.5832H5.03216L2.41675 17.1986ZM4.58341 13.4998H16.5001V3.49984H3.50008V14.5913L4.58341 13.4998Z" fill="#111111"/>
-            </svg>
-          </div>
-        </div>
 
         {/* Menu de ajuda */}
         <div className="help-menu">
