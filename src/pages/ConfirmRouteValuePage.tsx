@@ -17,15 +17,16 @@ export default function ConfirmRouteValuePage() {
     navigate(-1);
   };
 
-  const handleContinue = () => {
-    // Se não tem valor preenchido, mostra erro
-    if (!hasValue) {
-      setHasError(true);
-      return;
-    }
+  const handleSubmitDocuments = () => {
+    // Navega para o chat com o estado de documentos enviados
+    navigate(`/freight/${freightId}/chat/${contactId}`, {
+      state: { documentsSubmitted: true }
+    });
+  };
 
-    // Se tem valor, navega para a página de formas de cobrança da taxa
-    navigate(`/freight/${freightId}/chat/${contactId}/payment-fee`);
+  const handleSkipValue = () => {
+    // Navega para o chat sem enviar documentos
+    navigate(`/freight/${freightId}/chat/${contactId}`);
   };
 
   // Currency mask function
@@ -104,10 +105,13 @@ export default function ConfirmRouteValuePage() {
         </div>
       </div>
 
-      {/* Bottom Button */}
+      {/* Bottom Buttons */}
       <div className="bottom-button-container">
-        <button className="continue-button" onClick={handleContinue}>
-          Continuar
+        <button className="primary-button" onClick={handleSubmitDocuments}>
+          Concluir e enviar documentos
+        </button>
+        <button className="secondary-button" onClick={handleSkipValue}>
+          Não combinei o valor do frete ainda
         </button>
       </div>
     </div>
