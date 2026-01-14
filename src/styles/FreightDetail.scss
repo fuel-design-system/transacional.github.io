@@ -201,67 +201,83 @@
     }
   }
 
-  .service-fee-section {
+  .service-fee-card {
+    border: 2px solid #0769DA;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
-    .fee-title {
+    .service-fee-header {
       color: #111;
       font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 150%;
     }
 
-    .fee-details {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .service-fee-value-container {
+      padding: 20px;
+      border-radius: 16px;
+      background: #DBECFF;
 
-      .fee-left {
+      .fee-info-wrapper {
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
 
-        .fee-label {
-          color: #636B7E;
+        .fee-label-section {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          flex: 1;
+
+          .fee-label-text {
+            color: #111;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 150%;
+          }
+
+          .learn-more-link {
+            color: #0769DA;
+            font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 160%;
+            text-decoration: underline;
+            width: 84px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .fee-amount {
+          color: #111;
           font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-          font-size: 14px;
-          font-weight: 500;
+          font-size: 18px;
+          font-weight: 700;
           line-height: 150%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
-
-        .fee-link {
-          color: #0769DA;
-          font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-          font-size: 12px;
-          font-weight: 500;
-          line-height: 160%;
-          text-decoration: underline;
-        }
-      }
-
-      .fee-price {
-        color: #111;
-        font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 150%;
       }
     }
 
-    .divider-thin {
+    .fee-divider {
       height: 1px;
-      background: rgba(0, 43, 92, 0.06);
+      background: #F4F4F5;
     }
 
-    .vip-section {
+    .vip-benefits-section {
       display: flex;
       flex-direction: column;
       gap: 24px;
 
-      .vip-info {
+      .vip-message {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -270,9 +286,10 @@
         svg {
           width: 20px;
           height: 20px;
+          flex-shrink: 0;
         }
 
-        .vip-text {
+        .vip-message-text {
           color: #111;
           text-align: center;
           font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
@@ -282,10 +299,11 @@
         }
       }
 
-      .vip-button {
+      .subscribe-vip-button {
         display: flex;
         min-width: 64px;
         min-height: 48px;
+        max-height: 48px;
         padding: 0 16px;
         justify-content: center;
         align-items: center;
