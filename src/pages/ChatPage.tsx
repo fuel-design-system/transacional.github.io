@@ -341,6 +341,12 @@ export default function ChatPage() {
     setIsStepsSheetOpen(true);
   };
 
+  const handleCopyPix = () => {
+    const pixKey = '7192d4fd-1d90-4b2c-90fa-67a4akfl';
+    navigator.clipboard.writeText(pixKey);
+    setShowToast(true);
+  };
+
   const simulateUserResponse = (contactMessage: string) => {
     const lowerMessage = contactMessage.toLowerCase();
     let response = '';
