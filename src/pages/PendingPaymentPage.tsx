@@ -118,14 +118,6 @@ export default function PendingPaymentPage() {
         {selectedOption && (
           <button
             className="continue-button"
-            onClick={() => {
-              if (selectedOption === 'wallet') {
-                navigate('/payment/checkout');
-              } else {
-                // Navigate to VIP subscription page
-                navigate('/vip-subscription');
-              }
-            }}
           >
             Continuar
           </button>
