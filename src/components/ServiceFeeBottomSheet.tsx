@@ -4,7 +4,6 @@ import '../styles/ServiceFeeBottomSheet.scss';
 interface ServiceFeeBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  onLearnMore: () => void;
 }
 
 export default function ServiceFeeBottomSheet({ isOpen, onClose }: ServiceFeeBottomSheetProps) {
