@@ -685,7 +685,7 @@ export default function ChatPage() {
                         </div>
                       </div>
                       <div className="trip-caption">
-                        <div className="trip-title">Carlos S. analisou seus documentos e confirmou viagem!</div>
+                        <div className="trip-title">Carlos S. analisou seus documentos e confirmou viagem! Importante: Você deve pagar a taxa assim que carregar.</div>
                       </div>
                       <div className="trip-footer">
                         <span className="timestamp">{msg.timestamp}</span>
