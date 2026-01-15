@@ -27,13 +27,16 @@ export default function ConfirmRouteValuePage() {
     // Clear error and navigate to chat with documents submitted state
     setHasError(false);
     navigate(`/freight/${freightId}/chat/${contactId}`, {
+      replace: true,
       state: { documentsSubmitted: true }
     });
   };
 
   const handleSkipValue = () => {
     // Navega para o chat sem enviar documentos
-    navigate(`/freight/${freightId}/chat/${contactId}`);
+    navigate(`/freight/${freightId}/chat/${contactId}`, {
+      replace: true
+    });
   };
 
   // Currency mask function
