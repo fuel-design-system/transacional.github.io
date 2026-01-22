@@ -1,0 +1,122 @@
+@import './tokens';
+
+.mandatory-video-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $bg-inverted;
+  overflow: hidden;
+
+  .progress-section {
+    display: flex;
+    padding: $space-4 0;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-4;
+    width: 100%;
+  }
+
+  .progress-bar {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 4px;
+    background: $icon-medium;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: $text-inverted;
+    transition: width $transition-base linear;
+    will-change: width;
+  }
+
+  .progress-text {
+    width: 100%;
+    max-width: 328px;
+    padding: 0 $space-4;
+    color: $text-inverted;
+    font-family: $font-satoshi;
+    font-size: $font-size-xs;
+    font-style: normal;
+    font-weight: $font-weight-medium;
+    line-height: 160%;
+    letter-spacing: 0.24px;
+    text-align: center;
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px $space-4;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-search;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .audio-hint {
+    margin-top: $space-2;
+    color: $text-inverted;
+    font-family: $font-satoshi;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    line-height: 1.6;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: $radius-lg;
+  }
+
+  // Tablet breakpoint
+  @media (min-width: 768px) {
+    .progress-section {
+      padding: $space-6 0;
+    }
+
+    .video-container {
+      padding: 60px $space-6;
+    }
+
+    .audio-hint {
+      font-size: $font-size-sm;
+    }
+  }
+
+  // Desktop breakpoint
+  @media (min-width: 1024px) {
+    .progress-section {
+      padding: 32px 0;
+    }
+
+    .progress-text {
+      font-size: $font-size-sm;
+    }
+
+    .video-container {
+      padding: 80px 48px;
+    }
+
+    .audio-hint {
+      margin-top: $space-3;
+    }
+  }
+}
