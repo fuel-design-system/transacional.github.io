@@ -11,6 +11,7 @@ import PaymentLoadingPage from './pages/PaymentLoadingPage';
 import PaymentPixPage from './pages/PaymentPixPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import ContestServiceFeePage from './pages/ContestServiceFeePage';
+import MandatoryVideoPage from './pages/MandatoryVideoPage';
 import PageTransition from './components/PageTransition';
 
 function AppRoutes() {
@@ -20,6 +21,7 @@ function AppRoutes() {
     <PageTransition>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
+        <Route path="/mandatory-video" element={<MandatoryVideoPage />} />
         <Route path="/pending-payment" element={<PendingPaymentPage />} />
         <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
         <Route path="/payment/loading" element={<PaymentLoadingPage />} />

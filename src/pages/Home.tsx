@@ -41,7 +41,7 @@ export default function Home() {
 
           {/* Avatar e Avaliação */}
           <div className="user-profile">
-            <div className="avatar-wrapper">
+            <div className="avatar-wrapper" onClick={() => navigate('/mandatory-video')}>
               <div className="avatar">
                 A
               </div>
