@@ -41,10 +41,9 @@ export default function MandatoryVideoPage() {
         events: {
           onReady: (event: any) => {
             event.target.playVideo();
-          },
-          onStateChange: (event: any) => {
-            // Track progress
-            const interval = setInterval(() => {
+
+            // Track progress continuously
+            setInterval(() => {
               if (playerRef.current && playerRef.current.getDuration) {
                 const currentTime = playerRef.current.getCurrentTime();
                 const duration = playerRef.current.getDuration();
@@ -54,14 +53,17 @@ export default function MandatoryVideoPage() {
                 }
               }
             }, 100);
-
-            // Clear interval when video ends
-            if (event.data === window.YT.PlayerState.ENDED) {
-              clearInterval(interval);
-              setProgress(100);
+          },
+          onStateChange: (event: any) => {
+            // Auto-resume if paused (prevent user from pausing)
+            if (event.data === window.YT.PlayerState.PAUSED) {
+              event.target.playVideo();
             }
 
-            return () => clearInterval(interval);
+            // Handle video end
+            if (event.data === window.YT.PlayerState.ENDED) {
+              setProgress(100);
+            }
           },
         },
       });
