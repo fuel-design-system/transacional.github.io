@@ -160,7 +160,7 @@ export default function DocumentsPage() {
       {/* Bottom Button */}
       <div className="bottom-button-container">
         <button className="continue-button" onClick={handleContinue}>
-          Continuar
+          Enviar documentos
         </button>
       </div>
     </div>
