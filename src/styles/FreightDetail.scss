@@ -571,16 +571,28 @@
       .price-value {
         color: #111;
         font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 130%;
-        letter-spacing: -0.8px;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 150%;
+      }
+
+      .service-fee-text {
+        overflow: hidden;
+        color: #0769DA;
+        text-overflow: ellipsis;
+        font-family: Satoshi, -apple-system, Roboto, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 150%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
       }
 
       .price-details {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 8px;
 
         .toll-info {
           color: #636B7E;
