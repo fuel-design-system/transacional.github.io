@@ -47,6 +47,62 @@ export default function PendingPaymentPage() {
           </div>
         </div>
 
+        {/* Freight Loaded Card */}
+        {freight && (
+          <div className="freight-loaded-card">
+            <div className="freight-loaded-title">Frete que você carregou:</div>
+
+            <div className="freight-loaded-info">
+              {/* Price and Product */}
+              <div className="freight-price-section">
+                <div className="freight-price">R$ {freight.price}</div>
+                <div className="freight-details">
+                  <span className="freight-product">{freight.product}</span>
+                  <span className="freight-separator">•</span>
+                  <span className="freight-weight">{freight.weight}</span>
+                </div>
+              </div>
+
+              {/* Route */}
+              <div className="freight-route">
+                <svg className="route-icon" width="7" height="46" viewBox="0 0 7 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="3.5" cy="8.5" r="3" stroke="#BABEC9"/>
+                  <rect x="3" y="16" width="1" height="14" fill="#BABEC9"/>
+                  <path d="M6.19141 34.5L3.5 39.8818L0.808594 34.5H6.19141Z" stroke="#BABEC9"/>
+                </svg>
+                <div className="route-cities">
+                  <div className="origin-city">{freight.origin}</div>
+                  <div className="destination-city">{freight.destination}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="freight-divider"></div>
+
+            {/* Confirmation Info */}
+            <div className="confirmation-info">
+              <div className="confirmation-avatar">
+                {freight.companyAvatar ? (
+                  <img src={freight.companyAvatar} alt={freight.company} />
+                ) : (
+                  <div className="avatar-placeholder">
+                    {freight.company.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <div className="confirmation-text">
+                <span className="confirmation-normal">Viagem confirmada por</span>{' '}
+                <span className="confirmation-bold">Carlos S.</span>{' '}
+                <span className="confirmation-normal">em {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: '2-digit' })}</span>{' '}
+                <span className="confirmation-normal">(Operador da empresa </span>
+                <span className="confirmation-bold">{freight.company}</span>
+                <span className="confirmation-normal">)</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Payment Options Cards */}
         <div className="payment-options">
           {/* Card 1: Wallet Payment */}
