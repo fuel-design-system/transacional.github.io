@@ -185,14 +185,6 @@ export default function ChatPage() {
       setCompletedTabs(prev => prev.includes(1) ? prev : [...prev, 1]);
       setCurrentStep(2);
 
-      // Após 3 segundos, exibe o bottom sheet de taxa de serviço
-      setTimeout(() => {
-        if (!hasOpenedServiceFeeSheet.current) {
-          setIsServiceFeeSheetOpen(true);
-          hasOpenedServiceFeeSheet.current = true;
-        }
-      }, 3000);
-
       // Após 3 segundos, envia a mensagem de revisão do acordo
       setTimeout(() => {
         const now2 = new Date();
