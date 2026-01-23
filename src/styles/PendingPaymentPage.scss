@@ -939,7 +939,7 @@
     }
   }
 
-  .pix-footer {
+  .payment-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -958,7 +958,7 @@
       }
     }
 
-    .pix-footer-content {
+    .payment-footer-content {
       display: flex;
       width: 100%;
       max-width: 768px;
@@ -969,13 +969,13 @@
       align-items: flex-start;
       gap: 16px;
 
-      .pix-fee-info {
+      .footer-fee-info {
         display: flex;
         align-items: center;
         gap: 12px;
         width: 100%;
 
-        .pix-fee-label {
+        .footer-fee-label {
           flex: 1;
           color: $text-medium;
           font-family: $font-satoshi;
@@ -987,7 +987,7 @@
           white-space: nowrap;
         }
 
-        .pix-fee-value {
+        .footer-fee-value {
           color: $text-strong;
           font-family: $font-satoshi;
           font-size: 18px;
@@ -999,7 +999,82 @@
         }
       }
 
-      .pix-payment-button {
+      .footer-fee-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+
+        .footer-fee-label-small {
+          flex: 1;
+          color: $text-medium;
+          font-family: $font-satoshi;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          line-height: 1.5;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .footer-fee-value-strikethrough {
+          color: $text-strong;
+          font-family: $font-satoshi;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+          line-height: 1.5;
+          text-decoration: line-through;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .footer-label-with-tag {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          flex: 1;
+
+          .vip-tag {
+            display: flex;
+            height: 20px;
+            min-width: 32px;
+            padding: 0 4px;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            border-radius: 4px;
+            background: #111111;
+
+            svg {
+              width: 20px;
+              height: 20px;
+              flex-shrink: 0;
+            }
+
+            span {
+              color: #FFFFFF;
+              font-family: $font-satoshi;
+              font-size: 12px;
+              font-weight: $font-weight-medium;
+              line-height: 1.6;
+            }
+          }
+        }
+
+        .footer-discount-value {
+          color: #0C884C;
+          font-family: $font-satoshi;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-bold;
+          line-height: 1.5;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .footer-payment-button {
         display: flex;
         min-width: 64px;
         min-height: 48px;
