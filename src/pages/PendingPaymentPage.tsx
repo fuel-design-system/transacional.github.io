@@ -36,7 +36,7 @@ export default function PendingPaymentPage() {
       <div className="page-content">
         {/* Título */}
         <h1 className="page-title">
-          Identificamos o fechamento de um frete. Pague a taxa de serviço para continuar buscando fretes:
+          Identificamos que você carregou um frete. Pague a taxa de serviço pendente para continuar negociando fretes:
         </h1>
 
         {/* Payment Options Cards */}
