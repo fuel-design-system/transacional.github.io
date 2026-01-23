@@ -3,7 +3,6 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import '../styles/ChatPage.scss';
 import freightsData from '../data/freights.json';
 import NegotiationStepsSheet from '../components/NegotiationStepsSheet';
-import ServiceFeeBottomSheet from '../components/ServiceFeeBottomSheet';
 import Toast from '../components/Toast';
 
 interface Contact {
@@ -81,7 +80,6 @@ export default function ChatPage() {
   });
   const [isRouteCardExpanded, setIsRouteCardExpanded] = useState(false);
   const [isStepsSheetOpen, setIsStepsSheetOpen] = useState(false);
-  const [isServiceFeeSheetOpen, setIsServiceFeeSheetOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [hasClickedDocumentButton, setHasClickedDocumentButton] = useState(() => {
     const saved = sessionStorage.getItem(`${chatStorageKey}_clickedDocButton`);
@@ -89,7 +87,6 @@ export default function ChatPage() {
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const hasAddedDocumentMessage = useRef(false);
-  const hasOpenedServiceFeeSheet = useRef(false);
 
   // Salva estados importantes no sessionStorage
   useEffect(() => {
@@ -184,14 +181,6 @@ export default function ChatPage() {
       // Marca a etapa 1 como concluída e ativa a etapa 2
       setCompletedTabs(prev => prev.includes(1) ? prev : [...prev, 1]);
       setCurrentStep(2);
-
-      // Após 3 segundos, exibe o bottom sheet de taxa de serviço
-      setTimeout(() => {
-        if (!hasOpenedServiceFeeSheet.current) {
-          setIsServiceFeeSheetOpen(true);
-          hasOpenedServiceFeeSheet.current = true;
-        }
-      }, 3000);
 
       // Após 3 segundos, envia a mensagem de revisão do acordo
       setTimeout(() => {
@@ -674,7 +663,17 @@ export default function ChatPage() {
                         </div>
                       </div>
                       <div className="trip-caption">
-                        <div className="trip-title">Carlos S. analisou seus documentos e confirmou viagem! Importante: Você deve pagar a taxa assim que carregar.</div>
+                        <div className="trip-title">
+                          Carlos S. confirmou a viagem!
+                          {freight && (
+                            <>
+                              <br /><br />
+                              📍 {freight.origin.split(',')[1]?.trim() || freight.origin.split('-')[1]?.trim() || 'MG'} → {freight.destination.split(',')[1]?.trim() || freight.destination.split('-')[1]?.trim() || 'MT'} | {freight.product}
+                              <br /><br />
+                            </>
+                          )}
+                          Combine a coleta e receba o adiantamento no Pix da sua Carteira Fretebras.
+                        </div>
                       </div>
                       <div className="trip-footer">
                         <span className="timestamp">{msg.timestamp}</span>
@@ -709,11 +708,10 @@ export default function ChatPage() {
           messages.some(msg => msg.type === 'trip-confirmed') ? (
             <div className="copy-pix-bar">
               <div className="pix-bar-title">
-                <span className="title-bold">Copie seu Pix </span>
-                <span className="title-normal">para receber o pagamento na sua carteira Fretebras</span>
+                <span className="title-normal">Envie seu Pix para a empresa pagar o adiantamento na Carteira Fretebras e garanta o desconto da taxa de serviço!</span>
               </div>
               <button className="copy-pix-button" onClick={handleCopyPix}>
-                <span>Copiar Pix</span>
+                <span>Enviar Pix</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.78147 11.1765C9.95348 11.0046 10.253 11.004 10.425 11.1765L12.8762 13.6267C13.3295 14.0799 13.9324 14.3299 14.5735 14.3299H14.8684L11.7561 17.4431L11.5666 17.6131C10.6566 18.3551 9.34371 18.3551 8.43381 17.6131L8.24533 17.4431L5.14084 14.3387H5.62424C6.18507 14.3386 6.71694 14.1479 7.14475 13.7967L7.32151 13.6365L9.78147 11.1765ZM8.09885 14.4139C7.87162 14.641 7.61704 14.8317 7.34397 14.9861L9.02268 16.6648C9.56245 17.2046 10.4379 17.2047 10.9778 16.6648L12.7336 14.908C12.5541 14.7969 12.3837 14.6692 12.2248 14.5252L12.0979 14.4051L10.1028 12.409L8.09885 14.4139ZM4.44553 6.35624C4.4851 6.37114 4.52763 6.38163 4.57248 6.38163H5.62424C6.06633 6.3817 6.49935 6.56113 6.81174 6.87381L9.2717 9.33377C9.50094 9.56272 9.80248 9.67752 10.1037 9.67752C10.4046 9.6774 10.7056 9.56202 10.9348 9.3328L13.386 6.8826C13.6594 6.60895 14.025 6.43775 14.4084 6.3992L14.5735 6.39042H15.4289C15.4761 6.39036 15.5205 6.37956 15.5617 6.36307L17.4436 8.24491C18.4125 9.21425 18.4125 10.7853 17.4436 11.7547L15.5617 13.6365C15.5205 13.62 15.476 13.6092 15.4289 13.6092H14.5735C14.1313 13.6092 13.6984 13.4297 13.386 13.117L10.9348 10.6668C10.4906 10.2223 9.71629 10.2227 9.2717 10.6668L6.81174 13.1258C6.49935 13.4384 6.06633 13.6179 5.62424 13.618H4.57248C4.52763 13.618 4.48517 13.6284 4.44553 13.6433L2.55783 11.7547C1.64904 10.8459 1.59184 9.4084 2.38694 8.43338L2.55783 8.24491L4.44553 6.35624ZM14.5735 7.49002C14.4232 7.49002 14.2703 7.55394 14.1643 7.65995L11.8235 9.99979L14.1633 12.3396C14.2694 12.4457 14.4231 12.5096 14.5735 12.5096H15.133L16.6653 10.9773L16.76 10.8728C17.2032 10.3299 17.1715 9.52853 16.6653 9.02225L15.133 7.49002H14.5735ZM3.33518 9.02225C2.79531 9.56212 2.79532 10.4375 3.33518 10.9773L4.87619 12.5183H5.62424C5.77468 12.5183 5.9275 12.4544 6.03342 12.3484L8.38205 9.99979L6.03342 7.65116C5.92753 7.54517 5.77468 7.48131 5.62424 7.48124H4.87619L3.33518 9.02225ZM8.24533 2.55741C9.2147 1.58796 10.7866 1.58796 11.7561 2.55741L14.8684 5.66971H14.5735C13.9324 5.66971 13.3295 5.91973 12.8762 6.37284L10.425 8.82401C10.2475 9.00177 9.95857 9.00086 9.78147 8.82401L7.32151 6.36405C6.86824 5.911 6.2652 5.661 5.62424 5.66092H5.14084L8.24533 2.55741ZM10.9778 3.33475C10.4716 2.82866 9.671 2.79732 9.12815 3.24002L9.02268 3.33475L7.34397 5.01249C7.56774 5.139 7.77902 5.28995 7.97287 5.46561L8.09885 5.58573L10.1028 7.58963L12.0979 5.59452C12.2919 5.40059 12.5054 5.23186 12.7336 5.09061L10.9778 3.33475Z" fill="white"/>
                 </svg>
@@ -898,11 +896,6 @@ export default function ChatPage() {
         onClose={() => setIsStepsSheetOpen(false)}
         currentStep={currentStep}
         completedTabs={completedTabs}
-      />
-
-      <ServiceFeeBottomSheet
-        isOpen={isServiceFeeSheetOpen}
-        onClose={() => setIsServiceFeeSheetOpen(false)}
       />
 
       <Toast
