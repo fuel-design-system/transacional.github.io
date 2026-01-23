@@ -124,6 +124,7 @@ export default function Home() {
             destination={freight.destination}
             company={freight.company}
             companyAvatar={freight.companyAvatar}
+            hasNegotiationCompleted={showPendingPayment}
           />
         ))}
       </div>
