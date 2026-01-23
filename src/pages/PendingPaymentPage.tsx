@@ -39,6 +39,14 @@ export default function PendingPaymentPage() {
           Identificamos que você carregou um frete. Pague a taxa de serviço pendente para continuar negociando fretes:
         </h1>
 
+        {/* Service Fee Card */}
+        <div className="service-fee-card">
+          <div className="fee-info-row">
+            <span className="fee-label">Valor da taxa:</span>
+            <span className="fee-value">R$ 29,90</span>
+          </div>
+        </div>
+
         {/* Payment Options Cards */}
         <div className="payment-options">
           {/* Card 1: Wallet Payment */}
