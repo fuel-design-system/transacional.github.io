@@ -7,6 +7,7 @@ import freightsData from '../data/freights.json';
 export default function PendingPaymentPage() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState<'pix' | 'card' | 'vip' | 'new-card' | null>(null);
+  const [showPixFooter, setShowPixFooter] = useState(false);
 
   // Get the freight ID from sessionStorage
   const freightId = sessionStorage.getItem('negotiatedFreightId');
@@ -111,7 +112,10 @@ export default function PendingPaymentPage() {
             {/* Option 1: Pagar via Pix */}
             <button
               className="payment-option"
-              onClick={() => setSelectedOption('pix')}
+              onClick={() => {
+                setSelectedOption('pix');
+                setShowPixFooter(true);
+              }}
             >
               <div className="option-content">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -365,6 +369,24 @@ export default function PendingPaymentPage() {
           </button>
         </div>
       </div>
+
+      {/* Pix Payment Footer */}
+      {showPixFooter && (
+        <div className="pix-footer">
+          <div className="pix-footer-content">
+            <div className="pix-fee-info">
+              <span className="pix-fee-label">Você pagará:</span>
+              <span className="pix-fee-value">R$ 29,90</span>
+            </div>
+            <button
+              className="pix-payment-button"
+              onClick={() => navigate('/payment-pix')}
+            >
+              Pagar via Pix
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
