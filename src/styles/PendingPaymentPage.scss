@@ -410,6 +410,22 @@
       }
     }
 
+    .page-divider {
+      display: flex;
+      width: 100%;
+      padding: 16px 0;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 33px;
+
+      &::after {
+        content: '';
+        height: 1px;
+        width: 100%;
+        background: #DFE1E6;
+      }
+    }
+
     .continue-button {
       display: flex;
       min-width: 64px;
