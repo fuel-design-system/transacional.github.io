@@ -191,6 +191,9 @@ export default function PendingPaymentPage() {
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="page-divider"></div>
+
         {/* Continue Button */}
         {selectedOption && (
           <button
