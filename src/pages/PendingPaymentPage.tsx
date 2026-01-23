@@ -7,7 +7,27 @@ import freightsData from '../data/freights.json';
 export default function PendingPaymentPage() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState<'pix' | 'card' | 'vip' | 'new-card' | null>(null);
-  const [showPixFooter, setShowPixFooter] = useState(false);
+  const [showPaymentFooter, setShowPaymentFooter] = useState(false);
+
+  const handlePaymentOptionClick = (option: 'pix' | 'card' | 'vip' | 'new-card') => {
+    setSelectedOption(option);
+    if (option === 'pix' || option === 'card' || option === 'vip') {
+      setShowPaymentFooter(true);
+    } else {
+      setShowPaymentFooter(false);
+    }
+  };
+
+  const handleFooterButtonClick = () => {
+    if (selectedOption === 'pix') {
+      navigate('/payment-pix');
+    } else if (selectedOption === 'card') {
+      navigate('/payment-loading');
+    } else if (selectedOption === 'vip') {
+      // Navigate to VIP subscription page
+      navigate('/vip-subscription');
+    }
+  };
 
   // Get the freight ID from sessionStorage
   const freightId = sessionStorage.getItem('negotiatedFreightId');
@@ -112,10 +132,7 @@ export default function PendingPaymentPage() {
             {/* Option 1: Pagar via Pix */}
             <button
               className="payment-option"
-              onClick={() => {
-                setSelectedOption('pix');
-                setShowPixFooter(true);
-              }}
+              onClick={() => handlePaymentOptionClick('pix')}
             >
               <div className="option-content">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +150,7 @@ export default function PendingPaymentPage() {
             {/* Option 2: Card Payment */}
             <button
               className="payment-option"
-              onClick={() => setSelectedOption('card')}
+              onClick={() => handlePaymentOptionClick('card')}
             >
               <div className="option-content">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +176,7 @@ export default function PendingPaymentPage() {
             {/* Option 3: VIP Subscription */}
             <button
               className="payment-option"
-              onClick={() => setSelectedOption('vip')}
+              onClick={() => handlePaymentOptionClick('vip')}
             >
               <div className="option-content">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +197,7 @@ export default function PendingPaymentPage() {
             {/* Option 4: Add New Card */}
             <button
               className="payment-option"
-              onClick={() => setSelectedOption('new-card')}
+              onClick={() => handlePaymentOptionClick('new-card')}
             >
               <div className="option-content">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -370,19 +387,59 @@ export default function PendingPaymentPage() {
         </div>
       </div>
 
-      {/* Pix Payment Footer */}
-      {showPixFooter && (
-        <div className="pix-footer">
-          <div className="pix-footer-content">
-            <div className="pix-fee-info">
-              <span className="pix-fee-label">Você pagará:</span>
-              <span className="pix-fee-value">R$ 29,90</span>
+      {/* Payment Footer */}
+      {showPaymentFooter && (selectedOption === 'pix' || selectedOption === 'card') && (
+        <div className="payment-footer">
+          <div className="payment-footer-content">
+            <div className="footer-fee-info">
+              <span className="footer-fee-label">Você pagará:</span>
+              <span className="footer-fee-value">R$ 29,90</span>
             </div>
             <button
-              className="pix-payment-button"
-              onClick={() => navigate('/payment-pix')}
+              className="footer-payment-button"
+              onClick={handleFooterButtonClick}
             >
-              Pagar via Pix
+              {selectedOption === 'pix' ? 'Pagar via Pix' : 'Pagar agora no cartão'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* VIP Payment Footer */}
+      {showPaymentFooter && selectedOption === 'vip' && (
+        <div className="payment-footer vip-footer">
+          <div className="payment-footer-content">
+            {/* Original Value */}
+            <div className="footer-fee-row">
+              <span className="footer-fee-label-small">Valor da taxa</span>
+              <span className="footer-fee-value-strikethrough">R$ 29,90</span>
+            </div>
+
+            {/* Discount with VIP Tag */}
+            <div className="footer-fee-row">
+              <div className="footer-label-with-tag">
+                <span className="footer-fee-label-small">Desconto</span>
+                <div className="vip-tag">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.8652 3.21875L17.7383 7.96484L9.99902 16.6553L2.25977 7.96484L4.13477 3.21875H15.8652ZM4.21777 8.54785L9.4502 14.4795L9.46875 14.5V8.53125H4.20215L4.21777 8.54785ZM10.5312 14.5L10.5488 14.4795L15.7812 8.54785L15.7969 8.53125H10.5312V14.5ZM4.88281 4.28711L3.57031 7.4541L3.56445 7.46875H6.66992V7.48145L6.67871 7.46289L8.2627 4.2959L8.26953 4.28125H4.89258V4.26367L4.88281 4.28711ZM7.85449 7.46875H12.1445L12.1377 7.45312L10.5537 4.28711L10.5449 4.29102L10.5654 4.28125H9.45508V4.26758L7.85449 7.46875ZM11.7373 4.2959L13.3203 7.46289L13.3096 7.46875H16.4355L16.4297 7.4541L15.1377 4.28711L15.1533 4.28125H11.7295L11.7373 4.2959Z" fill="white" stroke="white" strokeWidth="0.0208333"/>
+                  </svg>
+                  <span>VIP</span>
+                </div>
+              </div>
+              <span className="footer-discount-value">-R$ 29,90</span>
+            </div>
+
+            {/* Final Value */}
+            <div className="footer-fee-info">
+              <span className="footer-fee-label">Você pagará:</span>
+              <span className="footer-fee-value">R$ 0,00</span>
+            </div>
+
+            <button
+              className="footer-payment-button"
+              onClick={handleFooterButtonClick}
+            >
+              Assinar motorista VIP
             </button>
           </div>
         </div>
