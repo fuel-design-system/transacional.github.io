@@ -53,7 +53,8 @@ export default function FreightCard({
   };
 
   return (
-    <div className="freight-card" onClick={handleCardClick}>
+    <>
+      <div className="freight-card" onClick={handleCardClick}>
       <div className="freight-info">
         {/* Preço e informações */}
         <div className="freight-content">
@@ -137,6 +138,12 @@ export default function FreightCard({
           )}
         </div>
       )}
-    </div>
+      </div>
+
+      <PaymentBlockBottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={handleCloseBottomSheet}
+      />
+    </>
   );
 }
