@@ -68,33 +68,52 @@
     background: #000;
   }
 
-  .unmute-button {
-    position: absolute;
-    top: 50%;
+  .unmute-button,
+  .mute-button {
+    position: fixed;
+    bottom: 40px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     width: 240px;
     height: 48px;
-    padding: 0 16px;
-    background: #0769DA;
-    border-radius: 500px;
+    padding: 0 $space-4;
+    border: none;
+    border-radius: $radius-pill;
     color: $text-inverted;
     font-family: $font-satoshi;
-    font-size: 14px;
+    font-size: $font-size-sm;
     font-weight: $font-weight-medium;
     line-height: 150%;
     text-align: center;
     white-space: nowrap;
-    pointer-events: none; // Allow clicks to pass through to overlay
-    user-select: none;
+    cursor: pointer;
+    z-index: 100;
+    transition: opacity $transition-base;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
 
     svg {
       flex-shrink: 0;
     }
+  }
+
+  .unmute-button {
+    background: $interaction-enable;
+  }
+
+  .mute-button {
+    background: rgba(219, 236, 255, 0.12);
+    backdrop-filter: blur(8px);
   }
 
   .audio-hint {
