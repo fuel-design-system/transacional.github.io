@@ -10,6 +10,19 @@ export default function Home() {
   const [showPendingPayment, setShowPendingPayment] = useState(false);
 
   useEffect(() => {
+    // Verifica se é a primeira visita e redireciona para o vídeo obrigatório
+    const hasSeenMandatoryVideo = localStorage.getItem('hasSeenMandatoryVideo');
+
+    if (!hasSeenMandatoryVideo) {
+      const timer = setTimeout(() => {
+        navigate('/mandatory-video');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     // Verifica se há uma negociação concluída
     const hasCompletedNegotiation = sessionStorage.getItem('negotiationCompleted');
     if (hasCompletedNegotiation === 'true') {
